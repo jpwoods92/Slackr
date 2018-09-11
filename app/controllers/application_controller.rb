@@ -22,16 +22,11 @@ class ApplicationController < ActionController::Base
   
     def find_invalid_field(user)
       errors = []
-      @user = User.find_by(username: user[:username])
+      @user = User.find_by(email: user[:email])
       if @user.nil?
-          errors.push('username not found')
+          errors.push('email not found')
       else
-        @user.password = user[:password]
-        if user[:password].length < 6
-          errors.push('password length is too short, minimum: 6')
-        else
-          errors.push('invalid password')
-        end
+          errors.push('invalid password') 
       end
       return errors
     end
