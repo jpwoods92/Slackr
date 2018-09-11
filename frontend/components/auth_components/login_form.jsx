@@ -33,16 +33,16 @@ export class LoginForm extends Component {
           <h3>{this.props.formType}</h3>
           <Link to={`/login/${this.props.formType.toLowerCase()}`}></Link>
         </header>
-        <form class='login-form' onSubmit={this.handleSubmit}>
-          <label for='email-input'>Email
+        <form className='login-form' onSubmit={this.handleSubmit}>
+          <label htmlFor='email-input'>Email
             <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
               pattern='.+@gmail.com' size='30' required
-              value={this.state.password} onChange={this.update('email')} />
+              value={this.state.email} onChange={this.update('email')} />
             {errors}
           </label>
-          <label for='password-input'>Password
-            <input type='password' id='password-input' minlength='6'
-              required placeholder='8 characters minimum'
+          <label htmlFor='password-input'>Password
+            <input type='password' id='password-input' minLength='6'
+              required placeholder='6 characters minimum'
               value={this.state.password} onChange={this.update('password')}/>
             {errors}
           </label>
@@ -53,4 +53,4 @@ export class LoginForm extends Component {
   }
 }
 
-export default withRouter(Signup)
+export default withRouter(LoginForm)
