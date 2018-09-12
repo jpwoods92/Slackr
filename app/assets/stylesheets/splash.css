@@ -18,3 +18,14 @@
     border-radius: 4px;
 }
 
+#get-started-button:hover {
+    background-color: #4658a3
+}
+
+#logo-link {
+    max-width: 10%;
+    margin: 0px auto;
+    padding: 0px 15px 0px 15px;
+    border: none;
+    background: url(/home/jackson/Documents/Slackr/app/assets/images/slack_logo.png) no-repeat bottom;
+}

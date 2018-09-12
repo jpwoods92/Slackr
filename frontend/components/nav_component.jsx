@@ -12,7 +12,7 @@ const navLinks = (props) => {
   return (
     <header className='nav-bar'>
       {button}
-      <NavLink id='logo-link' to='/'>Home</NavLink>
+      <NavLink id='logo-link' to='/'></NavLink>
       <NavLink to='/login'>Log In</NavLink>
       <NavLink to='/signup'>Sign Up</NavLink>
     </header>
