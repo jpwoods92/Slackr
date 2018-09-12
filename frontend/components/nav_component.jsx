@@ -11,10 +11,12 @@ const navLinks = (props) => {
 
   return (
     <header className='nav-bar'>
-      {button}
-      <NavLink id='logo-link' to='/'></NavLink>
-      <NavLink to='/login'>Log In</NavLink>
-      <NavLink to='/signup'>Sign Up</NavLink>
+      <ul className='nav-list'>
+        <li>{button}</li>
+        <li><NavLink to='/'></NavLink></li>
+        <li><NavLink id='nav-login' to='/login'>Log In</NavLink></li>
+        <li><NavLink id='nav-signup' to='/signup'>Sign Up</NavLink></li>
+      </ul>
     </header>
   )
 }
