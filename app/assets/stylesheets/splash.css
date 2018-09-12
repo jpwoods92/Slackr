@@ -1,0 +1,20 @@
+#work-img {
+
+    align-self: center;
+    max-width: 50%;
+
+}
+
+#get-started-button {
+    font: 13px sans-serif;
+    text-decoration: none;
+    background-color: #5268bd;
+    color: #FFFFFF;
+    padding: 16px 25px 16px 25px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    border-radius: 4px;
+}
+
