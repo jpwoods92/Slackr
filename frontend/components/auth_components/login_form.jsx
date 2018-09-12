@@ -6,7 +6,8 @@ export class LoginForm extends Component {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      errors: this.props.errors
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -23,10 +24,10 @@ export class LoginForm extends Component {
     e.preventDefault()
     const user = Object.assign({}, this.state)
     this.props.processForm(user).then(
-      () => this.setState({username: '', password: '', avatarUrl: ''}))
+      () => this.setState({username: '', password: '', avatarUrl: '', errors: []}))
   }
   render () {
-    let errors = this.props.errors.map((error) => <p>{error}</p>)
+    let errors = this.state.errors.map((error) => <p>{error}</p>)
     return (
       <div>
         <header>
@@ -36,7 +37,7 @@ export class LoginForm extends Component {
         <form className='login-form' onSubmit={this.handleSubmit}>
           <label htmlFor='email-input'>Email
             <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
-              pattern='.+@gmail.com' size='30' required
+              size='30' required
               value={this.state.email} onChange={this.update('email')} />
             {errors}
           </label>

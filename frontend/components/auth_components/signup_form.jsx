@@ -8,7 +8,8 @@ export class SignupForm extends Component {
       username: '',
       email: '',
       password: '',
-      avatarUrl: ''
+      avatarUrl: '',
+      errors: this.props.errors
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -28,6 +29,7 @@ export class SignupForm extends Component {
       () => this.setState({username: '', password: '', avatarUrl: ''}))
   }
   render () {
+    let errors = this.state.errors.map((error) => <p>{error}</p>)
     return (
       <div>
         <header>
@@ -37,8 +39,9 @@ export class SignupForm extends Component {
         <form className='signup-form' onSubmit={this.handleSubmit}>
           <label htmlFor='email-input'>Email
             <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
-              pattern='.+@gmail.com' size='30' required
+              size='30' required
               value={this.state.email} onChange={this.update('email')} />
+            {errors}
           </label>
           <label htmlFor='username-input'>Username
             <input type='text' id='username-input' placeholder='OliverBall'

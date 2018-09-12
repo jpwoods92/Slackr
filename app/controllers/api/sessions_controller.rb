@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
       )
       if @user
         login(@user)
-        render :root
+        render 'api/users/show'
       else
         render json: find_invalid_field(params[:user]), status: 422
       end
