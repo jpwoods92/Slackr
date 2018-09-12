@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import NavLinks from '../nav_component'
 
 export class LoginForm extends Component {
   constructor (props) {
@@ -27,22 +28,32 @@ export class LoginForm extends Component {
   }
   render () {
     let errors = this.state.errors.map((error) => <p>{error}</p>)
+
     return (
       <div>
+        <NavLinks/>
         <form className='login-form' onSubmit={this.handleSubmit}>
-          <label htmlFor='email-input'>Email
-            <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
-              size='30' required
-              value={this.state.email} onChange={this.update('email')} />
-            {errors}
-          </label>
-          <label htmlFor='password-input'>Password
-            <input type='password' id='password-input' minLength='6'
-              required placeholder='6 characters minimum'
-              value={this.state.password} onChange={this.update('password')}/>
-            {errors}
-          </label>
-          <input id='submit-input' type='Submit' value={this.props.formType}/>
+          <div className='login-form-container'>
+            <ul className='login-form-list'>
+              <li>
+                <label className='email-input'>Email
+                  <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
+                    value={this.state.email} onChange={this.update('email')} />
+                  {errors}
+                </label>
+              </li>
+              <li>
+                <label className='password-input'>Password
+                  <input type='password' id='password-input' placeholder='6 characters minimum'
+                    value={this.state.password} onChange={this.update('password')}/>
+                  {errors}
+                </label>
+              </li>
+              <li>
+                <input id='submit-input' type='Submit' value={this.props.formType}/>
+              </li>
+            </ul>
+          </div>
         </form>
       </div>
     )

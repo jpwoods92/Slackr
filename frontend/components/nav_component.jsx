@@ -1,17 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../actions/session_actions'
-import { Route, NavLink } from 'react-router-dom'
+import { Route, Link, withRouter } from 'react-router-dom'
 
 const navLinks = (props) => {
+  let nav
+  if (props.loggedIn) {
+    nav = (
+      <ul className='nav-list'>
+        <li><button id='nav-workspaces'>Your Workspaces</button></li>
+        <li><button id='nav-logout' onClick={props.logout} >Log Out</button></li>
+      </ul>
+    )
+  } else {
+    nav = (
+      <ul className='nav-list'>
+        <li><Link id='nav-login' to='/login'>Log In</Link></li>
+        <li><Link id='nav-signup' to='/signup'>Sign Up</Link></li>
+      </ul>
+    )
+  }
+
   return (
     <header className='nav-bar'>
-        <NavLink id='nav-logo-link' to='/'>Hi hello how are you</NavLink></li>
-      <ul className='nav-lists'>
-        <li><NavLink to='/'></NavLink></li>
-        <li><NavLink id='nav-login' to='/login'>Log In</NavLink></li>
-        <li><NavLink id='nav-signup' to='/signup'>Sign Up</NavLink></li>
-      </ul>
+      <Link id='nav-logo-link' to='/'></Link>
+      {nav}
     </header>
   )
 }

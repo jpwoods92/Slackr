@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import NavLinks from '../nav_component'
 
 export class SignupForm extends Component {
   constructor (props) {
@@ -31,29 +32,42 @@ export class SignupForm extends Component {
     let errors = this.state.errors.map((error) => <p>{error}</p>)
     return (
       <div>
+        <NavLinks/>
         <form className='signup-form' onSubmit={this.handleSubmit}>
-          <label htmlFor='email-input'>Email
-            <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
-              size='30' required
-              value={this.state.email} onChange={this.update('email')} />
-          </label>
-          <p>{errors}</p>
-          <label htmlFor='username-input'>Username
-            <input type='text' id='username-input' placeholder='OliverBall'
-              value={this.state.username} onChange={this.update('username')}/>
-          </label>
-          <label htmlFor='password-input'>Password
-            <input type='password' id='password-input' minLength='6'
-              required placeholder='8 characters minimum'
-              value={this.state.password} onChange={this.update('password')}/>
-          </label>
-          <p>{errors}</p>
-          <label htmlFor='avatar-link-input'>Avatar Link
-            <input id='avatar-link-input' type='url' pattern='https://.*'
-              placeholder='https://oliverball.com/smiley+face'
-              value={this.state.avatarUrl} onChange={this.update('avatarUrl')}/>
-          </label>
-          <input id='submit-input' type='Submit' value={this.props.formType}/>
+          <div className='signup-form-container'>
+            <ul className='signup-form-list'>
+              <li>
+                <label className='email-input'>Email
+                  <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
+                    value={this.state.email} onChange={this.update('email')} />
+                </label>
+                <p>{errors}</p>
+              </li>
+              <li>
+                <label className='username-input'>Username
+                  <input type='text' id='username-input' placeholder='OliverBall'
+                    value={this.state.username} onChange={this.update('username')}/>
+                </label>
+              </li>
+              <li>
+                <label className='password-input'>Password
+                  <input type='password' id='password-input' placeholder='6 characters minimum'
+                    value={this.state.password} onChange={this.update('password')}/>
+                </label>
+                <p>{errors}</p>
+              </li>
+              <li>
+                <label htmlFor='avatar-link-input'>Avatar Link
+                  <input id='avatar-link-input' type='url' pattern='https://.*'
+                    placeholder='https://oliverball.com/smiley+face'
+                    value={this.state.avatarUrl} onChange={this.update('avatarUrl')}/>
+                </label>
+              </li>
+              <li>
+                <input id='submit-input' type='Submit' value={this.props.formType}/>
+              </li>
+            </ul>
+          </div>
         </form>
       </div>
     )

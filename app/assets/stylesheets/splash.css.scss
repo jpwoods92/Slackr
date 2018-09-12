@@ -1,0 +1,124 @@
+#work-img {
+    align-self: center;
+    height: 550px;
+    max-width: 70%;
+}
+
+.body {
+    width: 1250px;
+    margin: auto;
+}
+
+#get-started-button {
+    font: bold 13px sans-serif;
+    text-decoration: none;
+    background-color: #3f46ad;
+    color: #FFFFFF;
+    padding: 20px 40px 20px 40px;
+    border-radius: 4px;
+    transition: background-color .15s,color .15s ease-in-out;
+}
+
+#nav-login, #nav-signup, #nav-workspaces {
+    font-size: 14px;
+    font-family: 'Muli', sans-serif;
+    text-decoration: none;
+    color: rgb(124, 124, 124);
+    padding: 9px 27px 9px 27px;
+    border-top: 2px solid  rgb(124, 124, 124);
+    border-right: 2px solid rgb(124, 124, 124);
+    border-bottom: 2px solid  rgb(124, 124, 124);
+    border-left: 2px solid  rgb(124, 124, 124);
+    border-radius: 4px;
+    margin-right: 15px;
+    transition: color .15s,color .15s ease-in-out;
+    transition: background-color .15s,color .15s ease-in-out;
+}
+
+#nav-login:hover, #nav-signup:hover {
+    color: rgb(82, 82, 82);
+    border-top: 2px solid  rgb(82, 82, 82);
+    border-right: 2px solid rgb(82, 82, 82);
+    border-bottom: 2px solid  rgb(82, 82, 82);
+    border-left: 2px solid  rgb(82, 82, 82);
+}
+
+#get-started-button:hover {
+    background-color: #2f3586;
+}
+
+#nav-logo-link {
+    background: url('slack_logo.png') no-repeat center;
+    background-size: cover;
+    height: 35px;
+    width: 150px;
+    padding: 5px;
+    position: relative;
+    display: inline-block;  
+    align-self: center;  
+}
+
+.nav-bar {
+    position: relative;
+    background: #FFFFFF;
+    height: 75px;
+    border-bottom: .5px rgb(124, 124, 124);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 3;
+}
+
+.nav-list {
+    display: flex;
+    margin-top: 9px;
+    align-items: center;
+}
+
+
+.call-to-action-card {
+    display: flex;
+    min-height: 750px;
+    align-items: center;
+}
+
+#call-to-action-title {
+    font-family: 'Noto Serif', serif;
+    box-sizing: border-box;
+    color: #323648;
+    font-size: 75px; 
+    text-align: left;
+    font-weight: 500;
+    margin-bottom: 40px;
+    line-height: 80px;
+}
+
+.call-to-action-body {
+    max-width: 800px;
+    box-sizing: border-box;
+    display: block;
+    position: static;
+    margin-right: auto;
+    margin-bottom: 32px;
+    margin-left: 35px;
+}
+
+#call-to-action-body-text {
+    font-family: 'Muli', sans-serif;
+    font-size: 18px;
+    margin-right: auto;
+    margin-bottom: 50px;
+    color: #5b5e6d;
+    line-height: 32px;
+}
+
+#sign-in-text {
+    margin-top: 30px;
+    font-family: 'Muli', sans-serif;
+    font-size: 12px;
+    font-size: .8vw;
+    margin-right: auto;
+    margin-bottom: 50px;
+    color: #505050;
+    line-height: 30px;
+}
