@@ -4,15 +4,10 @@ import { logout } from '../actions/session_actions'
 import { Route, NavLink } from 'react-router-dom'
 
 const navLinks = (props) => {
-  let button
-  if (props.loggedIn) {
-    button = (<button onClick={props.logout}>Log Out</button>)
-  }
-
   return (
     <header className='nav-bar'>
-      <ul className='nav-list'>
-        <li>{button}</li>
+        <NavLink id='nav-logo-link' to='/'>Hi hello how are you</NavLink></li>
+      <ul className='nav-lists'>
         <li><NavLink to='/'></NavLink></li>
         <li><NavLink id='nav-login' to='/login'>Log In</NavLink></li>
         <li><NavLink id='nav-signup' to='/signup'>Sign Up</NavLink></li>

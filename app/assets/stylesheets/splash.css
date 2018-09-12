@@ -22,16 +22,24 @@
     background-color: #4658a3
 }
 
-/* #logo-link {
+#nav-logo-link {
     max-width: 10%;
     margin: 0px auto;
     padding: 0px 15px 0px 15px;
     border: none;
     background: url(/home/jackson/Documents/Slackr/app/assets/images/slack_logo.png) no-repeat bottom;
-} */
+}
 
 .nav-bar{
     margin-top: 20px;
     margin-bottom: 50px;
     margin-left: 200px;
+}
+
+.nav-list-left {
+    justify-content: flex-start;
+}
+
+.nav-list-right {
+    justify-content: flex-end;
 }
