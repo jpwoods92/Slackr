@@ -40,6 +40,7 @@ export class SignupForm extends Component {
       errors: this.props.errors
     }))
   }
+
   render () {
     let errors = this.state.errors.map((error) => <p>{error}</p>)
     return (
@@ -77,6 +78,10 @@ export class SignupForm extends Component {
               </li>
               <li>
                 <input id='submit-input' type='Submit' value={this.props.formType}/>
+              </li>
+              <li>
+                <p>or</p>
+                <Link id='sign-in-link' to='/login'>Log in as guest</Link>
               </li>
             </ul>
           </div>

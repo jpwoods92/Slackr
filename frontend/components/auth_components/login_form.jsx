@@ -8,16 +8,23 @@ export class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      errors: this.props.errors
+      errors: this.props.errors,
+      guestUser: { email: 'GuestEmail@guestemail.com',
+        username: 'Guest',
+        password: 'guestpassword'}
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.guestLogin = this.guestLogin.bind(this)
   }
 
   componentDidMount () {
     this.setState({
       email: '',
       password: '',
-      errors: []
+      errors: [],
+      guestUser: { email: 'GuestEmail@guestemail.com',
+        username: 'Guest',
+        password: 'guestpassword'}
     })
   }
 
@@ -35,9 +42,19 @@ export class LoginForm extends Component {
     this.props.processForm(user).then(null, () => this.setState({
       email: '',
       password: '',
-      errors: this.props.errors
+      errors: this.props.errors,
+      guestUser: { email: 'GuestEmail@guestemail.com',
+        username: 'Guest',
+        password: 'guestpassword'}
     }))
   }
+
+  guestLogin (e) {
+    e.preventDefault()
+    let user = this.state.guestUser
+    this.props.processForm(user)
+  }
+
   render () {
     let errors = this.state.errors.map((error) => <p>{error}</p>)
     return (
@@ -62,6 +79,10 @@ export class LoginForm extends Component {
               </li>
               <li>
                 <input id='submit-input' type='Submit' value={this.props.formType}/>
+              </li>
+              <li>
+                <p>or</p>
+                <input id= 'guest-submit' onClick={this.guestLogin} type="Submit" value='login as guest'/>
               </li>
             </ul>
           </div>

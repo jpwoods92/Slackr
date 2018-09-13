@@ -10,7 +10,9 @@
 }
 
 #get-started-button {
-    font: bold 13px sans-serif;
+    font-family: 'Muli', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
     text-decoration: none;
     background-color: #3f46ad;
     color: #FFFFFF;
@@ -48,10 +50,10 @@
 }
 
 #nav-logo-link {
-    background: url('slack_logo.svg') no-repeat center;
     height: 30px;
     width: 150px;
-    margin-left: 50px; 
+    margin-left: 50px;
+    margin-bottom: 20px; 
     align-self: center;  
 }
 
@@ -117,4 +119,83 @@
     margin-bottom: 50px;
     color: #505050;
     line-height: 30px;
+    transition: background-color .15s,color .15s ease-in-out;
+}
+
+#sign-in-link:hover {
+    color: #1f2358;
+}
+
+.marketing-card {
+    width: 1366px;
+    margin: auto;
+}
+
+#marketing-body {
+    font-family: 'Muli', sans-serif;
+    font-size: 18px;
+    color: #5b5e6d;
+    line-height: 32px;
+    align-self: center;
+    margin: auto;
+    max-width: 900px;
+    text-align: center;
+}
+
+#marketing-title {
+    font-family: 'Noto Serif', serif;
+    box-sizing: border-box;
+    color: #323648;
+    font-size: 35px; 
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
+    line-height: 80px;
+    margin: auto;
+    align-self: center;
+    margin-top: 100px;
+}
+
+.topics {
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+}
+
+.topics > div {
+    position: relative;
+    display: flex;
+}
+
+
+#channels-icon, #search-icon, #integration-icon, #security-icon {
+    height: 60px;
+    max-width: 50%;
+    margin-top: 40px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+#channels-body, #search-body, #integration-body, #security-body {
+    font-family: 'Muli', sans-serif;
+    font-size: 16px;
+    margin-bottom: 50px;
+    max-width: 300px;
+    margin-top: 100px;
+    color: #5b5e6d;
+    line-height: 25px;
+    padding: 25px;
+    align-self: auto;
+}
+
+#channels-title, #search-title, #integration-title, #security-title {
+    font-family: 'Muli', sans-serif;
+    box-sizing: border-box;
+    color: #323648;
+    font-size: 16px; 
+    text-align: left;
+    font-weight: 700;
+    position: absolute;
+    top: 30%;
+    transform: translate(-50%, -50%);
 }
