@@ -31,8 +31,8 @@ const navLinks = (props) => {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: Boolean(state.session.id),
-    user: state.entities.users[state.session.id]
+    loggedIn: Boolean(state.session.currentUserId),
+    user: state.entities.users[state.session.currentUserId]
   }
 }
 

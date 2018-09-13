@@ -13,6 +13,14 @@ export class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentDidMount () {
+    this.setState({
+      email: '',
+      password: '',
+      errors: []
+    })
+  }
+
   update (field) {
     return (e) => {
       this.setState(
@@ -24,11 +32,14 @@ export class LoginForm extends Component {
   handleSubmit (e) {
     e.preventDefault()
     const user = Object.assign({}, this.state)
-    this.props.processForm(user)
+    this.props.processForm(user).then(null, () => this.setState({
+      email: '',
+      password: '',
+      errors: this.props.errors
+    }))
   }
   render () {
     let errors = this.state.errors.map((error) => <p>{error}</p>)
-
     return (
       <div>
         <NavLinks/>
@@ -37,7 +48,7 @@ export class LoginForm extends Component {
             <ul className='login-form-list'>
               <li>
                 <label className='email-input'>Email
-                  <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
+                  <input id='email-input' type='text' placeholder='OliverBall@coolpeeps.com'
                     value={this.state.email} onChange={this.update('email')} />
                   {errors}
                 </label>

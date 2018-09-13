@@ -15,6 +15,14 @@ export class SignupForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentDidMount () {
+    this.setState({
+      email: '',
+      password: '',
+      errors: []
+    })
+  }
+
   update (field) {
     return (e) => {
       this.setState(
@@ -26,7 +34,11 @@ export class SignupForm extends Component {
   handleSubmit (e) {
     e.preventDefault()
     const user = Object.assign({}, this.state)
-    this.props.processForm(user)
+    this.props.processForm(user).then(null, () => this.setState({
+      email: '',
+      password: '',
+      errors: this.props.errors
+    }))
   }
   render () {
     let errors = this.state.errors.map((error) => <p>{error}</p>)
@@ -38,10 +50,10 @@ export class SignupForm extends Component {
             <ul className='signup-form-list'>
               <li>
                 <label className='email-input'>Email
-                  <input id='email-input' type='email' placeholder='OliverBall@coolpeeps.com'
+                  <input id='email-input' type='text' placeholder='OliverBall@coolpeeps.com'
                     value={this.state.email} onChange={this.update('email')} />
                 </label>
-                <p>{errors}</p>
+                {errors.filter}
               </li>
               <li>
                 <label className='username-input'>Username
@@ -54,11 +66,11 @@ export class SignupForm extends Component {
                   <input type='password' id='password-input' placeholder='6 characters minimum'
                     value={this.state.password} onChange={this.update('password')}/>
                 </label>
-                <p>{errors}</p>
+                {errors}
               </li>
               <li>
                 <label htmlFor='avatar-link-input'>Avatar Link
-                  <input id='avatar-link-input' type='url' pattern='https://.*'
+                  <input id='avatar-link-input' type='text'
                     placeholder='https://oliverball.com/smiley+face'
                     value={this.state.avatarUrl} onChange={this.update('avatarUrl')}/>
                 </label>
