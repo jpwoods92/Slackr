@@ -10,21 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_161310) do
+ActiveRecord::Schema.define(version: 2018_09_13_151355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "channels", force: :cascade do |t|
+    t.integer "workspace_id", null: false
+    t.integer "owner_id", null: false
+    t.string "title"
+    t.boolean "is_private", default: true, null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_channels_on_owner_id"
+    t.index ["workspace_id"], name: "index_channels_on_workspace_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "username", null: false
     t.string "email", null: false
     t.string "avatar_url", null: false
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "session_token", null: false
+    t.string "username", default: "guest", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "workspace_memberships", force: :cascade do |t|
+    t.integer "workspace_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_workspace_memberships_on_user_id"
+    t.index ["workspace_id"], name: "index_workspace_memberships_on_workspace_id"
+  end
+
+  create_table "workspaces", force: :cascade do |t|
+    t.integer "owner_id", null: false
+    t.string "title", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_workspaces_on_owner_id"
+    t.index ["url"], name: "index_workspaces_on_url"
   end
 
 end

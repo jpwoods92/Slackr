@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workspace_id: 1
+  owner_id: 1
+  title: MyString
+  is_private: false
+  description: MyString
+
+two:
+  workspace_id: 1
+  owner_id: 1
+  title: MyString
+  is_private: false
+  description: MyString
