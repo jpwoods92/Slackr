@@ -5,7 +5,7 @@
 }
 
 .body {
-    width: 1250px;
+    width: 1366px;
     margin: auto;
 }
 
@@ -49,10 +49,9 @@
 
 #nav-logo-link {
     background: url('slack_logo.svg') no-repeat center;
-    background-size: cover;
-    height: 35px;
+    height: 30px;
     width: 150px;
-    padding: 5px; 
+    margin-left: 50px; 
     align-self: center;  
 }
 
