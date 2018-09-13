@@ -24,8 +24,8 @@ const navLinks = (props) => {
   return (
     <header className='nav-bar'>
       <Link id='nav-logo-link' to='/'><svg xmlns="http://www.w3.org/2000/svg" viewBox="50 0 576 270"
-        width="125" aria-label="Slack" class="c-slacklogo--color svg-replaced"
-        shape-rendering="geometricPrecision">
+        width="125" aria-label="Slack" className="c-slacklogo--color svg-replaced"
+        shapeRendering="geometricPrecision">
         <path fill="#ECB32D" d="M141.8 87.1c-1.9-5.7-8-8.8-13.7-7-5.7 1.9-8.8 8-7 13.7l28.1 86.4c1.9 5.3 7.7 8.3 13.2 6.7 5.8-1.7 9.3-7.8 7.4-13.4 0-.2-28-86.4-28-86.4z"></path>
         <path fill="#63C1A0" d="M98.3 101.2c-1.9-5.7-8-8.8-13.7-7-5.7 1.9-8.8 8-7 13.7l28.1 86.4c1.9 5.3 7.7 8.3 13.2 6.7 5.8-1.7 9.3-7.8 7.4-13.4 0-.2-28-86.4-28-86.4z"></path>
         <path fill="#E01A59" d="M177.2 158.6c5.7-1.9 8.8-8 7-13.7-1.9-5.7-8-8.8-13.7-7L84 166.1c-5.3 1.9-8.3 7.7-6.7 13.2 1.7 5.8 7.8 9.3 13.4 7.4.2 0 86.5-28.1 86.5-28.1z"></path>
