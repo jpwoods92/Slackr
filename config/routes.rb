@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     resources :users
     resource :session
-    resources :channels
-    resources :channel_memberships
-end
+  end
+  resources :messages
+  resources :rooms
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -22,8 +22,8 @@ class User < ApplicationRecord
     after_initialize :ensure_avatar_url
     after_initialize :ensure_session_token
 
-    has_many :channel_memberships, class_name: "ChannelMembership", foreign_key: "user_id"
-    has_many :channels, through: :channel_memberships, source: :channels
+    has_many :room_memberships, class_name: "RoomMembership", foreign_key: "user_id"
+    has_many :rooms, through: :room_memberships, source: :rooms
     
     attr_reader :password
 

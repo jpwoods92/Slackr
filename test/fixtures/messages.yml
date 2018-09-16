@@ -6,9 +6,9 @@
 #  user_id           :integer          not null
 #  body              :text             not null
 #  parent_message_id :integer
-#  channel_id        :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  room_id           :integer          not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -17,10 +17,10 @@ one:
   user_id: 1
   body: MyText
   parent_message_id: 1
-  channel_id: 1
+  room_id: 1
 
 two:
   user_id: 1
   body: MyText
   parent_message_id: 1
-  channel_id: 1
+  room_id: 1

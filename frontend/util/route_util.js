@@ -22,7 +22,7 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => {
     }
   }
 
-  return <Route path={path} exact={exact} render={toRender} />
+  return <Route tpath={path} exact={exact} render={toRender} />
 }
 
 const mapStateToProps = state => {

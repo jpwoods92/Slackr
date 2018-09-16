@@ -6,9 +6,9 @@
 #  user_id           :integer          not null
 #  body              :text             not null
 #  parent_message_id :integer
-#  channel_id        :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  room_id           :integer          not null
 #
 
 require 'test_helper'

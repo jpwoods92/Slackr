@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../actions/session_actions'
 import { Route } from 'react-router-dom'
-import LinePage from './line_page'
-
+import RoomsList from './rooms_list_container'
 class mainApp extends React.Component {
   constructor (props) {
     super(props)
@@ -11,28 +10,8 @@ class mainApp extends React.Component {
       auth: {
         isLoggedIn: false,
         user: ''
-      },
-      joinLine: {
-        code: '',
-        error: false,
-        lineId: null,
-        redirect: false
-      },
-      line: {
-        line: {},
-        users: []
       }
     }
-    this.updateAppStateLine = this.updateAppStateLine.bind(this)
-  }
-
-  updateAppStateLine (newLine) {
-    this.setState({
-      line: {
-        line: newLine.line,
-        users: newLine.users
-      }
-    })
   }
 
   render () {
@@ -44,18 +23,7 @@ class mainApp extends React.Component {
     return (
       <div>
         {button}
-        <Route path='/lines/:id' render={(props) => (
-          <LinePage
-            {...props}
-            data-cableApp={this.props.cableApp}
-            data-updateApp={this.updateAppStateLine}
-            data-lineData={this.state.lineData}
-            data-getLineData={this.getLineData}
-            getLineData={this.getLineData}
-            lineData={this.state.line}
-            authData={this.state.auth}
-          />
-        )} />
+        <RoomsList />
       </div>
     )
   }

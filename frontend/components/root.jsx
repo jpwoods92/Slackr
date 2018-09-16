@@ -2,16 +2,14 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 import Slackr from './Slackr'
-import actionCable from 'actioncable'
-
-const CableApp = {}
-
-CableApp.cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`)
+import { ActionCableProvider } from 'react-actioncable-provider'
 
 export const Root = ({ store }) => (
   <Provider store={ store }>
     <HashRouter>
-      <Slackr cableApp={CableApp}/>
+      <ActionCableProvider url='ws://localhost:3000/cable'>
+        <Slackr />
+      </ActionCableProvider>
     </HashRouter>
   </Provider>
 )
