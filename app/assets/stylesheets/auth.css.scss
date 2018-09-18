@@ -5,8 +5,20 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background: rgba(236, 236, 236, 0.7);
+    background: rgba(245, 245, 245, 0.7);
     z-index: 1;
+}
+
+.form-title {
+    left: 50%;
+    font-family: 'Muli', sans-serif;
+    box-sizing: border-box;
+    color: #323648;
+    font-size: 25px; 
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 40px;
+    margin-top: 15px;
 }
 
 #submit-input, #guest-submit {
@@ -32,6 +44,8 @@
 
 
 .login-form-container, .signup-form-container {
+    justify-content: center;
+    display: flex;
     position: absolute;
     top: 50%;
     left: 50%;

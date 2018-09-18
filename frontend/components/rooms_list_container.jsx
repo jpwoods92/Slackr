@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
-import { fetchRooms } from '../actions/room_actions'
+import { fetchRooms, fetchRoom } from '../actions/room_actions'
 import RoomsList from './rooms_list'
-import { fetchRoom } from '../actions/ui_actions'
 
 const mapStateToProps = (state) => {
   return {

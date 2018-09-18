@@ -1,7 +1,7 @@
-import { RECEIVE_ROOM } from '../actions/ui_actions'
+import { RECEIVE_ROOM } from '../actions/room_actions'
 
 export default function (state = {}, action) {
-  // debugger
+  //
   Object.freeze(state)
   switch (action.type) {
     case RECEIVE_ROOM:

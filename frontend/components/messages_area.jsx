@@ -1,25 +1,20 @@
 import React from 'react'
 import NewMessageForm from './new_message_form_container'
 import Cable from './cables_container'
+import Timestamp from 'react-timestamp'
 
 class MessagesArea extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      messages: []
+      messages: this.props.messages
     }
     this.handleReceivedMessage = this.handleReceivedMessage.bind(this)
   }
 
-  componentDidMount () {
-    debugger
-    this.props.fetchRoom(this.props.match.params.roomId)
-  }
-
   componentWillReceiveProps (nextProps) {
-    debugger
-    if (this.props.match.params.roomId !== nextProps.match.params.roomId) {
-      this.props.fetchRoom(nextProps.match.params.roomId)
+    if (this.state.messages !== nextProps.messages) {
+      this.setState({messages: nextProps.messages})
     }
   }
 
@@ -30,12 +25,11 @@ class MessagesArea extends React.Component {
   }
 
   render () {
-    debugger
     if (!this.props.room) return null
     return (
       <div className="messagesArea">
         <h2>{this.props.room.title}</h2>
-        <ul>{orderedMessages(this.state.props.messages)}</ul>
+        <ul>{orderedMessages(this.state.messages)}</ul>
         <Cable handleReceivedMessage={this.handleReceivedMessage}/>
         <NewMessageForm />
       </div>
@@ -50,6 +44,11 @@ const orderedMessages = messages => {
     (a, b) => new Date(a.created_at) - new Date(b.created_at)
   )
   return sortedMessages.map(message => {
-    return <li key={message.id}><ul></ul>{message.body}</li>
+    return <li key={message.id}><ul>
+      <li>{message.body}</li>
+      <li>{message.username}</li>
+      <li><Timestamp time={message.created_at} format='time' /></li>
+      <li><img src={message.avatar} alt=""/></li>
+    </ul></li>
   })
 }

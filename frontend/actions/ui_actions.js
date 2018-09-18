@@ -1,17 +1,12 @@
-import * as UiAPIUtil from '../util/ui_api_util'
+export const SELECT_ROOM = 'SELECT_ROOM'
 
-export const RECEIVE_ROOM = 'RECEIVE_ROOM'
-
-const receiveRoom = (room) => {
-  // debugger
+export const selectRoom = (id) => dispatch => {
   return {
-    type: RECEIVE_ROOM,
-    room
+    type: SELECT_ROOM,
+    id
   }
 }
 
-export const fetchRoom = (id) => dispatch => (
-  UiAPIUtil.fetchRoom(id).then(({room}) => {
-    return dispatch(receiveRoom(room))
-  })
-)
+// ignore refesh issue until a later time
+// render full messsage area
+// select general on componentdidmount

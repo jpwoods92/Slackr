@@ -12,3 +12,10 @@ export const createRoom = (room) => {
     data: {room}
   })
 }
+
+export const fetchRoom = (id) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/rooms/${id}`
+  })
+}

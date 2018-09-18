@@ -1,0 +1,33 @@
+.roomsList {
+    display: flex;
+    padding: 0;
+    height: 100%;
+    background-color: white;
+
+
+  > ul {
+    width: 220px;
+    height: 660px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    margin-left: 40px;
+    background-color: #4d394b;
+
+    > li:hover {
+        background-color: #3E313C;
+    }
+    > li {
+      a {
+        margin: 5px;
+        text-decoration: none;  
+        display: block;
+        color: white;
+        font-family: 'Muli', sans-serif;
+      }
+
+      &:active {
+        background-color: #4C9689;
+      }
+    }
+  }
+}

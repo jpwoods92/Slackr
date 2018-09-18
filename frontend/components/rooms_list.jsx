@@ -43,10 +43,11 @@ class RoomsList extends React.Component {
           channel={{ channel: 'RoomsChannel' }}
           onReceived={this.handleReceivedRoom}
         />
-        <h2>Rooms</h2>
-        <ProtectedRoute exact path='/rooms/:roomId' component={MessagesAreaContainer}/>
-        <ul>{rooms.map(room => <RoomListItem key={room.id} room={room} handleClick={this.handleClick} />)}</ul>
-        <Link to='rooms/new'>Add a room</Link>
+        <h2>Channels</h2>
+        <Link to='/new'>+</Link>
+        <ul>
+          {rooms.map(room => <RoomListItem key={room.id} room={room} handleClick={this.handleClick} />)}
+        </ul>
       </div>
     )
   }

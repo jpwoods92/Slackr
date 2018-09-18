@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../actions/session_actions'
-import { Route } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import RoomsList from './rooms_list_container'
+import MessagesAreaContainer from './messages_area_container'
+import { fetchRoom } from '../actions/room_actions'
 class mainApp extends React.Component {
   constructor (props) {
     super(props)
@@ -11,6 +13,16 @@ class mainApp extends React.Component {
         isLoggedIn: false,
         user: ''
       }
+    }
+  }
+
+  componentDidMount () {
+    this.props.fetchRoom(this.props.match.params.roomId)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.match.params.roomId !== nextProps.match.params.roomId) {
+      this.props.fetchRoom(nextProps.match.params.roomId)
     }
   }
 
@@ -24,6 +36,7 @@ class mainApp extends React.Component {
       <Fragment>
         {button}
         <RoomsList />
+        <MessagesAreaContainer />
       </Fragment>
     )
   }
@@ -38,8 +51,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    fetchRoom: () => dispatch(fetchRoom())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(mainApp)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(mainApp))

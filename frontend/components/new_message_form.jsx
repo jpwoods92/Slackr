@@ -5,14 +5,10 @@ class NewMessageForm extends React.Component {
     super(props)
     this.state = {
       body: '',
-      roomId: this.props.match.params.roomId
+      roomId: this.props.roomId
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.setState({ roomId: nextProps.roomId })
   }
 
   handleChange (e) {
