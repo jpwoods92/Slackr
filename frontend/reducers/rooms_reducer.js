@@ -1,14 +1,10 @@
-import { RECEIVE_ALL_ROOMS, RECEIVE_ROOM } from '../actions/room_actions'
-import merge from 'lodash/merge'
+import { RECEIVE_ALL_ROOMS } from '../actions/room_actions'
 
-export default function (state = {}, action) {
+export default function (state = [], action) {
   Object.freeze(state)
   switch (action.type) {
     case RECEIVE_ALL_ROOMS:
-      let newState = merge({}, state, action.rooms)
-      return newState
-    case RECEIVE_ROOM:
-      newState = merge({}, state, {[action.room.id]: action.room})
+      let newState = action.rooms
       return newState
     default:
       return state

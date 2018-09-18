@@ -42,19 +42,19 @@ export class SignupForm extends Component {
   }
 
   render () {
-    let errors = this.state.errors.map((error) => <p>{error}</p>)
+    let errors = this.state.errors.map((error) => <li>{error}</li>)
     return (
-      <div>
+      <div className='signup-form-div'>
         <NavLinks/>
         <form className='signup-form' onSubmit={this.handleSubmit}>
           <div className='signup-form-container'>
+            <h3 className='form-title'>Welcome to Slack!</h3>
             <ul className='signup-form-list'>
               <li>
                 <label className='email-input'>Email
                   <input id='email-input' type='text' placeholder='OliverBall@coolpeeps.com'
                     value={this.state.email} onChange={this.update('email')} />
                 </label>
-                {errors.filter}
               </li>
               <li>
                 <label className='username-input'>Username
@@ -67,7 +67,6 @@ export class SignupForm extends Component {
                   <input type='password' id='password-input' placeholder='6 characters minimum'
                     value={this.state.password} onChange={this.update('password')}/>
                 </label>
-                {errors}
               </li>
               <li>
                 <label htmlFor='avatar-link-input'>Avatar Link
@@ -83,6 +82,7 @@ export class SignupForm extends Component {
                 <p>or</p>
                 <Link id='sign-in-link' to='/login'>Log in as guest</Link>
               </li>
+              {errors}
             </ul>
           </div>
         </form>

@@ -50,10 +50,11 @@ export class LoginForm extends Component {
   render () {
     let errors = this.state.errors.map((error) => <p>{error}</p>)
     return (
-      <div>
+      <div className='login-form-div'>
         <NavLinks/>
         <form className='login-form' onSubmit={this.handleSubmit}>
           <div className='login-form-container'>
+            <h3 className='form-title'>Welcome Back!</h3>
             <ul className='login-form-list'>
               <li>
                 <label className='email-input'>Email

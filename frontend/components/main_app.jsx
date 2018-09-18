@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../actions/session_actions'
 import { Route } from 'react-router-dom'
@@ -17,14 +17,14 @@ class mainApp extends React.Component {
   render () {
     let button
     if (this.props.loggedIn) {
-      button = <li><button id='nav-logout' onClick={this.props.logout} >Log Out</button></li>
+      button = <button id='nav-logout' onClick={this.props.logout} >Log Out</button>
     }
 
     return (
-      <div>
+      <Fragment>
         {button}
         <RoomsList />
-      </div>
+      </Fragment>
     )
   }
 }
