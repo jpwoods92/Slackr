@@ -10,29 +10,49 @@
 }
 
 .form-title {
-    left: 50%;
     font-family: 'Muli', sans-serif;
-    box-sizing: border-box;
     color: #323648;
     font-size: 25px; 
-    text-align: left;
     font-weight: 700;
-    margin-bottom: 40px;
     margin-top: 15px;
 }
 
-#submit-input, #guest-submit {
+.form-title-signup {
+    font-family: 'Muli', sans-serif;
+    color: #323648;
+    font-size: 25px; 
+    font-weight: 700;
+    margin-top: -20px;
+}
+
+#submit-input {
     font-family: 'Muli', sans-serif;
     font-size: 13px;
     font-weight: 700;
     text-decoration: none;
-    background-color:rgb(0, 137, 82);
+    background-color: #008952;
     color: #FFFFFF;
-    padding: 15px 90px 15px 90px;
+    padding: 15px 99px 15px 99px;
     margin-top: 15px;
-    border-radius: 8px;
+    border-radius: 4px;
+    cursor: pointer;  
+    transition: background-color .15s,color .15s ease-in-out;  
+    border: none;
+}
+
+#guest-submit {
+    font-family: 'Muli', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    background-color: #008952;
+    color: #FFFFFF;
+    padding: 15px 71px 15px 71px;
+    margin-top: 15px;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color .15s,color .15s ease-in-out;
+    border: none;
 }
 
 
@@ -43,27 +63,84 @@
 
 
 
-.login-form-container, .signup-form-container {
+.login-form-container {
     justify-content: center;
     display: flex;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-top: .5px solid rgb(172, 172, 172);
-    border-right: .5px solid rgb(172, 172, 172);
-    border-left: .5px solid rgb(172, 172, 172);
+    border-top: .25px solid rgb(196, 196, 196);
+    border-right: .25px solid rgb(196, 196, 196);
+    border-left: .25px solid rgb(196, 196, 196);
+    width: 450px;
+    height: 350px;
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 2px rgb(172, 172, 172);
+}
+
+.signup-form-container {
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-top: .25px solid rgb(196, 196, 196);
+    border-right: .25px solid rgb(196, 196, 196);
+    border-left: .25px solid rgb(196, 196, 196);
     width: 450px;
     height: 350px;
     background: white;
     border-radius: 5px;
     box-shadow: 0px 2px rgb(172, 172, 172);
+    padding: 50px;
+
 }
+
+
 
 .login-form-list, .signup-form-list {
     position: absolute;
     top: 50%;
     left: 50%;
+    margin-top: 20px;
     transform: translate(-50%, -50%);
     font-family: 'Muli', sans-serif;
+}
+
+
+#email-input, #username-input, #password-input, #avatar-link-input {
+    border: .25px solid rgb(196, 196, 196);
+    margin: 10px;
+    border-radius: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#sign-in-link {
+    text-decoration: none;
+    font-family: 'Muli', sans-serif;
+}
+
+#or-text {
+    margin-right: 20px;
+    font-family: 'Muli', sans-serif;
+    text-align: center;
+}
+
+#or-text-login {
+    margin-top: 10px;
+    margin-right: 18px;
+    font-family: 'Muli', sans-serif;
+    text-align: center;
+}
+
+#transfer-to-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-right: 50px;
 }

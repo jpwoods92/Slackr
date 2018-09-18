@@ -48,7 +48,7 @@ export class SignupForm extends Component {
         <NavLinks/>
         <form className='signup-form' onSubmit={this.handleSubmit}>
           <div className='signup-form-container'>
-            <h3 className='form-title'>Welcome to Slack!</h3>
+            <h3 className='form-title-signup'>Welcome to Slack!</h3>
             <ul className='signup-form-list'>
               <li>
                 <label className='email-input'>Email
@@ -78,9 +78,9 @@ export class SignupForm extends Component {
               <li>
                 <input id='submit-input' type='Submit' value={this.props.formType}/>
               </li>
-              <li>
-                <p>or</p>
-                <Link id='sign-in-link' to='/login'>Log in as guest</Link>
+              <li id='transfer-to-login'>
+                <p id='or-text'>or</p>
+                <Link id='sign-in-link' to='/login'>Login as guest</Link>
               </li>
               {errors}
             </ul>

@@ -74,8 +74,8 @@ export class LoginForm extends Component {
                 <input id='submit-input' type='Submit' value={this.props.formType}/>
               </li>
               <li>
-                <p>or</p>
-                <input id= 'guest-submit' onClick={() => this.guestLogin()} type="button" value='login as guest'/>
+                <p id='or-text-login'>or</p>
+                <input id= 'guest-submit' onClick={() => this.guestLogin()} type="button" value='Login as Guest'/>
               </li>
             </ul>
           </div>
