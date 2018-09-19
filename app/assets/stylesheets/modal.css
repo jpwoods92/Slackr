@@ -4,7 +4,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: white;
     z-index: 10;
     overflow-x: hidden;
   }
@@ -16,3 +16,47 @@
     transform: translate(-50%, -50%);
     overflow-x: hidden;
   }
+
+  .x-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-family: 'Nunito', sans-serif;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    font-size: 30px;
+    padding: 10px;
+    width: 62px;
+    font-weight: 600;
+    cursor: pointer;
+    color: rgb(83, 83, 83);
+    transition: background-color .15s,color .15s ease-in-out;
+  }
+
+  .x-button:hover {
+    background-color: lightgray;
+    color: black;
+  }
+
+  .cancel-button {
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  .newroom-title {
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  .newroom-body {
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  #text-label {
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  #title-label {
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+

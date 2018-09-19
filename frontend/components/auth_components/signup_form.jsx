@@ -34,18 +34,19 @@ export class SignupForm extends Component {
   handleSubmit (e) {
     e.preventDefault()
     const user = Object.assign({}, this.state)
-    this.props.processForm(user).then(null, () => this.setState({
-      email: '',
-      password: '',
-      errors: this.props.errors
-    }))
+    this.props.processForm(user)
   }
 
   render () {
-    let errors = this.state.errors.map((error) => <li>{error}</li>)
+    let errors = this.props.errors.map((error) => <li>{error}</li>)
     return (
       <div className='signup-form-div'>
         <NavLinks/>
+        <div className='errors-box'>
+          <ul id='error-messages'>
+            {errors}
+          </ul>
+        </div>
         <form className='signup-form' onSubmit={this.handleSubmit}>
           <div className='signup-form-container'>
             <h3 className='form-title-signup'>Welcome to Slack!</h3>
@@ -75,14 +76,13 @@ export class SignupForm extends Component {
                     value={this.state.avatarUrl} onChange={this.update('avatarUrl')}/>
                 </label>
               </li>
-              <li>
+              <li id= 'submit-li'>
                 <input id='submit-input' type='Submit' value={this.props.formType}/>
               </li>
               <li id='transfer-to-login'>
                 <p id='or-text'>or</p>
                 <Link id='sign-in-link' to='/login'>Login as guest</Link>
               </li>
-              {errors}
             </ul>
           </div>
         </form>

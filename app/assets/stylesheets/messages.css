@@ -23,7 +23,7 @@
     left: inherit;
     padding: 25px;
     display: flex;
-    max-height: 90%;
+    max-height: 100%;
     flex-direction: column;
 }
 
@@ -35,7 +35,8 @@
     background: #fff;
     box-shadow: 0 1px 0 rgba(0,0,0,.1);
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: 50px;
     left: 0;
     position: -webkit-sticky;
@@ -62,7 +63,7 @@
     padding: 12px;
     border: 2px solid rgb(76, 150, 137);
     border-radius: 6px;
-    width: 89%;
+    width: 90%;
     outline: none;
 }
 
@@ -81,6 +82,7 @@
 #message-list-item {
     display: flex;
     padding: 10px;
+    min-height: 45px;
 }
 
 .message-list {
