@@ -10,12 +10,13 @@ export class SignupForm extends Component {
       email: '',
       password: '',
       avatarUrl: '',
-      errors: this.props.errors
+      errors: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount () {
+    this.props.clearErrors()
     this.setState({
       email: '',
       password: '',
@@ -38,15 +39,19 @@ export class SignupForm extends Component {
   }
 
   render () {
-    let errors = this.props.errors.map((error) => <li>{error}</li>)
+    let errors = this.props.errors.map((error, idx) => <li key={idx} >{error}</li>)
+    let errorBox = null
+    if (errors.length) {
+      errorBox =
+      <div className='errors-box-signup'>
+        <ul id='error-messages'>
+          {errors}
+        </ul>
+      </div>
+    }
     return (
       <div className='signup-form-div'>
         <NavLinks/>
-        <div className='errors-box'>
-          <ul id='error-messages'>
-            {errors}
-          </ul>
-        </div>
         <form className='signup-form' onSubmit={this.handleSubmit}>
           <div className='signup-form-container'>
             <h3 className='form-title-signup'>Welcome to Slack!</h3>
@@ -86,6 +91,7 @@ export class SignupForm extends Component {
             </ul>
           </div>
         </form>
+        {errorBox}
       </div>
     )
   }

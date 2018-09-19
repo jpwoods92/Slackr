@@ -1,25 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { logout } from '../actions/session_actions'
+import { logout, clearErrors } from '../actions/session_actions'
 import { Link } from 'react-router-dom'
 
 const navLinks = (props) => {
-  let nav
-  if (props.loggedIn) {
-    nav = (
-      <ul className='nav-list'>
-        <li><button id='nav-workspaces'>Your Workspaces</button></li>
-        <li><button id='nav-logout' onClick={props.logout} >Log Out</button></li>
-      </ul>
-    )
-  } else {
-    nav = (
-      <ul className='nav-list'>
-        <li><Link id='nav-login' to='/login'>Log In</Link></li>
-        <li><Link id='nav-signup' to='/signup'>Sign Up</Link></li>
-      </ul>
-    )
-  }
+  let nav = (
+    <ul className='nav-list'>
+      <li><Link onClick={() => clearErrors()} id='nav-login' to='/login'>Log In</Link></li>
+      <li><Link onClick={() => clearErrors()} id='nav-signup' to='/signup'>Sign Up</Link></li>
+    </ul>
+  )
 
   return (
     <header className='nav-bar'>
@@ -38,7 +28,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    clearErrors: () => dispatch(clearErrors())
   }
 }
 

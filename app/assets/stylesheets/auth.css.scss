@@ -43,6 +43,44 @@
     align-self: center;
 }
 
+.errors-box {
+    position: absolute;
+    left: 40%;
+    top: 70%;
+    border-top: 0.25px solid #c4c4c4;
+    border-right: 0.25px solid #c4c4c4;
+    border-left: 0.25px solid #c4c4c4;
+    padding: 30px;
+    background-color: white;
+    border-radius: 4px;
+    z-index: 200;
+    box-shadow: 0px 2px #acacac;
+}
+
+.errors-box-signup {
+    position: absolute;
+    left: 30%;
+    top: 80%;
+    border-top: 0.25px solid #c4c4c4;
+    border-right: 0.25px solid #c4c4c4;
+    border-left: 0.25px solid #c4c4c4;
+    padding: 30px;
+    background-color: white;
+    border-radius: 4px;
+    z-index: 200;
+    box-shadow: 0px 2px #acacac;
+}
+
+#error-messages {
+    font-family: 'Muli', sans-serif;
+    color: rgb(240, 109, 109);
+}
+
+#error-messages > li {
+    padding: 3px;
+}
+
+
 #guest-submit {
     font-family: 'Muli', sans-serif;
     font-size: 13px;
@@ -96,6 +134,7 @@
     border-left: .25px solid rgb(196, 196, 196);
     width: 50%;
     height: 50%;
+    max-width: 600px;
     background: white;
     border-radius: 5px;
     box-shadow: 0px 2px rgb(172, 172, 172);
@@ -135,7 +174,7 @@
     padding: 15px;
     outline: none;
     font-size: 15px;
-    font-family: 'Muli Sans', sans-serif;
+    font-family: 'Muli', sans-serif;
 }
 
 #email-input:focus , #username-input:focus , #password-input:focus , #avatar-link-input:focus {

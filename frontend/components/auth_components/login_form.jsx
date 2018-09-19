@@ -8,13 +8,14 @@ export class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      errors: this.props.errors
+      errors: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.guestLogin = this.guestLogin.bind(this)
   }
 
   componentDidMount () {
+    this.props.clearErrors()
     this.setState({
       email: '',
       password: '',
@@ -44,15 +45,19 @@ export class LoginForm extends Component {
   }
 
   render () {
-    let errors = this.props.errors.map((error) => <li>{error}</li>)
+    let errors = this.props.errors.map((error, idx) => <li key={idx} >{error}</li>)
+    let errorBox = null
+    if (errors.length) {
+      errorBox =
+      <div className='errors-box'>
+        <ul id='error-messages'>
+          {errors}
+        </ul>
+      </div>
+    }
     return (
       <div className='login-form-div'>
         <NavLinks/>
-        <div className='errors-box'>
-          <ul id='error-messages'>
-            {errors}
-          </ul>
-        </div>
         <form className='login-form' onSubmit={this.handleSubmit}>
           <div className='login-form-container'>
             <h3 className='form-title'>Welcome Back!</h3>
@@ -79,6 +84,7 @@ export class LoginForm extends Component {
             </ul>
           </div>
         </form>
+        {errorBox}
       </div>
     )
   }
