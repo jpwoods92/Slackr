@@ -69,7 +69,7 @@ export class SignupForm extends Component {
                 </label>
               </li>
               <li>
-                <label htmlFor='avatar-link-input'>Avatar Link
+                <label className='avatar-link-input'>Avatar Link
                   <input id='avatar-link-input' type='text'
                     placeholder='https://oliverball.com/smiley+face'
                     value={this.state.avatarUrl} onChange={this.update('avatarUrl')}/>
