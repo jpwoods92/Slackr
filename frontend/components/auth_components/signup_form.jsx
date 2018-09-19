@@ -10,12 +10,13 @@ export class SignupForm extends Component {
       email: '',
       password: '',
       avatarUrl: '',
-      errors: this.props.errors
+      errors: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount () {
+    this.props.clearErrors()
     this.setState({
       email: '',
       password: '',
@@ -34,15 +35,20 @@ export class SignupForm extends Component {
   handleSubmit (e) {
     e.preventDefault()
     const user = Object.assign({}, this.state)
-    this.props.processForm(user).then(null, () => this.setState({
-      email: '',
-      password: '',
-      errors: this.props.errors
-    }))
+    this.props.processForm(user)
   }
 
   render () {
-    let errors = this.state.errors.map((error) => <li>{error}</li>)
+    let errors = this.props.errors.map((error, idx) => <li key={idx} >{error}</li>)
+    let errorBox = null
+    if (errors.length) {
+      errorBox =
+      <div className='errors-box-signup'>
+        <ul id='error-messages'>
+          {errors}
+        </ul>
+      </div>
+    }
     return (
       <div className='signup-form-div'>
         <NavLinks/>
@@ -75,17 +81,17 @@ export class SignupForm extends Component {
                     value={this.state.avatarUrl} onChange={this.update('avatarUrl')}/>
                 </label>
               </li>
-              <li>
+              <li id= 'submit-li'>
                 <input id='submit-input' type='Submit' value={this.props.formType}/>
               </li>
               <li id='transfer-to-login'>
                 <p id='or-text'>or</p>
                 <Link id='sign-in-link' to='/login'>Login as guest</Link>
               </li>
-              {errors}
             </ul>
           </div>
         </form>
+        {errorBox}
       </div>
     )
   }

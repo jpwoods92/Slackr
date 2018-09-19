@@ -41,12 +41,14 @@ class MessagesArea extends React.Component {
       return sortedMessages.map(message => {
         let messageUsername = this.props.users[message.user_id].username
         return <li id='message-list-item' key={message.id}>
-          <ul className='message-item-contents'>
-            <li><img id='avatar-img' src={window.userAvatar} alt=""/></li>
-            <li><p id='message-username'>{messageUsername}</p></li>
-            <li><Timestamp id='timestamp' time={message.created_at} format='time' /></li>
-            <li><p id='message-body'>{message.body}</p></li>
-          </ul>
+          <img id='avatar-img' src={window.userAvatar} alt=""/>
+          <div className='message-item-contents'>
+            <div className='username-timestamps-container'>
+              <div id='message-username'>{messageUsername}</div>
+              <Timestamp className='timestamp' id='timestamp' time={message.created_at} format='time' />
+            </div>
+            <div id='message-body'>{message.body}</div>
+          </div>
         </li>
       })
     }

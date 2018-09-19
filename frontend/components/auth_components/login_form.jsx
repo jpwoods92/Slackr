@@ -8,13 +8,14 @@ export class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      errors: this.props.errors
+      errors: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.guestLogin = this.guestLogin.bind(this)
   }
 
   componentDidMount () {
+    this.props.clearErrors()
     this.setState({
       email: '',
       password: '',
@@ -33,11 +34,7 @@ export class LoginForm extends Component {
   handleSubmit (e) {
     e.preventDefault()
     const user = Object.assign({}, this.state)
-    this.props.processForm(user).then(null, () => this.setState({
-      email: '',
-      password: '',
-      errors: this.props.errors
-    }))
+    this.props.processForm(user)
   }
 
   guestLogin () {
@@ -48,7 +45,16 @@ export class LoginForm extends Component {
   }
 
   render () {
-    let errors = this.state.errors.map((error) => <p>{error}</p>)
+    let errors = this.props.errors.map((error, idx) => <li key={idx} >{error}</li>)
+    let errorBox = null
+    if (errors.length) {
+      errorBox =
+      <div className='errors-box'>
+        <ul id='error-messages'>
+          {errors}
+        </ul>
+      </div>
+    }
     return (
       <div className='login-form-div'>
         <NavLinks/>
@@ -60,26 +66,25 @@ export class LoginForm extends Component {
                 <label className='email-input'>Email
                   <input id='email-input' type='text' placeholder='OliverBall@coolpeeps.com'
                     value={this.state.email} onChange={this.update('email')} />
-                  {errors}
                 </label>
               </li>
               <li>
                 <label className='password-input'>Password
                   <input type='password' id='password-input' placeholder='6 characters minimum'
                     value={this.state.password} onChange={this.update('password')}/>
-                  {errors}
                 </label>
               </li>
-              <li>
+              <li id='login-li'>
                 <input id='submit-input' type='Submit' value={this.props.formType}/>
               </li>
-              <li>
-                <p id='or-text-login'>or</p>
+              <p id='or-text-login'>or</p>
+              <li id='login-li'>
                 <input id= 'guest-submit' onClick={() => this.guestLogin()} type="button" value='Login as Guest'/>
               </li>
             </ul>
           </div>
         </form>
+        {errorBox}
       </div>
     )
   }
