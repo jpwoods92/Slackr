@@ -80,6 +80,8 @@
   border: none;
   transition: background-color .15s,color .15s ease-in-out;
   cursor: pointer;
+  position: fixed;
+  left: 74px;
 }
 
 #nav-logout:hover {

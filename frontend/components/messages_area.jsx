@@ -33,7 +33,7 @@ class MessagesArea extends React.Component {
   }
 
   render () {
-    if (!this.props.rooms.length) return null
+    if (!this.props.room) return null
     const orderedMessages = messages => {
       const sortedMessages = messages.sort(
         (a, b) => new Date(a.created_at) - new Date(b.created_at)
