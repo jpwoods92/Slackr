@@ -72,10 +72,15 @@
 
 .message-item-contents {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1px;
+    margin-left: 5px;
 }
 
 #message-list-item {
-    padding: 5px;
+    display: flex;
+    padding: 10px;
 }
 
 .message-list {
@@ -92,4 +97,28 @@
     font-family: 'Noto Sans', sans-serif;
     font-size: 15px;
     color: rgb(65, 128, 116);
+}
+
+#message-username {
+    font-family: 'Noto Sans', sans-serif; 
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.timestamp {
+    margin-left: 8px;
+    font-family: 'Noto Sans', sans-serif; 
+    font-weight: 400;
+    font-size: 12px;
+    color: #717274;
+}
+
+#message-body {
+    font-family: 'Noto Sans', sans-serif; 
+    font-size: 15px;
+}
+
+.username-timestamps-container {
+    display: flex;
+    align-items: baseline;
 }
