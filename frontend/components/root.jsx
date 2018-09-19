@@ -7,7 +7,7 @@ import { ActionCableProvider } from 'react-actioncable-provider'
 export const Root = ({ store }) => (
   <Provider store={ store }>
     <HashRouter>
-      <ActionCableProvider url='ws://localhost:3000/cable'>
+      <ActionCableProvider url='wss://best-slackr.herokuapp.com//cable'>
         <Slackr />
       </ActionCableProvider>
     </HashRouter>
