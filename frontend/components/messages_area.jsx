@@ -33,6 +33,7 @@ class MessagesArea extends React.Component {
   }
 
   render () {
+    if (!this.props.rooms.length) return null
     const orderedMessages = messages => {
       const sortedMessages = messages.sort(
         (a, b) => new Date(a.created_at) - new Date(b.created_at)
@@ -49,7 +50,6 @@ class MessagesArea extends React.Component {
         </li>
       })
     }
-    if (!this.props.room) return null
     let roomTitle = this.props.room.title
     let numUsers = Object.keys(this.props.users).length
     return (
