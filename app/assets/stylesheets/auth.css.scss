@@ -104,11 +104,18 @@
 
 .login-form-list, .signup-form-list {
     position: absolute;
+    display: flex,;
+    flex-direction: column;
     top: 50%;
     left: 50%;
     margin-top: 20px;
     transform: translate(-50%, -50%);
     font-family: 'Muli', sans-serif;
+}
+
+.email-input, .password-input, .username-input, .avatar-link-input {
+    display: flex;
+    flex-direction: column;
 }
 
 
