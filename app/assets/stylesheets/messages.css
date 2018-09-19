@@ -1,0 +1,12 @@
+#avatar-img {
+    height: 45px;
+    border-radius: 5px;
+}
+
+.messagesArea {
+    display: block;
+    position: relative;
+    background-color: white;
+    left: 220px;
+    overflow-x: hidden;
+}

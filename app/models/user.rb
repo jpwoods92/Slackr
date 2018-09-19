@@ -54,7 +54,7 @@ class User < ApplicationRecord
     end
 
     def ensure_avatar_url
-        self.avatar_url ||= '/app/assets/images/oliver_picture.jpeg'
+        self.avatar_url ||= '/assets/images/oliver_picture.jpeg'
     end
     
 end

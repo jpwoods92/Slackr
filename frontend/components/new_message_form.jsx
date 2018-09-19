@@ -4,8 +4,7 @@ class NewMessageForm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      body: '',
-      roomId: this.props.roomId
+      body: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -16,8 +15,9 @@ class NewMessageForm extends React.Component {
   }
 
   handleSubmit (e) {
+    let roomId = this.props.roomId
     e.preventDefault()
-    this.props.createMessage(this.state)
+    this.props.createMessage({body: this.state.body, roomId: roomId})
     this.setState({ body: '' })
   }
 

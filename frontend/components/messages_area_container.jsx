@@ -2,14 +2,10 @@ import { connect } from 'react-redux'
 import MessagesArea from './messages_area'
 
 const mapStateToProps = (state) => {
-  let room = state.ui.room || null
-  let messages = []
-  if (room) {
-    messages = state.ui.room.messages
-  }
+  let room = state.ui.room
   return {
     room: room,
-    messages: messages
+    users: state.entities.users
   }
 }
 

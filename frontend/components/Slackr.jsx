@@ -1,18 +1,17 @@
 import React, { Fragment } from 'react'
 import SplashContainer from './splash_container'
-import { Route } from 'react-router-dom'
 import LoginFormContainer from '../components/auth_components/login_form_container'
 import SignupFormContainer from '../components/auth_components/signup_form_container'
 import {AuthRoute, ProtectedRoute} from '../util/route_util'
 import MainApp from './main_app'
-import NewRoomForm from './new_room_form'
+import Modal from './modal'
 
 const Slackr = () => (
   <Fragment>
+    <Modal />
     <AuthRoute path='/login' component={LoginFormContainer} />
     <AuthRoute path='/signup' component={SignupFormContainer} />
     <ProtectedRoute path='/channels/:id' component={MainApp} />
-    <Route path='/new' component={NewRoomForm} />
     <AuthRoute exact path='/' component={SplashContainer} />
   </Fragment>
 )

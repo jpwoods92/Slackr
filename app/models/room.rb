@@ -15,7 +15,7 @@ class Room < ApplicationRecord
 
     has_many :room_memberships, class_name: "RoomMembership", foreign_key: "room_id"
     has_many :users, through: :room_memberships, source: :users
-    has_many :messages
+    has_many :messages, dependent: :destroy
     
 end
 

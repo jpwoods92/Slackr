@@ -1,9 +1,6 @@
 import React from 'react'
 import { ActionCable } from 'react-actioncable-provider'
-import MessagesAreaContainer from './messages_area_container'
-import { ProtectedRoute } from '../util/route_util'
 import RoomListItem from './rooms_list_item'
-import { Link } from 'react-router-dom'
 
 class RoomsList extends React.Component {
   constructor (props) {
@@ -38,14 +35,16 @@ class RoomsList extends React.Component {
     if (!this.props.rooms.length) return <p>loading</p>
     let rooms = this.state.rooms
     return (
-      <div className="roomsList">
+      <div className='rooms'>
         <ActionCable
           channel={{ channel: 'RoomsChannel' }}
           onReceived={this.handleReceivedRoom}
         />
-        <h2>Channels</h2>
-        <Link to='/new'>+</Link>
-        <ul>
+        <div className='list-header'>
+          <h2 id='channels'>Channels</h2>
+          <button className='room-form-button' onClick={() => this.props.openModal('newRoom')}>⊕</button>
+        </div>
+        <ul className='roomsList'>
           {rooms.map(room => <RoomListItem key={room.id} room={room} handleClick={this.handleClick} />)}
         </ul>
       </div>

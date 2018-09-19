@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   end
 
   def index
-      @rooms = Room.all
+      @rooms = Room.all.includes(:messages)
       render json: @rooms
   end
 
@@ -25,7 +25,7 @@ class RoomsController < ApplicationController
     serialized_data = ActiveModelSerializers::Adapter::Json.new(
       RoomSerializer.new(room)
     ).serializable_hash
-    render json: serialized_data
+    render json: serialized_data[:room]
   end
 
   def room_params

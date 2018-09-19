@@ -17,7 +17,8 @@ class mainApp extends React.Component {
   }
 
   componentDidMount () {
-    this.props.fetchRoom(this.props.match.params.roomId)
+    let room = this.props.match.params.roomId || 1
+    this.props.fetchRoom(room)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -27,17 +28,21 @@ class mainApp extends React.Component {
   }
 
   render () {
-    let button
+    let button, user
     if (this.props.loggedIn) {
       button = <button id='nav-logout' onClick={this.props.logout} >Log Out</button>
+      user = <p id='username'>{this.props.user.username}</p>
     }
 
     return (
-      <Fragment>
-        {button}
-        <RoomsList />
+      <div className='main-app'>
+        <div className='side-nav'>
+          {user}
+          <RoomsList />
+          {button}
+        </div>
         <MessagesAreaContainer />
-      </Fragment>
+      </div>
     )
   }
 }
@@ -52,7 +57,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout()),
-    fetchRoom: () => dispatch(fetchRoom())
+    fetchRoom: (id) => dispatch(fetchRoom(id))
   }
 }
 

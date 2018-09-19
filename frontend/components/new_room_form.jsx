@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createRoom } from '../actions/room_actions'
-import { withRouter } from 'react-router-dom'
+import { closeModal } from '../actions/modal_actions'
 
 class NewRoomForm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      title: '#',
+      title: '',
       is_private: true
     }
     this.handleChange = this.handleChange.bind(this)
@@ -21,7 +21,8 @@ class NewRoomForm extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
     this.props.createRoom(this.state)
-    this.setState({title: '#'})
+    this.setState({title: ''})
+    this.props.closeModal()
   }
 
   render () {
@@ -41,7 +42,8 @@ class NewRoomForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  createRoom: (room) => dispatch(createRoom(room))
+  createRoom: (room) => dispatch(createRoom(room)),
+  closeModal: () => dispatch(closeModal())
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(NewRoomForm))
+export default connect(null, mapDispatchToProps)(NewRoomForm)
