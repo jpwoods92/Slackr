@@ -24,7 +24,7 @@ class RoomsList extends React.Component {
 
   handleReceivedRoom (response) {
     const {room} = response
-    this.setState({rooms: [...this.props.rooms, room]})
+    this.setState({rooms: [...this.state.rooms, room]})
   }
 
   handleClick (id) {

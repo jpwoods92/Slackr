@@ -21,8 +21,8 @@ class NewRoomForm extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
     this.props.createRoom(this.state)
-    this.setState({title: ''})
     this.props.closeModal()
+    this.setState({title: ''})
   }
 
   render () {

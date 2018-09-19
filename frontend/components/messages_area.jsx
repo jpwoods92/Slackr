@@ -10,12 +10,18 @@ class MessagesArea extends React.Component {
     this.state = {
       messages: this.props.messages
     }
+    this.myRef = React.createRef()
     this.handleReceivedMessage = this.handleReceivedMessage.bind(this)
+  }
+
+  componentDidMount () {
+    this.myRef.current.scrollIntoView()
   }
 
   componentWillReceiveProps (nextProps) {
     if (this.state.messages !== nextProps.messages) {
       this.setState({messages: nextProps.messages})
+      this.myRef.current.scrollIntoView()
     }
   }
 
@@ -23,6 +29,7 @@ class MessagesArea extends React.Component {
     const { message } = response
     const messages = [...this.state.messages, message]
     this.setState({ messages })
+    this.myRef.current.scrollIntoView()
   }
 
   render () {
@@ -50,7 +57,10 @@ class MessagesArea extends React.Component {
         <MessageNav roomTitle={roomTitle} numUsers={numUsers} />
         <Cable handleReceivedMessage={this.handleReceivedMessage}/>
         <div className='messages-container'>
-          <ul className='message-list'>{orderedMessages(this.state.messages)}</ul>
+          <ul className='message-list'>
+            {orderedMessages(this.state.messages)}
+            <div ref={this.myRef}></div>
+          </ul>
           <NewMessageForm />
         </div>
       </div>
