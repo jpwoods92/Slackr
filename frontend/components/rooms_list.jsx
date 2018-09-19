@@ -42,7 +42,7 @@ class RoomsList extends React.Component {
         />
         <div className='list-header'>
           <h2 id='channels'>Channels</h2>
-          <button className='room-form-button' onClick={() => this.props.openModal('newRoom')}>⊕</button>
+          <button className='room-form-button' onClick={() => this.props.openModal('newRoom')}><img src={window.addChannel} alt="add-channel-icon"/></button>
         </div>
         <ul className='roomsList'>
           {rooms.map(room => <RoomListItem key={room.id} room={room} handleClick={this.handleClick} />)}

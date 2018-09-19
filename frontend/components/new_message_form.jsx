@@ -26,13 +26,13 @@ class NewMessageForm extends React.Component {
     return (
       <div className="newMessageForm">
         <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
           <input
             type="text"
             value={this.state.body}
+            placeholder={`Message #${this.props.room.title}`}
             onChange={(e) => this.handleChange(e)}
+            id='message-input'
           />
-          <input type="submit" />
         </form>
       </div>
     )

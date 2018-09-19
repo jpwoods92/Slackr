@@ -31,15 +31,17 @@ class mainApp extends React.Component {
     let button, user
     if (this.props.loggedIn) {
       button = <button id='nav-logout' onClick={this.props.logout} >Log Out</button>
-      user = <p id='username'>{this.props.user.username}</p>
+      user = <p id='username'><img id='presence' src={window.loggedInIcon} alt="logged-in"/> {this.props.user.username}</p>
     }
 
     return (
       <div className='main-app'>
         <div className='side-nav'>
-          {user}
+          <header className='side-nav-header'>
+            {user}
+            {button}
+          </header>
           <RoomsList />
-          {button}
         </div>
         <MessagesAreaContainer />
       </div>
