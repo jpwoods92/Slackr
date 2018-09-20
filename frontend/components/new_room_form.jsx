@@ -54,7 +54,7 @@ class NewRoomForm extends React.Component {
           <span id='input-subtext'>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</span>
           <div className='button-container'>
             <button className='cancel-button' onClick={closeModal}>Cancel</button>
-            <button className='modal-button'>Create Channel</button>
+            <button className='modal-button' onSubmit={this.handleSubmit}>Create Channel</button>
           </div>
         </form>
       </div>

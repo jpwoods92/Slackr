@@ -19,6 +19,7 @@ class mainApp extends React.Component {
   componentDidMount () {
     let room = this.props.match.params.roomId || 1
     this.props.fetchRoom(room)
+    this.props.history.push(`/channels/${room}`)
   }
 
   componentWillReceiveProps (nextProps) {

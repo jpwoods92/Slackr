@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
   end
 
   def create
+    debugger
     room = Room.new(room_params)
     room.owner_id = current_user.id
     if room.save

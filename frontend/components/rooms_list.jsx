@@ -8,7 +8,6 @@ class RoomsList extends React.Component {
     this.state = {
       rooms: []
     }
-    this.handleClick = this.handleClick.bind(this)
     this.handleReceivedRoom = this.handleReceivedRoom.bind(this)
   }
 
@@ -27,10 +26,6 @@ class RoomsList extends React.Component {
     this.setState({rooms: [...this.state.rooms, room]})
   }
 
-  handleClick (id) {
-    this.props.fetchRoom(id)
-  }
-
   render () {
     if (!this.props.rooms.length) return <p>loading</p>
     let rooms = this.state.rooms
@@ -45,7 +40,7 @@ class RoomsList extends React.Component {
           <button className='room-form-button' onClick={() => this.props.openModal('newRoom')}><img src={window.addChannel} alt="add-channel-icon"/></button>
         </div>
         <ul className='roomsList'>
-          {rooms.map(room => <RoomListItem key={room.id} room={room} handleClick={this.handleClick} />)}
+          {rooms.map(room => <RoomListItem key={room.id} room={room} />)}
         </ul>
       </div>
     )
