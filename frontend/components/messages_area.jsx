@@ -29,6 +29,7 @@ class MessagesArea extends React.Component {
   }
 
   handleReceivedMessage (response) {
+    debugger
     const { message } = response
     const messages = [...this.state.messages, message]
     this.setState({ messages })
