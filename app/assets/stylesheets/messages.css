@@ -65,6 +65,7 @@
     border-radius: 6px;
     width: 90%;
     outline: none;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 #message-input:focus {

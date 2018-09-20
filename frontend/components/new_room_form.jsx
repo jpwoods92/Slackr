@@ -8,10 +8,11 @@ class NewRoomForm extends React.Component {
     super(props)
     this.state = {
       title: '',
-      is_private: true
+      is_private: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   handleChange (e) {
@@ -26,7 +27,7 @@ class NewRoomForm extends React.Component {
   }
 
   handleClick () {
-    this.setState({is_private: !!this.state.is_private})
+    this.setState({is_private: !this.state.is_private})
   }
 
   render () {
@@ -35,8 +36,11 @@ class NewRoomForm extends React.Component {
         <h1 className='newroom-title'>Create a channel</h1>
         <p className='newroom-body'>Channels are where your members communicate. They’re best when organized around a topic — #leads, for example.</p>
         <form onSubmit={this.handleSubmit}>
-          <label id='text-label' >Public? Anyone in your workspace can view and join this channel.</label>
-          <input type="checkbox" defaultChecked onClick={this.handleClick} value={this.state.is_private}/>
+          <div className='switch' onClick={this.handleClick}>
+            <input type="checkbox" readOnly checked={this.state.is_private}/>
+            <span className="slider round"></span>
+          </div>
+          <label id='text-label' >Anyone in your workspace can view and join this channel.</label>
           <label id='title-label'>Name</label>
           <input
             id='newroom-input'

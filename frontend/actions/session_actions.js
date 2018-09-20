@@ -31,7 +31,7 @@ const receiveClear = () => {
   }
 }
 
-export const clearErrors = () => dispatch => () => dispatch(receiveClear())
+export const clearErrors = () => dispatch => dispatch(receiveClear())
 
 export const login = user => dispatch => (
   APIUtil.login(user).then(user => dispatch(receiveCurrentUser(user)),

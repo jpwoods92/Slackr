@@ -1,12 +1,17 @@
 
 .login-form, .signup-form {
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     background: rgba(245, 245, 245, 0.7);
     z-index: 1;
+}
+
+.login-form-div, .signup-form-div {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-title {
@@ -45,8 +50,9 @@
 
 .errors-box {
     position: absolute;
-    left: 40%;
-    top: 70%;
+    display: flex;
+    top: 550px;
+    align-self: center;
     border-top: 0.25px solid #c4c4c4;
     border-right: 0.25px solid #c4c4c4;
     border-left: 0.25px solid #c4c4c4;
@@ -59,12 +65,13 @@
 
 .errors-box-signup {
     position: absolute;
-    left: 30%;
-    top: 80%;
+    display: flex;
+    top: 690px;
+    align-self: center;
     border-top: 0.25px solid #c4c4c4;
     border-right: 0.25px solid #c4c4c4;
     border-left: 0.25px solid #c4c4c4;
-    padding: 30px;
+    padding: 20px;
     background-color: white;
     border-radius: 4px;
     z-index: 200;
@@ -77,7 +84,7 @@
 }
 
 #error-messages > li {
-    padding: 3px;
+    padding: 2px;
 }
 
 
@@ -108,7 +115,7 @@
     justify-content: center;
     display: flex;
     position: absolute;
-    top: 40%;
+    top: 340px;
     left: 50%;
     transform: translate(-50%, -50%);
     border-top: .25px solid rgb(196, 196, 196);

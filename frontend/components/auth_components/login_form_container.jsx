@@ -10,9 +10,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  processForm: (user) => dispatch(login(user)),
-  clearErrors: () => (dispatch(clearErrors()))
-})
+const mapDispatchToProps = dispatch => {
+  return {
+    processForm: (user) => dispatch(login(user)),
+    clearErrors: () => dispatch(clearErrors())
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
