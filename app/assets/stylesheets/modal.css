@@ -37,6 +37,7 @@
   cursor: pointer;
   color: rgb(83, 83, 83);
   transition: background-color .15s,color .15s ease-in-out;
+  outline: none;
 }
 
 .x-button:hover {

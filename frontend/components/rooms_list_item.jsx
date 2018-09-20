@@ -1,10 +1,15 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
-export default ({room, handleClick}) => {
+export default ({room, handleClick, currentRoom}) => {
+  let classText
+  if (room.id === currentRoom.id) {
+    classText = 'room-list-link active'
+  } else {
+    classText = 'room-list-link'
+  }
   return (
     <li key={room.id} className="room-list-item" onClick={() => handleClick(room.id)}>
-      <NavLink className="room-list-link" to={`/channels/${room.id}`}># {room.title}</NavLink>
-    </li>
-  )
+      <Link className={classText} to={`/channels/${room.id}`}># {room.title}</Link>
+    </li>)
 }

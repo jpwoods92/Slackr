@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createRoom } from '../actions/room_actions'
+import { createRoom, fetchRooms } from '../actions/room_actions'
 import { closeModal } from '../actions/modal_actions'
 
 class NewRoomForm extends React.Component {
@@ -24,6 +24,7 @@ class NewRoomForm extends React.Component {
     this.props.createRoom(this.state)
     this.props.closeModal()
     this.setState({title: ''})
+    this.props.fetchRooms()
   }
 
   handleClick () {
@@ -54,7 +55,7 @@ class NewRoomForm extends React.Component {
           <span id='input-subtext'>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</span>
           <div className='button-container'>
             <button className='cancel-button' onClick={closeModal}>Cancel</button>
-            <button className='modal-button'>Create Channel</button>
+            <button className='modal-button' onSubmit={this.handleSubmit}>Create Channel</button>
           </div>
         </form>
       </div>
@@ -64,7 +65,8 @@ class NewRoomForm extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   createRoom: (room) => dispatch(createRoom(room)),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  fetchRooms: () => dispatch(fetchRooms())
 })
 
 export default connect(null, mapDispatchToProps)(NewRoomForm)

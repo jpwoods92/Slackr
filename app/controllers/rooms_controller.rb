@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   end
 
   def index
-      @rooms = Room.all.includes(:messages)
+      @rooms = Room.all
       render json: @rooms
   end
 

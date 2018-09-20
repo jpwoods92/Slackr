@@ -5,7 +5,8 @@ import { openModal } from '../actions/modal_actions'
 
 const mapStateToProps = (state) => {
   return {
-    rooms: state.entities.rooms
+    rooms: state.entities.rooms,
+    room: state.ui.room
   }
 }
 

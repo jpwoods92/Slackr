@@ -45,7 +45,7 @@ class RoomsList extends React.Component {
           <button className='room-form-button' onClick={() => this.props.openModal('newRoom')}><img src={window.addChannel} alt="add-channel-icon"/></button>
         </div>
         <ul className='roomsList'>
-          {rooms.map(room => <RoomListItem key={room.id} room={room} handleClick={this.handleClick} />)}
+          {rooms.map(room => <RoomListItem key={room.id} room={room} handleClick={this.handleClick} currentRoom={this.props.room} />)}
         </ul>
       </div>
     )

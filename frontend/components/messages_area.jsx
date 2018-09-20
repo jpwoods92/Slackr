@@ -18,14 +18,18 @@ class MessagesArea extends React.Component {
     this.myRef.current.scrollIntoView()
   }
 
+  componentDidUpdate () {
+    this.myRef.current.scrollIntoView()
+  }
+
   componentWillReceiveProps (nextProps) {
     if (this.state.messages !== nextProps.messages) {
       this.setState({messages: nextProps.messages})
-      this.myRef.current.scrollIntoView()
     }
   }
 
   handleReceivedMessage (response) {
+    debugger
     const { message } = response
     const messages = [...this.state.messages, message]
     this.setState({ messages })
