@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'
 import { ActionCable } from 'react-actioncable-provider'
 
 const Cable = ({ rooms, handleReceivedMessage }) => {
+  // debugger
   return (
     <Fragment>
       {rooms.map(room => {

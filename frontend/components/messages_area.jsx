@@ -24,6 +24,7 @@ class MessagesArea extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.state.messages !== nextProps.messages) {
+      this.props.fetchRooms()
       this.setState({messages: nextProps.messages})
     }
   }

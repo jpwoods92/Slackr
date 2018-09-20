@@ -5,7 +5,6 @@
   left: 0;
   outline: none;
   overflow-x: hidden;
-  overflow-y: scroll;
   position: absolute;
   right: -50px;
   top: 0;
@@ -13,11 +12,11 @@
 }
 
 .side-nav-header {
+  position: fixed;
   margin-top: 20px;
   display: flex;
   align-items: baseline;
   margin-left: 18px;
-  margin-bottom: 50px;
 }
 
 .main-app {
@@ -43,7 +42,13 @@
   display: contents;
 }
 
+.roomsList {
+  overflow-y: scroll;
+}
+
 .rooms {
+  margin-top: 100px;
+  margin-bottom: 50px;
   max-width: 100%;
 }
 

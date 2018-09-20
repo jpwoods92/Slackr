@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import MessagesArea from './messages_area'
+import { fetchRooms } from '../actions/room_actions'
 
 const mapStateToProps = (state) => {
   let room = state.ui.room
@@ -14,4 +15,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(MessagesArea)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchRooms: () => dispatch(fetchRooms())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesArea)
