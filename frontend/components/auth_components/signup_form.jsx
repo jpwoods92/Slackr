@@ -54,7 +54,7 @@ export class SignupForm extends Component {
         <NavLinks/>
         <form className='signup-form' onSubmit={this.handleSubmit}>
           <div className='signup-form-container'>
-            <h3 className='form-title-signup'>Welcome to Slack!</h3>
+            <h3 className='form-title-signup'>Welcome to Slackr!</h3>
             <ul className='signup-form-list'>
               <li>
                 <label className='email-input'>Email
