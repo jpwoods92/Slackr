@@ -32,23 +32,30 @@ class NewRoomForm extends React.Component {
 
   render () {
     return (
-      <div className="newRoomsForm">
+      <div className="newroom-form-div">
         <h1 className='newroom-title'>Create a channel</h1>
         <p className='newroom-body'>Channels are where your members communicate. They’re best when organized around a topic — #leads, for example.</p>
-        <form onSubmit={this.handleSubmit}>
-          <div className='switch' onClick={this.handleClick}>
-            <input type="checkbox" readOnly checked={this.state.is_private}/>
-            <span className="slider round"></span>
+        <form className='newroom-form' onSubmit={this.handleSubmit}>
+          <div className='switch-text-container' onClick={this.handleClick}>
+            <div className='switch'>
+              <input type="checkbox" readOnly checked={this.state.is_private}/>
+              <span className="slider round"></span>
+            </div>
+            <div className='text-label' >Anyone in your workspace can view and join this channel.</div>
           </div>
-          <label id='text-label' >Anyone in your workspace can view and join this channel.</label>
-          <label id='title-label'>Name</label>
+          <span id='title-label'>Name</span>
           <input
             id='newroom-input'
             type="text"
             value={this.state.title}
             onChange={this.handleChange}
+            placeholder='# e.g. leads'
           />
-          <input type="submit" value="Create Channel" />
+          <span id='input-subtext'>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</span>
+          <div className='button-container'>
+            <button className='cancel-button' onClick={closeModal}>Cancel</button>
+            <button className='modal-button'>Create Channel</button>
+          </div>
         </form>
       </div>
     )

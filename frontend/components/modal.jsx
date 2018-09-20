@@ -20,7 +20,6 @@ function Modal ({modal, closeModal}) {
       <button className='x-button' onClick={closeModal}>X</button>
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         {component}
-        <button className='cancel-button' onClick={closeModal}>Cancel</button>
       </div>
     </div>
   )
