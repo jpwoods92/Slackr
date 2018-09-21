@@ -123,6 +123,7 @@
     cursor: pointer;
     transition: background-color .15s,color .15s ease-in-out;
     border: none;
+    outline: none;
 }
 
 .cancel-button {
@@ -138,6 +139,7 @@
     cursor: pointer;
     transition: background-color .15s,color .15s ease-in-out;
     border: .25px solid black;
+    outline: none;
 }
 
 
