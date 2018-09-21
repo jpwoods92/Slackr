@@ -2,6 +2,7 @@
     align-self: center;
     height: 550px;
     max-width: 70%;
+    margin-left: 50px;
 }
 
 .body {
@@ -53,8 +54,9 @@
 #nav-logo-link {
     height: 30px;
     width: 120px;
-    margin-left: 50px;
+    margin-left: 100px;
     align-self: center;  
+    outline: none;
 }
 
 .nav-bar {
@@ -72,11 +74,13 @@
 .nav-list {
     display: flex;
     align-items: center;
+    margin-right: 50px;
 }
 
 
 .call-to-action-card {
     display: flex;
+    margin-top: 50px;
     min-height: 750px;
     align-items: center;
 }
