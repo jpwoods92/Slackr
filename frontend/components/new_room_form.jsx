@@ -16,7 +16,7 @@ class NewRoomForm extends React.Component {
   }
 
   handleChange (e) {
-    this.setState({ title: e.target.value })
+    this.setState({ title: e.target.value.replace(/#/g, '') })
   };
 
   handleSubmit (e) {
