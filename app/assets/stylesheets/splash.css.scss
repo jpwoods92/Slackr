@@ -58,7 +58,8 @@
 }
 
 .nav-bar {
-    position: relative;
+    position: fixed;
+    width: 100%;
     background: #FFFFFF;
     height: 75px;
     border-bottom: .5px rgb(124, 124, 124);
