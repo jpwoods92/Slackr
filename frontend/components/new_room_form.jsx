@@ -20,7 +20,6 @@ class NewRoomForm extends React.Component {
   };
 
   handleSubmit (e) {
-    // debugger
     e.preventDefault()
     this.props.createRoom(this.state)
     this.props.closeModal()

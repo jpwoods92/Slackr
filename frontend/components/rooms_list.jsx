@@ -28,7 +28,7 @@ class RoomsList extends React.Component {
   }
 
   handleClick (id) {
-    this.props.fetchRoom(id)
+    return () => this.props.fetchRoom(id)
   }
 
   render () {
@@ -45,7 +45,13 @@ class RoomsList extends React.Component {
           <button className='room-form-button' onClick={() => this.props.openModal('newRoom')}><img src={window.addChannel} alt="add-channel-icon"/></button>
         </div>
         <ul className='roomsList'>
-          {rooms.map(room => <RoomListItem key={room.id} room={room} handleClick={this.handleClick} currentRoom={this.props.room} />)}
+          {rooms.map(room =>
+            <RoomListItem
+              key={room.id}
+              room={room}
+              handleClick={this.handleClick}
+              currentRoom={this.props.room}
+            />)}
         </ul>
       </div>
     )

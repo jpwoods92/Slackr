@@ -8,8 +8,9 @@ export default ({room, handleClick, currentRoom}) => {
   } else {
     classText = 'room-list-link'
   }
+
   return (
-    <li key={room.id} className="room-list-item" onClick={() => handleClick(room.id)}>
+    <li key={room.id} className="room-list-item" onClick={handleClick(room.id)}>
       <Link className={classText} to={`/channels/${room.id}`}># {room.title}</Link>
     </li>)
 }

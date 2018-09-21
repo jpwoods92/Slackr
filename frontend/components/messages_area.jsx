@@ -43,6 +43,7 @@ class MessagesArea extends React.Component {
         (a, b) => new Date(a.created_at) - new Date(b.created_at)
       )
       return sortedMessages.map(message => {
+        if (!this.props.users[message.user_id]) return null
         let messageUsername = this.props.users[message.user_id].username
         return <li id='message-list-item' key={message.id}>
           <img id='avatar-img' src={window.userAvatar} alt=""/>
