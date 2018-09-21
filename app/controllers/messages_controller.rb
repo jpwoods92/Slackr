@@ -13,8 +13,6 @@ class MessagesController < ApplicationController
       ).serializable_hash
       MessagesChannel.broadcast_to room, serialized_data
       head :ok
-    else
-      render json: @message.errors.full_messages, status: 422
     end
   end
 
