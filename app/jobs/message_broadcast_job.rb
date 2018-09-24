@@ -4,3 +4,5 @@ class MessageBroadCastJob < ApplicationJob
     def perform(message)  
         RoomChannel.broadcast_to('rooms_channel', message: message)
     end
+
+end
