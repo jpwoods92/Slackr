@@ -1,7 +1,7 @@
 import React from 'react'
 import { closeModal } from '../actions/modal_actions'
 import { connect } from 'react-redux'
-import NewRoomForm from './new_room_form'
+import NewRoomForm from './rooms/new_room_form'
 
 function Modal ({modal, closeModal}) {
   if (!modal) {

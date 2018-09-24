@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import SplashContainer from './splash_container'
+import SplashContainer from './splash/splash_container'
 import LoginFormContainer from '../components/auth_components/login_form_container'
 import SignupFormContainer from '../components/auth_components/signup_form_container'
 import {AuthRoute, ProtectedRoute} from '../util/route_util'

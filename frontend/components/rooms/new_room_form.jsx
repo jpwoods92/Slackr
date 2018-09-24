@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createRoom } from '../actions/room_actions'
-import { closeModal } from '../actions/modal_actions'
+import { createRoom } from '../../actions/room_actions'
+import { closeModal } from '../../actions/modal_actions'
 
 class NewRoomForm extends React.Component {
   constructor (props) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { logout, clearErrors } from '../actions/session_actions'
+import { logout, clearErrors } from '../../actions/session_actions'
 import { Link } from 'react-router-dom'
 
 const navLinks = (props) => {

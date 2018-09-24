@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../actions/session_actions'
 import { withRouter } from 'react-router-dom'
-import RoomsList from './rooms_list_container'
-import MessagesAreaContainer from './messages_area_container'
+import RoomsList from './rooms/rooms_list_container'
+import MessagesAreaContainer from './messages/messages_area_container'
 import { fetchRoom } from '../actions/room_actions'
 class mainApp extends React.Component {
   constructor (props) {

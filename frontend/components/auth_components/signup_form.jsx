@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import NavLinks from '../nav_component'
+import NavLinks from '../splash/nav_component'
 
 export class SignupForm extends Component {
   constructor (props) {

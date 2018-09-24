@@ -37,7 +37,6 @@ class MessagesArea extends React.Component {
 
   handleReceivedMessage (response) {
     const message = response
-    // this.props.receiveMessage(message)
     this.setState({messages: [...this.state.messages, message]})
     this.myRef.current.scrollIntoView()
   }

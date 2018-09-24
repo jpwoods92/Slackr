@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { fetchRooms, fetchRoom } from '../actions/room_actions'
-import { fetchMessages } from '../actions/message_actions'
+import { fetchRooms, fetchRoom } from '../../actions/room_actions'
+import { fetchMessages } from '../../actions/message_actions'
 import RoomsList from './rooms_list'
-import { openModal } from '../actions/modal_actions'
+import { openModal } from '../../actions/modal_actions'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => {
