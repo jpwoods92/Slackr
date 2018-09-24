@@ -15,6 +15,7 @@ class MessagesArea extends React.Component {
   }
 
   componentDidMount () {
+    this.setState({messages: this.props.messages})
     this.myRef.current.scrollIntoView()
   }
 
