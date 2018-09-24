@@ -1,4 +1,5 @@
 import React from 'react'
+import { ActionCable } from 'react-actioncable-provider'
 
 class NewMessageForm extends React.Component {
   constructor (props) {
@@ -16,9 +17,10 @@ class NewMessageForm extends React.Component {
 
   handleSubmit (e) {
     let roomId = this.props.roomId
+    let user = this.props.user
     e.preventDefault()
-    this.props.createMessage({body: this.state.body, roomId: roomId})
-    this.setState({ body: '' })
+    this.refs.RoomsChannel.perform('speak', {body: this.state.body, room_id: roomId, user_id: user})
+    this.setState({body: ''})
   }
 
   render () {
@@ -26,6 +28,10 @@ class NewMessageForm extends React.Component {
     return (
       <div className="newMessageForm">
         <form onSubmit={this.handleSubmit}>
+          <ActionCable
+            ref='RoomsChannel'
+            channel={{ channel: 'RoomsChannel', room: this.props.roomId }}
+          />
           <input
             type="text"
             value={this.state.body}

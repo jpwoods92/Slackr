@@ -4,6 +4,7 @@ import { createMessage } from '../actions/message_actions'
 
 const mapStateToProps = state => {
   return {
+    user: state.session.currentUserId,
     room: state.ui.room,
     roomId: state.ui.room.id
   }

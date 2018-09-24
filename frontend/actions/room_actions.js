@@ -30,11 +30,11 @@ export const fetchRooms = () => dispatch => (
     errors => dispatch(receiveErrors(errors.responseJSON)))
 )
 
-export const fetchRoom = (id) => dispatch => (
-  RoomAPIUtil.fetchRoom(id).then((room) => {
+export const fetchRoom = (id) => dispatch => {
+  return RoomAPIUtil.fetchRoom(id).then((room) => {
     return dispatch(receiveRoom(room))
   })
-)
+}
 
 export const createRoom = (room) => dispatch => (
   RoomAPIUtil.createRoom(room)

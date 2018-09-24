@@ -1,19 +1,13 @@
 class MessagesController < ApplicationController
 
-
+  def index
+    @messages = Message.where(room_id: params[:room_id])
+    render json: @messages
+  end
 
   def create
-      
-    @message = Message.new(message_params)
-    @message.user_id = current_user.id
+    @message = current_user.messages.new(message_params)
     room = Room.find(message_params[:room_id])
-    if @message.save
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        MessageSerializer.new(@message)
-      ).serializable_hash
-      MessagesChannel.broadcast_to room, serialized_data
-      head :ok
-    end
   end
 
 

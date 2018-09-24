@@ -28,12 +28,13 @@ class RoomsList extends React.Component {
   }
 
   handleClick (id) {
-    return () => this.props.fetchRoom(id)
+    return () => this.props.fetchRoom(id).then(this.props.fetchMessages(id))
   }
 
   render () {
+    debugger
     if (!this.props.rooms.length) return <p>loading</p>
-    let rooms = this.state.rooms
+    let rooms = this.props.rooms
     return (
       <div className='rooms'>
         <ActionCable

@@ -1,24 +1,23 @@
 import { connect } from 'react-redux'
 import MessagesArea from './messages_area'
-import { fetchRooms } from '../actions/room_actions'
+import { fetchMessages, receiveMessage } from '../actions/message_actions'
+import { withRouter } from 'react-router-dom'
+import { fetchRoom } from '../actions/room_actions'
 
 const mapStateToProps = (state) => {
-  let room = state.ui.room
-  let messages = []
-  if (Object.keys(room).length) {
-    messages = state.ui.room.messages
-  }
   return {
-    room: room,
-    messages: messages,
+    room: state.ui.room,
+    messages: state.entities.messages,
     users: state.entities.users
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchRooms: () => dispatch(fetchRooms())
+    fetchMessages: (roomId) => dispatch(fetchMessages(roomId)),
+    fetchRoom: (id) => dispatch(fetchRoom(id)),
+    receiveMessage: (message) => dispatch(receiveMessage(message))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessagesArea)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MessagesArea))

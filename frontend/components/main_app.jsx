@@ -16,15 +16,9 @@ class mainApp extends React.Component {
     }
   }
 
-  componentDidMount () {
-    let room = this.props.match.params.roomId || 1
-    this.props.fetchRoom(room)
-    this.props.history.push(`/channels/${room}`)
-  }
-
   componentWillReceiveProps (nextProps) {
-    if (this.props.match.params.roomId !== nextProps.match.params.roomId) {
-      this.props.fetchRoom(nextProps.match.params.roomId)
+    if (parseInt(this.props.history.location.pathname.split('/').pop()) !== parseInt(nextProps.history.location.pathname.split('/').pop())) {
+      this.props.fetchRoom(parseInt(nextProps.history.location.pathname.split('/').pop()))
     }
   }
 

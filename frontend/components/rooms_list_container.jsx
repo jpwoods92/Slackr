@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
 import { fetchRooms, fetchRoom } from '../actions/room_actions'
+import { fetchMessages } from '../actions/message_actions'
 import RoomsList from './rooms_list'
 import { openModal } from '../actions/modal_actions'
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +15,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   fetchRooms: () => dispatch(fetchRooms()),
   fetchRoom: (id) => dispatch(fetchRoom(id)),
+  fetchMessages: (roomId) => dispatch(fetchMessages(roomId)),
   openModal: (modal) => dispatch(openModal(modal))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoomsList)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RoomsList))

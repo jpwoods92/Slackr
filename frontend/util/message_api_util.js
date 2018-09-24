@@ -6,3 +6,11 @@ export const createMessage = (message) => {
       room_id: message.roomId}}
   })
 }
+
+export const fetchMessages = (roomId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/messages`,
+    data: {room_id: roomId}
+  })
+}

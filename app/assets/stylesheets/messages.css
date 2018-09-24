@@ -1,4 +1,4 @@
-#avatar-img {
+.avatar-img {
     height: 45px;
     border-radius: 5px;
 }
@@ -80,7 +80,7 @@
     margin-left: 5px;
 }
 
-#message-list-item {
+.message-list-item {
     display: flex;
     padding: 10px;
     min-height: 45px;
@@ -101,8 +101,7 @@
     font-size: 15px;
     color: rgb(65, 128, 116);
 }
-
-#message-username {
+.message-username {
     font-family: 'Noto Sans', sans-serif; 
     font-weight: 600;
     font-size: 15px;
@@ -116,7 +115,7 @@
     color: #717274;
 }
 
-#message-body {
+.message-body {
     font-family: 'Noto Sans', sans-serif; 
     font-size: 15px;
 }
