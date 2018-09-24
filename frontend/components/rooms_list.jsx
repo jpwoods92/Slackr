@@ -9,7 +9,6 @@ class RoomsList extends React.Component {
       rooms: []
     }
     this.handleClick = this.handleClick.bind(this)
-    this.handleReceivedRoom = this.handleReceivedRoom.bind(this)
   }
 
   componentDidMount () {
@@ -17,14 +16,10 @@ class RoomsList extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!this.state.rooms.length) {
+    if (this.props.rooms.length !== nextProps.rooms.length) {
       this.setState({rooms: nextProps.rooms})
+      this.props.fetchRoom(parseInt(nextProps.history.location.pathname.split('/').pop()))
     }
-  }
-
-  handleReceivedRoom (response) {
-    const {room} = response
-    this.setState({rooms: [...this.state.rooms, room]})
   }
 
   handleClick (id) {
@@ -32,21 +27,19 @@ class RoomsList extends React.Component {
   }
 
   render () {
-    debugger
     if (!this.props.rooms.length) return <p>loading</p>
-    let rooms = this.props.rooms
+    let rooms = this.props.rooms.slice()
+    const sortedRooms = rooms.sort(
+      (a, b) => new Date(a.created_at) - new Date(b.created_at)
+    )
     return (
       <div className='rooms'>
-        <ActionCable
-          channel={{ channel: 'RoomsChannel' }}
-          onReceived={this.handleReceivedRoom}
-        />
         <div className='list-header'>
           <h2 id='channels'>Channels</h2>
           <button className='room-form-button' onClick={() => this.props.openModal('newRoom')}><img src={window.addChannel} alt="add-channel-icon"/></button>
         </div>
         <ul className='roomsList'>
-          {rooms.map(room =>
+          {sortedRooms.map(room =>
             <RoomListItem
               key={room.id}
               room={room}

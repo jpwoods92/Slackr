@@ -36,7 +36,6 @@ class MessagesArea extends React.Component {
   }
 
   handleReceivedMessage (response) {
-    debugger
     const message = response
     // this.props.receiveMessage(message)
     this.setState({messages: [...this.state.messages, message]})
@@ -50,7 +49,6 @@ class MessagesArea extends React.Component {
       //   (a, b) => new Date(a.created_at) - new Date(b.created_at)
       // )
       return messages.map(message => {
-        debugger
         if (!this.props.users[message.user_id]) return null
         let messageUsername = this.props.users[message.user_id].username
         return <li className='message-list-item' key={message.id}>

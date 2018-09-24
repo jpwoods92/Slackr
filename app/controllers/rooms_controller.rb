@@ -13,11 +13,7 @@ class RoomsController < ApplicationController
     room = Room.new(room_params)
     room.owner_id = current_user.id
     if room.save
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        RoomSerializer.new(room)
-      ).serializable_hash
-      ActionCable.server.broadcast 'rooms_channel', serialized_data
-      head :ok
+      render json: room      
     end
   end
 
