@@ -1,4 +1,3 @@
-# README
-*** Welcome to Slackr!
+# Welcome to Slackr
 
 A live chat clone of the popular app Slack.
