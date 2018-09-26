@@ -8,7 +8,9 @@ class NewRoomForm extends React.Component {
     super(props)
     this.state = {
       title: '',
-      is_private: false
+      is_private: false,
+      no_text: false,
+      empty: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -16,7 +18,11 @@ class NewRoomForm extends React.Component {
   }
 
   handleChange (e) {
-    this.setState({ title: e.target.value.replace(/#/g, '') })
+    if (!e.target.value.match(/[a-zA-Z]/g)) {
+      this.setState({ no_text: true, title: e.target.value.replace(/#/g, '') })
+    } else {
+      this.setState({ empty: false, no_text: false, title: e.target.value.replace(/#/g, '') })
+    }
   };
 
   handleSubmit (e) {
@@ -31,6 +37,16 @@ class NewRoomForm extends React.Component {
   }
 
   render () {
+    let error, button
+    if (this.state.no_text === true) {
+      error = <p id='error-text'>please input more than just symbols/spaces</p>
+      button = <button disabled className='modal-button-disabled' >Create Channel</button>
+    } else {
+      button = <button className='modal-button' >Create Channel</button>
+    }
+    if (this.state.empty) {
+      button = <button disabled className='modal-button-disabled'>Create Channel</button>
+    }
     return (
       <div className="newroom-form-div">
         <h1 className='newroom-title'>Create a channel</h1>
@@ -44,6 +60,7 @@ class NewRoomForm extends React.Component {
             <div className='text-label' >Anyone in your workspace can view and join this channel.</div>
           </div>
           <span id='title-label'>Name</span>
+          {error}
           <input
             id='newroom-input'
             type="text"
@@ -53,8 +70,8 @@ class NewRoomForm extends React.Component {
           />
           <span id='input-subtext'>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</span>
           <div className='button-container'>
-            <button className='cancel-button' onClick={closeModal}>Cancel</button>
-            <button className='modal-button' onSubmit={this.handleSubmit}>Create Channel</button>
+            <button className='cancel-button' onClick={(e) => { e.preventDefault(); this.props.closeModal() }}>Cancel</button>
+            {button}
           </div>
         </form>
       </div>

@@ -80,6 +80,16 @@
   margin-left: 15px;
 }
 
+#error-text {
+  font-family: 'Muli', sans-serif;
+  font-size: .8rem;
+  color: rgb(255, 0, 0);
+  display: block;
+  line-height: 1rem;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
 #title-label {
   font-family: 'Noto Sans', sans-serif;
   color: #2c2d30;
@@ -110,20 +120,33 @@
 #newroom-input:focus {
   border: .25px solid rgb(156, 156, 156);
 }
+.modal-button-disabled {
+  font-family: 'Muli', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  background-color: #808080;
+  color: #FFFFFF;
+  padding: 0px 20px 0px 20px;
+  border-radius: 4px;
+  transition: background-color .15s,color .15s ease-in-out;
+  border: none;
+  outline: none;
+}
 
 .modal-button {
   font-family: 'Muli', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    text-decoration: none;
-    background-color: #008952;
-    color: #FFFFFF;
-    padding: 0px 20px 0px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color .15s,color .15s ease-in-out;
-    border: none;
-    outline: none;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  background-color: #008952;
+  color: #FFFFFF;
+  padding: 0px 20px 0px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color .15s,color .15s ease-in-out;
+  border: none;
+  outline: none;
 }
 
 .cancel-button {

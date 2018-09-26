@@ -6,7 +6,7 @@ class RoomsList extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      rooms: []
+      rooms: this.props.rooms
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -27,11 +27,12 @@ class RoomsList extends React.Component {
   }
 
   render () {
-    if (!this.props.rooms.length) return <p>loading</p>
+    if (!this.props.rooms.length) return null
     let rooms = this.props.rooms.slice()
     const sortedRooms = rooms.sort(
       (a, b) => new Date(a.created_at) - new Date(b.created_at)
     )
+
     return (
       <div className='rooms'>
         <div className='list-header'>

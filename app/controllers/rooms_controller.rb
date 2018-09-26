@@ -13,8 +13,8 @@ class RoomsController < ApplicationController
     room = Room.new(room_params)
     room.owner_id = current_user.id
     if room.save
-      render json: room      
-    end
+      render json: room
+    end 
   end
 
   def show

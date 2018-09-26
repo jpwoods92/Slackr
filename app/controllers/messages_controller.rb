@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.new(message_params)
     room = Room.find(message_params[:room_id])
+    @message.save
   end
 
 
