@@ -38,7 +38,7 @@ class NewRoomForm extends React.Component {
 
   render () {
     let error, button
-    if (this.state.no_text === true) {
+    if (this.state.no_text) {
       error = <p id='error-text'>please input more than just symbols/spaces</p>
       button = <button disabled className='modal-button-disabled' >Create Channel</button>
     } else {
