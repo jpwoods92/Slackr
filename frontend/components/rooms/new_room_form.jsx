@@ -9,8 +9,9 @@ class NewRoomForm extends React.Component {
     this.state = {
       title: '',
       is_private: false,
-      no_text: false,
-      empty: true
+      falseText: false,
+      empty: true,
+      justOpened: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -18,10 +19,12 @@ class NewRoomForm extends React.Component {
   }
 
   handleChange (e) {
-    if (!e.target.value.match(/[a-zA-Z]/g)) {
-      this.setState({ no_text: true, title: e.target.value.replace(/#/g, '') })
+    if (e.target.value === '' && !this.state.justOpened) {
+      this.setState({ justOpened: false, empty: true, falseText: false, title: e.target.value.replace(/#/g, '') })
+    } else if (!e.target.value.match(/[a-zA-Z0-9]/g)) {
+      this.setState({ justOpened: false, empty: false, falseText: true, title: e.target.value.replace(/#/g, '') })
     } else {
-      this.setState({ empty: false, no_text: false, title: e.target.value.replace(/#/g, '') })
+      this.setState({ justOpened: false, empty: false, falseText: false, title: e.target.value.replace(/#/g, '') })
     }
   };
 
@@ -38,14 +41,14 @@ class NewRoomForm extends React.Component {
 
   render () {
     let error, button
-    if (this.state.no_text) {
+    if (this.state.falseText && !this.state.empty) {
       error = <p id='error-text'>please input more than just symbols/spaces</p>
+      button = <button disabled className='modal-button-disabled' >Create Channel</button>
+    } else if (!this.state.falseText && this.state.empty && !this.state.justOpened) {
+      error = <p id='error-text'>don't forget your title!</p>
       button = <button disabled className='modal-button-disabled' >Create Channel</button>
     } else {
       button = <button className='modal-button' >Create Channel</button>
-    }
-    if (this.state.empty) {
-      button = <button disabled className='modal-button-disabled'>Create Channel</button>
     }
     return (
       <div className="newroom-form-div">
