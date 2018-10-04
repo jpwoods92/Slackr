@@ -1,4 +1,5 @@
 import React from 'react'
+import { ActionCable } from 'react-actioncable-provider'
 import RoomListItem from './rooms_list_item'
 
 class RoomsList extends React.Component {

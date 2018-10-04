@@ -9,6 +9,11 @@ const receiveAllMessages = (messages) => {
   }
 }
 
+export const createMessage = (message) => dispatch => {
+  return (
+    MessageAPIUtil.createMessage(message))
+}
+
 export const fetchMessages = (roomId) => dispatch => {
   return MessageAPIUtil.fetchMessages(roomId).then(messages => dispatch(receiveAllMessages(messages)))
 }
