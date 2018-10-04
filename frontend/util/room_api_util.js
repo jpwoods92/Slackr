@@ -1,14 +1,14 @@
 export const fetchRooms = () => {
   return $.ajax({
     method: 'GET',
-    url: '/rooms'
+    url: 'api/rooms'
   })
 }
 
 export const createRoom = (room) => {
   return $.ajax({
     method: 'POST',
-    url: '/rooms',
+    url: 'api/rooms',
     data: {room}
   })
 }
@@ -16,6 +16,6 @@ export const createRoom = (room) => {
 export const fetchRoom = (id) => {
   return $.ajax({
     method: 'GET',
-    url: `/rooms/${id}`
+    url: `api/rooms/${id}`
   })
 }

@@ -10,6 +10,8 @@
 #
 
 class RoomMembership < ApplicationRecord
-    has_many :users, class_name: "User", foreign_key: "user_id"
-    has_many :rooms, class_name: "Room", foreign_key: "room_id"
+    validates :room_id, :user_id, presence: true
+
+    belongs_to :member, class_name: "User", foreign_key: "user_id"
+    belongs_to :room, class_name: "Room", foreign_key: "room_id"
 end

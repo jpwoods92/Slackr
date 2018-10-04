@@ -3,6 +3,7 @@ import MessagesArea from './messages_area'
 import { fetchMessages } from '../../actions/message_actions'
 import { withRouter } from 'react-router-dom'
 import { fetchRoom } from '../../actions/room_actions'
+import { fetchUsers } from '../../actions/user_actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -14,6 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchUsers: () => dispatch(fetchUsers()),
     fetchMessages: (roomId) => dispatch(fetchMessages(roomId)),
     fetchRoom: (id) => dispatch(fetchRoom(id))
   }

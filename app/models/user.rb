@@ -23,7 +23,7 @@ class User < ApplicationRecord
     after_initialize :ensure_session_token
 
     has_many :room_memberships, class_name: "RoomMembership", foreign_key: "user_id"
-    has_many :rooms, through: :room_memberships, source: :rooms
+    has_many :rooms, through: :room_memberships, source: :room
     
     attr_reader :password
 

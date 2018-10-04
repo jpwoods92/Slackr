@@ -33,10 +33,10 @@ const receiveErrors = errors => {
   }
 }
 
-export const fetchRooms = () => dispatch => (
-  RoomAPIUtil.fetchRooms().then(rooms => dispatch(receiveAllRooms(rooms)),
+export const fetchRooms = () => dispatch => {
+  return RoomAPIUtil.fetchRooms().then(rooms => dispatch(receiveAllRooms(rooms)),
     errors => dispatch(receiveErrors(errors.responseJSON)))
-)
+}
 
 export const fetchRoom = (id) => dispatch => {
   return RoomAPIUtil.fetchRoom(id).then((room) => {

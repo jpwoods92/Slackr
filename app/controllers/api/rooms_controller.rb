@@ -1,11 +1,10 @@
-class RoomsController < ApplicationController
+class  Api::RoomsController < ApplicationController
 
   def new
   end
 
   def index
       @rooms = Room.all
-      @rooms = @rooms.select { |room| room.is_private == false || room.owner_id == current_user.id }
       render json: @rooms
   end
 
@@ -20,13 +19,13 @@ class RoomsController < ApplicationController
   def show
     room= Room.find(params[:id])
     serialized_data = ActiveModelSerializers::Adapter::Json.new(
-      RoomSerializer.new(room)
+      Api::RoomSerializer.new(room)
     ).serializable_hash
     render json: serialized_data[:room]
   end
 
   def room_params
-      params.require(:room).permit(:title, :is_private)
+    params.require(:room).permit(:title, :is_private)
   end
   
 end

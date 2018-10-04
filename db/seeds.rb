@@ -13,15 +13,25 @@ Room.destroy_all
 
 DemoUser = User.create(username: 'Guest', email: 'GuestEmail@guestemail.com', password: 'guestpassword')
 
-5.times do
-    User.create(username: Faker::HarryPotter.character, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
-end
 
 GeneralChannel = Room.create(id: 1, title: 'general', owner_id: User.first.id, is_private: false)
 WorkChannel = Room.create(title: 'marketing', owner_id:  User.first.id, is_private: false)
 HumorChannel = Room.create(title: 'watercooler', owner_id:  User.first.id, is_private: true)
 DesignChannel = Room.create(title: 'graphicdesign', owner_id:  User.first.id, is_private: false)
 SalesChannel = Room.create(title: 'sales', owner_id:  User.first.id, is_private: false)
+
+GeneralMembership = RoomMembership.create(user_id: User.first.id, room_id: GeneralChannel.id)
+HumorMembership = RoomMembership.create(user_id: User.first.id, room_id: HumorChannel.id)
+DesignMembership = RoomMembership.create(user_id: User.first.id, room_id: DesignChannel.id)
+SalesMembership = RoomMembership.create(user_id: User.first.id, room_id: SalesChannel.id)
+
+5.times do
+    faker_user = User.create(username: Faker::HarryPotter.character, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
+    RoomMembership.create(user_id: faker_user.id, room_id: GeneralChannel.id)
+    RoomMembership.create(user_id: faker_user.id, room_id: WorkChannel.id)
+    RoomMembership.create(user_id: faker_user.id, room_id: DesignChannel.id)
+    RoomMembership.create(user_id: faker_user.id, room_id: SalesChannel.id)
+end
 
 20.times do
     Message.create(user_id: User.first.id, 
