@@ -39,13 +39,24 @@ class NewRoomForm extends React.Component {
     this.setState({is_private: !this.state.is_private})
   }
 
+  handleKey (e) {
+    if (e.keyCode === 13) {
+      e.preventDefault()
+      e.stopPropagation()
+      this.handleSubmit(e)
+    }
+  }
+
   render () {
+    debugger
     let error, button
     if (this.state.falseText && !this.state.empty) {
       error = <p id='error-text'>please input more than just symbols/spaces</p>
       button = <button disabled className='modal-button-disabled' >Create Channel</button>
     } else if (!this.state.falseText && this.state.empty && !this.state.justOpened) {
       error = <p id='error-text'>don't forget your title!</p>
+      button = <button disabled className='modal-button-disabled' >Create Channel</button>
+    } else if (this.state.justOpened) {
       button = <button disabled className='modal-button-disabled' >Create Channel</button>
     } else {
       button = <button className='modal-button' >Create Channel</button>
@@ -54,7 +65,7 @@ class NewRoomForm extends React.Component {
       <div className="newroom-form-div">
         <h1 className='newroom-title'>Create a channel</h1>
         <p className='newroom-body'>Channels are where your members communicate. They’re best when organized around a topic — #leads, for example.</p>
-        <form className='newroom-form' onSubmit={this.handleSubmit}>
+        <form className='newroom-form' onKeyDown={(e) => this.handleKey(e)} onSubmit={this.handleSubmit}>
           <div className='switch-text-container' onClick={this.handleClick}>
             <div className='switch'>
               <input type="checkbox" readOnly checked={this.state.is_private}/>
@@ -65,11 +76,12 @@ class NewRoomForm extends React.Component {
           <span id='title-label'>Name</span>
           {error}
           <input
+            maxLength= '22'
             id='newroom-input'
             type="text"
             autoComplete = 'off'
             value={this.state.title}
-            onChange={this.handleChange}
+            onChange={(e) => this.handleChange(e)}
             placeholder='# e.g. leads'
           />
           <span id='input-subtext'>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</span>
