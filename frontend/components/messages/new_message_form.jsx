@@ -51,7 +51,7 @@ class NewMessageForm extends React.Component {
             autoComplete="off"
             type="text"
             value={this.state.body}
-            placeholder={`Message #${this.props.room.title}`}
+            data-text={`Message #${this.props.room.title}`}
             onKeyDown={(e) => this.handleChange(e)}
             className='message-input'
           />
