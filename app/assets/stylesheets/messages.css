@@ -112,7 +112,8 @@
 }
 
 [contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-text)
+    content:attr(data-text);
+    color: #717274;
 }
 
 .timestamp {
