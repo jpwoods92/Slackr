@@ -20,11 +20,11 @@ class NewRoomForm extends React.Component {
 
   handleChange (e) {
     if (e.target.value === '' && !this.state.justOpened) {
-      this.setState({ justOpened: false, empty: true, falseText: false, title: e.target.value.replace(/#|./g, '') })
+      this.setState({ justOpened: false, empty: true, falseText: false, title: e.target.value.replace(/[#.]/g, '') })
     } else if (!e.target.value.match(/[a-zA-Z0-9]/g)) {
-      this.setState({ justOpened: false, empty: false, falseText: true, title: e.target.value.replace(/#|./g, '') })
+      this.setState({ justOpened: false, empty: false, falseText: true, title: e.target.value.replace(/[#.]/g, '') })
     } else {
-      this.setState({ justOpened: false, empty: false, falseText: false, title: e.target.value.replace(/#|./g, '') })
+      this.setState({ justOpened: false, empty: false, falseText: false, title: e.target.value.replace(/[#.]/g, '') })
     }
   };
 
