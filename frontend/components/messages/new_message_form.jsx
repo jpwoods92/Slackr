@@ -33,6 +33,7 @@ class NewMessageForm extends React.Component {
             channel={{ channel: 'RoomsChannel', room: this.props.roomId }}
           />
           <input
+            autocomplete="off"
             type="text"
             value={this.state.body}
             placeholder={`Message #${this.props.room.title}`}
