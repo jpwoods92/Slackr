@@ -67,6 +67,7 @@ class NewRoomForm extends React.Component {
           <input
             id='newroom-input'
             type="text"
+            autoComplete = 'off'
             value={this.state.title}
             onChange={this.handleChange}
             placeholder='# e.g. leads'

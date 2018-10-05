@@ -58,6 +58,9 @@
     margin-right: 5px;
     opacity: 0.75;
 }
+.message-input::-webkit-scrollbar { 
+    display: none; 
+}
 
 .message-input {
     padding: 12px;
@@ -66,6 +69,8 @@
     width: 90%;
     outline: none;
     line-height: 1.2em;
+    overflow-y: scroll;
+    max-height: 300px;
     font-family: 'Noto Sans', sans-serif;
 }
 
@@ -119,7 +124,8 @@
     margin-top: 10px;
     font-family: 'Noto Sans', sans-serif; 
     font-size: 15px;
-    overflow-wrap: break-word;
+    word-break: break-word;
+    padding-right: 45px;
 }
 
 .username-timestamps-container {

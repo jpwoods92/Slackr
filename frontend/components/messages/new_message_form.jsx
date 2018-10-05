@@ -12,14 +12,20 @@ class NewMessageForm extends React.Component {
   }
 
   handleChange (e) {
-    this.setState({ body: e.target.value })
+    this.setState({ body: e.target.innerText })
+    if (e.keyCode === 13) {
+      e.preventDefault()
+      e.stopPropagation()
+      this.handleSubmit(e)
+    }
   }
 
   handleSubmit (e) {
     let roomId = this.props.roomId
     let user = this.props.user
     e.preventDefault()
-    this.refs.RoomsChannel.perform('speak', {body: this.state.body, room_id: roomId, user_id: user})
+    this.refs.RoomsChannel.perform('speak', {body: e.target.innerText, room_id: roomId, user_id: user})
+    e.target.innerText = ''
     this.setState({body: ''})
   }
 
@@ -33,21 +39,20 @@ class NewMessageForm extends React.Component {
             channel={{ channel: 'RoomsChannel', room: this.props.roomId }}
           />
           <div
-            data-gramm="false"
-            contenteditable="true"
+            contentEditable="true"
             role="textbox"
-            tabindex="1"
+            tabIndex="1"
             aria-multiline="true"
             aria-autocomplete="list"
             aria-expanded="false"
             aria-owns="chat_input_tab_ui"
-            spellcheck="true"
-            autocorrect="off"
-            autocomplete="off"
+            spellCheck="true"
+            autoCorrect="off"
+            autoComplete="off"
             type="text"
             value={this.state.body}
             placeholder={`Message #${this.props.room.title}`}
-            onChange={(e) => this.handleChange(e)}
+            onKeyDown={(e) => this.handleChange(e)}
             className='message-input'
           />
         </form>
