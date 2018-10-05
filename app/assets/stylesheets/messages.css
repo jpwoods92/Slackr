@@ -118,6 +118,7 @@
     margin-top: 10px;
     font-family: 'Noto Sans', sans-serif; 
     font-size: 15px;
+    overflow-wrap: break-word;
 }
 
 .username-timestamps-container {
