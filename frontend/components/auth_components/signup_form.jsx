@@ -58,13 +58,13 @@ export class SignupForm extends Component {
             <ul className='signup-form-list'>
               <li>
                 <label className='email-input'>Email
-                  <input id='email-input' type='text' placeholder='OliverBall@coolpeeps.com'
+                  <input id='email-input' type='text' placeholder='your-name@email.com'
                     value={this.state.email} onChange={this.update('email')} />
                 </label>
               </li>
               <li>
                 <label className='username-input'>Username
-                  <input type='text' id='username-input' placeholder='OliverBall'
+                  <input type='text' id='username-input' placeholder='your name'
                     value={this.state.username} onChange={this.update('username')}/>
                 </label>
               </li>
@@ -77,7 +77,7 @@ export class SignupForm extends Component {
               <li>
                 <label className='avatar-link-input'>Avatar Link
                   <input id='avatar-link-input' type='text'
-                    placeholder='https://oliverball.com/smiley+face'
+                    placeholder='https://google.com/images...'
                     value={this.state.avatarUrl} onChange={this.update('avatarUrl')}/>
                 </label>
               </li>

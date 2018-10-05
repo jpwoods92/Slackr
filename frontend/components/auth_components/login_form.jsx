@@ -64,7 +64,7 @@ export class LoginForm extends Component {
             <ul className='login-form-list'>
               <li>
                 <label className='email-input'>Email
-                  <input id='email-input' type='text' placeholder='OliverBall@coolpeeps.com'
+                  <input id='email-input' type='text' placeholder='your-name@coolpeeps.com'
                     value={this.state.email} onChange={this.update('email')} />
                 </label>
               </li>
