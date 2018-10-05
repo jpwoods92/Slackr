@@ -10,6 +10,9 @@ include Faker
 
 User.destroy_all
 Room.destroy_all
+Message.destroy_all
+RoomMembership.destroy_all
+
 
 DemoUser = User.create(username: 'Guest', email: 'GuestEmail@guestemail.com', password: 'guestpassword')
 
@@ -37,4 +40,9 @@ end
     Message.create(user_id: User.first.id, 
         body: Faker::HarryPotter.quote,
         room_id: Room.last.id)
-end
+    end
+    
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+ActiveRecord::Base.connection.reset_pk_sequence!('rooms')
+ActiveRecord::Base.connection.reset_pk_sequence!('messages')
+ActiveRecord::Base.connection.reset_pk_sequence!('room_memberships')

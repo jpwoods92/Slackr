@@ -32,13 +32,23 @@ class NewMessageForm extends React.Component {
             ref='RoomsChannel'
             channel={{ channel: 'RoomsChannel', room: this.props.roomId }}
           />
-          <input
+          <div
+            data-gramm="false"
+            contenteditable="true"
+            role="textbox"
+            tabindex="1"
+            aria-multiline="true"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-owns="chat_input_tab_ui"
+            spellcheck="true"
+            autocorrect="off"
             autocomplete="off"
             type="text"
             value={this.state.body}
             placeholder={`Message #${this.props.room.title}`}
             onChange={(e) => this.handleChange(e)}
-            id='message-input'
+            className='message-input'
           />
         </form>
       </div>

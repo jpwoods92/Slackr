@@ -59,12 +59,13 @@
     opacity: 0.75;
 }
 
-#message-input {
+.message-input {
     padding: 12px;
     border: 2px solid rgb(76, 150, 137);
     border-radius: 6px;
     width: 90%;
     outline: none;
+    line-height: 1.2em;
     font-family: 'Noto Sans', sans-serif;
 }
 
