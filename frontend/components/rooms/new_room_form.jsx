@@ -20,11 +20,11 @@ class NewRoomForm extends React.Component {
 
   handleChange (e) {
     if (e.target.value === '' && !this.state.justOpened) {
-      this.setState({ justOpened: false, empty: true, falseText: false, title: e.target.value.replace(/#/g, '') })
+      this.setState({ justOpened: false, empty: true, falseText: false, title: e.target.value.replace(/#|./g, '') })
     } else if (!e.target.value.match(/[a-zA-Z0-9]/g)) {
-      this.setState({ justOpened: false, empty: false, falseText: true, title: e.target.value.replace(/#/g, '') })
+      this.setState({ justOpened: false, empty: false, falseText: true, title: e.target.value.replace(/#|./g, '') })
     } else {
-      this.setState({ justOpened: false, empty: false, falseText: false, title: e.target.value.replace(/#/g, '') })
+      this.setState({ justOpened: false, empty: false, falseText: false, title: e.target.value.replace(/#|./g, '') })
     }
   };
 
@@ -40,7 +40,7 @@ class NewRoomForm extends React.Component {
   }
 
   handleKey (e) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.state.title !== '') {
       e.preventDefault()
       e.stopPropagation()
       this.handleSubmit(e)
@@ -48,7 +48,6 @@ class NewRoomForm extends React.Component {
   }
 
   render () {
-    debugger
     let error, button
     if (this.state.falseText && !this.state.empty) {
       error = <p id='error-text'>please input more than just symbols/spaces</p>
