@@ -111,6 +111,10 @@
     font-size: 15px;
 }
 
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
 .timestamp {
     margin-left: 8px;
     font-family: 'Noto Sans', sans-serif; 
