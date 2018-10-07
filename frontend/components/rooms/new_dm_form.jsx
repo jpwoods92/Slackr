@@ -14,8 +14,7 @@ class NewRoomForm extends React.Component {
       falseText: false,
       empty: true,
       justOpened: true,
-      selectedUsers: [],
-      selectedUserIds: []
+      selectedUsers: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -37,20 +36,16 @@ class NewRoomForm extends React.Component {
     e.preventDefault()
     if (!this.state.is_private) {
       this.props.createRoom(this.state)
+      this.props.closeModal()
       this.setState({title: ''})
     } else {
-      this.props.createRoom({title: this.state.title, is_private: this.state.is_private}).then(room => {
-        this.state.selectedUserIds.forEach((id) => this.props.createMembership(id, room.id))
-      })
+      let usernames = this.state.selectedUsers.join(', ')
+      this.props.createRoom({title: usernames, is_private: this.state.is_private})
     }
-    this.props.closeModal()
   }
 
-  handleUsernameClick (username, id) {
-    this.setState({
-      selectedUsers: [...this.state.selectedUsers, username],
-      selectedUserIds: [...this.state.selectedUserIds, id]
-    })
+  handleUsernameClick (username) {
+    this.setState({selectedUsers: [...this.state.selectedUsers, username]})
   }
 
   removeUsername (e) {

@@ -9,12 +9,12 @@ class  Api::RoomMembershipsController < ApplicationController
   end
 
   def destroy
-    membership = RoomMembership.find(params[:room_id])
+    membership = current_user.room_memberships.find_by(params[:room_id])
     membership.destroy
   end
 
-  def room_params
-      params.require(:room).permit(:user_id, :room_id)
+  def membership_params
+      params.require(:room_membership).permit(:user_id, :room_id)
   end
   
 end

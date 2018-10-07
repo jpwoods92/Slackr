@@ -5,6 +5,7 @@ class  Api::RoomsController < ApplicationController
 
   def index
       @rooms = Room.all
+      @rooms.select { |room| room.is_private == false || room.member_ids.include?(current_user.id)}
       render json: @rooms
   end
 
@@ -22,6 +23,11 @@ class  Api::RoomsController < ApplicationController
       Api::RoomSerializer.new(room)
     ).serializable_hash
     render json: serialized_data[:room]
+  end
+
+  def destroy
+    room = current_user.rooms.find(params[:id])
+    room.destroy
   end
 
   def room_params

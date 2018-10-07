@@ -24,6 +24,7 @@ DesignChannel = Room.create(title: 'graphicdesign', owner_id:  DemoUser.id, is_p
 SalesChannel = Room.create(title: 'sales', owner_id:  DemoUser.id, is_private: false)
 
 GeneralMembership = RoomMembership.create(user_id: DemoUser.id, room_id: GeneralChannel.id)
+WorkMembership = RoomMembership.create(user_id: DemoUser.id, room_id: WorkChannel.id)
 HumorMembership = RoomMembership.create(user_id: DemoUser.id, room_id: HumorChannel.id)
 DesignMembership = RoomMembership.create(user_id: DemoUser.id, room_id: DesignChannel.id)
 SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChannel.id)

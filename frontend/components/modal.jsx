@@ -1,6 +1,7 @@
 import React from 'react'
 import { closeModal } from '../actions/modal_actions'
 import { connect } from 'react-redux'
+import NewDMForm from './rooms/new_dm_form'
 import NewRoomForm from './rooms/new_room_form'
 
 function Modal ({modal, closeModal}) {
@@ -11,6 +12,9 @@ function Modal ({modal, closeModal}) {
   switch (modal) {
     case 'newRoom':
       component = <NewRoomForm />
+      break
+    case 'newDMForm':
+      component = <NewDMForm />
       break
     default:
       return null

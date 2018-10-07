@@ -80,7 +80,7 @@
   margin-left: 15px;
 }
 
-#error-text {
+.error-text {
   font-family: 'Muli', sans-serif;
   font-size: .8rem;
   color: rgb(255, 0, 0);
@@ -90,14 +90,14 @@
   margin-bottom: 10px;
 }
 
-#title-label {
+.title-label {
   font-family: 'Noto Sans', sans-serif;
   color: #2c2d30;
   font-weight: 600;
   margin-top: 25px;
 }
 
-#newroom-input {
+.newroom-input {
   border: 1px solid #929292;
   margin-top: 8px;
   border-radius: 3px;
@@ -107,7 +107,7 @@
   font-family: 'Muli', sans-serif;
 }
 
-#input-subtext {
+.input-subtext {
   font-family: 'Muli', sans-serif;
   font-size: .8rem;
   color: #717274;
@@ -117,7 +117,7 @@
   margin-bottom: 10px;
 }
 
-#newroom-input:focus {
+.newroom-input:focus {
   border: .25px solid rgb(156, 156, 156);
 }
 .modal-button-disabled {

@@ -65,7 +65,7 @@
   opacity: 0.54;
   border: none;
   cursor: pointer;
-  margin-left: 100px;
+  margin-left: 5px;
   filter: invert(100%);
   transition: opacity .1s ease-out;
   -webkit-font-smoothing: antialiased;
@@ -133,7 +133,8 @@
 }
 
 
-#channels {
+.channels {
+  display: inline-block;
   color: rgb(202, 196, 201);
   font-family: 'Noto Sans', sans-serif;
   font-style: normal;
