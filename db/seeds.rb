@@ -40,7 +40,7 @@ end
 20.times do
     Message.create(user_id: User.first.id, 
         body: Faker::HarryPotter.quote,
-        room_id: Room.last.id)
+        room_id: GeneralChannel.id)
     end
     
 ActiveRecord::Base.connection.reset_pk_sequence!('users')

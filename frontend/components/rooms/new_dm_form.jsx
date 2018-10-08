@@ -36,22 +36,36 @@ class NewRoomForm extends React.Component {
     e.preventDefault()
     if (!this.state.is_private) {
       this.props.createRoom(this.state)
-      this.props.closeModal()
       this.setState({title: ''})
     } else {
-      let usernames = this.state.selectedUsers.join(', ')
-      this.props.createRoom({title: usernames, is_private: this.state.is_private})
+      let usernames = this.state.selectedUsers.map(user => user.username)
+      let userIds = Object.keys(this.state.selectedUsers)
+      this.props.createRoom({title: this.state.title, is_private: this.state.is_private}).then(() => {
+        this.props.createMembership(userIds)
+        this.setState({
+          title: '',
+          selectedUsers: []
+        })
+      })
     }
+    this.props.closeModal()
   }
 
-  handleUsernameClick (username) {
-    this.setState({selectedUsers: [...this.state.selectedUsers, username]})
+  handleUsernameClick (username, id) {
+    this.setState({
+      selectedUsers: [...this.state.selectedUsers, {id: username}]
+    })
   }
 
-  removeUsername (e) {
+  removeUser (e) {
     let usernames = this.state.selectedUsers.slice()
+    let userIds = this.state.userIds.slice()
     usernames = usernames.filter((name) => name !== e.target.innerText)
-    this.setState({selectedUsers: usernames})
+    userIds = userIds.filter((id) => id !== e.target)
+    this.setState({
+      selectedUsers: usernames,
+      selectedUserIds: userIds
+    })
   }
 
   handleClick () {
@@ -108,7 +122,7 @@ class NewRoomForm extends React.Component {
             handleUsernameClick={this.handleUsernameClick}/> : null}
           {this.state.selectedUsers.length
             ? <ul>{this.state.selectedUsers.map((username, idx) =>
-              <li onClick={(e) => this.removeUsername(e)} key={idx}>{username}</li>)}</ul> : null}
+              <li onClick={(e) => this.removeUser(e)} key={idx}>{username}</li>)}</ul> : null}
           <div className='button-container'>
             <button className='cancel-button'
               onClick={(e) => { e.preventDefault(); this.props.closeModal() }}>Cancel</button>

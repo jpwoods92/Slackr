@@ -4,8 +4,8 @@ class  Api::RoomMembershipsController < ApplicationController
   end
 
   def create
-    membership = RoomMembership.new(membership_params)
-    membership.save
+      membership = Room.last.room_memberships.new(membership_params)
+      membership.save
   end
 
   def destroy
@@ -14,7 +14,7 @@ class  Api::RoomMembershipsController < ApplicationController
   end
 
   def membership_params
-      params.require(:room_membership).permit(:user_id, :room_id)
+      params.require(:room_membership).permit(:user_id)
   end
   
 end

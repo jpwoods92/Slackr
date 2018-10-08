@@ -64,7 +64,7 @@ export class LoginForm extends Component {
             <ul className='login-form-list'>
               <li>
                 <label className='email-input'>Email
-                  <input id='email-input' type='text' placeholder='your-name@coolpeeps.com'
+                  <input id='email-input' type='text' placeholder='your-name@email.com'
                     value={this.state.email} onChange={this.update('email')} />
                 </label>
               </li>
@@ -75,7 +75,7 @@ export class LoginForm extends Component {
                 </label>
               </li>
               <li id='login-li'>
-                <input id='submit-input' type='Submit' value={this.props.formType}/>
+                <button id='submit-input' type='Submit'>Login</button>
               </li>
               <p id='or-text-login'>or</p>
               <li id='login-li'>

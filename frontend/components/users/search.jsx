@@ -6,21 +6,20 @@ class UsersSearch extends Component {
     super(props)
     this.state = {
       users: [],
-      input: '',
-      userIds: []
+      input: ''
     }
   }
 
   componentDidUpdate (prevProps) {
     if (this.props.selectedUsers.length !== prevProps.selectedUsers.length) {
-      this.setState({users: [], input: ''})
+      this.setState({users: []})
     }
   }
 
   handleChange (e) {
     let users = this.props.users.filter(user =>
       user.username.toLowerCase().includes(e.target.value.toLowerCase()))
-    users = users.filter(user => !this.props.selectedUsers.includes(user.username))
+    users = users.filter(user => !this.props.selectedUsers.map(user => user.username).includes(user.username))
     if (users.length) {
       this.setState({users: users, input: e.target.value})
     } else {

@@ -1,5 +1,5 @@
 class Api::RoomSerializer < ActiveModel::Serializer
-  attributes :id, :title, :owner_id, :message_ids, :member_ids, :is_dm
+  attributes :id, :title, :owner_id, :message_ids, :member_ids, :is_dm, :is_private
   
   def message_ids
     object.messages.ids

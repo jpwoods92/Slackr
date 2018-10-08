@@ -2,7 +2,7 @@ import React from 'react'
 import { closeModal } from '../actions/modal_actions'
 import { connect } from 'react-redux'
 import NewDMForm from './rooms/new_dm_form'
-import NewRoomForm from './rooms/new_room_form'
+import NewRoomForm from './rooms/new_room_form_container'
 
 function Modal ({modal, closeModal}) {
   if (!modal) {

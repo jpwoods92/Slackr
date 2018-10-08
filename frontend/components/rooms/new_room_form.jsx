@@ -1,11 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { createRoom } from '../../actions/room_actions'
-import { createMembership } from '../../actions/room_mebership_actions'
-import { closeModal } from '../../actions/modal_actions'
 import UserSearch from '../users/search'
 
-class NewRoomForm extends React.Component {
+export default class NewRoomForm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -14,8 +10,7 @@ class NewRoomForm extends React.Component {
       falseText: false,
       empty: true,
       justOpened: true,
-      selectedUsers: [],
-      selectedUserIds: []
+      selectedUsers: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -39,8 +34,14 @@ class NewRoomForm extends React.Component {
       this.props.createRoom(this.state)
       this.setState({title: ''})
     } else {
-      this.props.createRoom({title: this.state.title, is_private: this.state.is_private}).then(room => {
-        this.state.selectedUserIds.forEach((id) => this.props.createMembership(id, room.id))
+      let userIds = this.state.selectedUsers.map(user => user.id)
+      userIds = [...userIds, this.props.currentUserId]
+      this.props.createRoom({title: this.state.title, is_private: this.state.is_private}).then(() => {
+        return this.props.createMembership(userIds)
+      })
+      this.setState({
+        title: '',
+        selectedUsers: []
       })
     }
     this.props.closeModal()
@@ -48,15 +49,16 @@ class NewRoomForm extends React.Component {
 
   handleUsernameClick (username, id) {
     this.setState({
-      selectedUsers: [...this.state.selectedUsers, username],
-      selectedUserIds: [...this.state.selectedUserIds, id]
+      selectedUsers: [...this.state.selectedUsers, {id: id, username: username}]
     })
   }
 
-  removeUsername (e) {
-    let usernames = this.state.selectedUsers.slice()
-    usernames = usernames.filter((name) => name !== e.target.innerText)
-    this.setState({selectedUsers: usernames})
+  removeUser (e) {
+    let users = this.state.selectedUsers.slice()
+    users = users.filter((user) => user.username !== e.target.innerText)
+    this.setState({
+      selectedUsers: users
+    })
   }
 
   handleClick () {
@@ -112,8 +114,8 @@ class NewRoomForm extends React.Component {
             selectedUsers={this.state.selectedUsers}
             handleUsernameClick={this.handleUsernameClick}/> : null}
           {this.state.selectedUsers.length
-            ? <ul>{this.state.selectedUsers.map((username, idx) =>
-              <li onClick={(e) => this.removeUsername(e)} key={idx}>{username}</li>)}</ul> : null}
+            ? <ul>{this.state.selectedUsers.map((user, idx) =>
+              <li onClick={(e) => this.removeUser(e)} key={idx}>{user.username}</li>)}</ul> : null}
           <div className='button-container'>
             <button className='cancel-button'
               onClick={(e) => { e.preventDefault(); this.props.closeModal() }}>Cancel</button>
@@ -124,11 +126,3 @@ class NewRoomForm extends React.Component {
     )
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  createRoom: (room) => dispatch(createRoom(room)),
-  createMembership: (userId, roomId) => dispatch(createMembership(userId, roomId)),
-  closeModal: () => dispatch(closeModal())
-})
-
-export default connect(null, mapDispatchToProps)(NewRoomForm)

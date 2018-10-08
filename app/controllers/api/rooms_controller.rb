@@ -5,7 +5,7 @@ class  Api::RoomsController < ApplicationController
 
   def index
       @rooms = Room.all
-      @rooms.select { |room| room.is_private == false || room.member_ids.include?(current_user.id)}
+      @rooms = @rooms.select { |room| room.is_private == false || room.member_ids.include?(current_user.id)}
       render json: @rooms
   end
 
@@ -31,7 +31,7 @@ class  Api::RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:title, :is_private)
+    params.require(:room).permit(:title, :is_private, :is_dm)
   end
   
 end

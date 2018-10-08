@@ -11,7 +11,6 @@ const mapStateToProps = (state) => {
     room: state.ui.room
   }
 }
-
 const mapDispatchToProps = dispatch => ({
   fetchRooms: () => dispatch(fetchRooms()),
   fetchRoom: (id) => dispatch(fetchRoom(id)),

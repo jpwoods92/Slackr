@@ -82,7 +82,7 @@ export class SignupForm extends Component {
                 </label>
               </li>
               <li id= 'submit-li'>
-                <input id='submit-input' type='Submit' value={this.props.formType}/>
+                <button id='submit-input' type='Submit'>Sign Up</button>
               </li>
               <li id='transfer-to-login'>
                 <p id='or-text'>or</p>

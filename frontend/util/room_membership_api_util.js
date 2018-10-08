@@ -1,8 +1,9 @@
-export const createMembership = (userId, roomId) => {
+export const createMembership = (userId) => {
+  debugger
   return $.ajax({
     method: 'POST',
     url: `api/room_memberships`,
-    data: {user_id: userId, room_id: roomId}
+    data: {room_membership: {user_id: userId}}
   })
 }
 
