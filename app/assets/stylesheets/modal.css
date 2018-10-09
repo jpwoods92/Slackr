@@ -264,3 +264,10 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+  /* DM CSS */
+
+  .button-search-container {
+    display: flex;
+    justify-content: space-between;
+  }

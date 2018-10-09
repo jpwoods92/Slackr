@@ -39,6 +39,7 @@ class MessagesArea extends React.Component {
     } else if (this.props.room.member_ids) {
       if (this.props.room.member_ids.length !== nextProps.room.member_ids.length) {
         this.props.fetchRoom(1).then(() => this.props.history.push('/channels/1'))
+        this.props.fetchMessages(1)
       }
     }
   }
