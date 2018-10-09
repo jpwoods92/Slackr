@@ -3,7 +3,7 @@ import { createRoom } from '../../actions/room_actions'
 import { createMembership } from '../../actions/room_mebership_actions'
 import { closeModal } from '../../actions/modal_actions'
 import React from 'react'
-import UserSearch from '../users/search'
+import UserSearch from '../ui/search'
 
 class NewDMForm extends React.Component {
   constructor (props) {
@@ -66,6 +66,12 @@ class NewDMForm extends React.Component {
   }
 
   render () {
+    let button
+    if (this.state.selectedUsers.length < 1) {
+      button = <button disabled className='modal-button-disabled' >Go</button>
+    } else {
+      button = <button className='modal-button' >Go</button>
+    }
     return (
       <div className="newroom-form-div">
         <h1 className='newroom-title'>Direct Messages</h1>
@@ -74,7 +80,7 @@ class NewDMForm extends React.Component {
             {this.state.is_private ? <UserSearch
               selectedUsers={this.state.selectedUsers}
               handleUsernameClick={this.handleUsernameClick}/> : null}
-            <button className='modal-button' >Go</button>
+            {button}
           </div>
           {this.state.selectedUsers.length
             ? <ul>

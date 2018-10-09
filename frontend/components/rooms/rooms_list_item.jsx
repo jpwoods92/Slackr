@@ -1,9 +1,7 @@
-import { connect } from 'react-redux'
-import {deleteMembership} from '../../actions/room_mebership_actions'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React from 'react'
 
-const RoomsListItem = ({room, handleClick, currentRoom, deleteMembership}) => {
+export default ({room, handleClick, currentRoom, deleteMembership}) => {
   let classText
   if (room.id === currentRoom.id) {
     classText = 'room-list-link active'
@@ -24,9 +22,3 @@ const RoomsListItem = ({room, handleClick, currentRoom, deleteMembership}) => {
     return null
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  deleteMembership: (id) => dispatch(deleteMembership(id))
-})
-
-export default connect(null, mapDispatchToProps)(RoomsListItem)

@@ -24,8 +24,19 @@ class  Api::RoomsController < ApplicationController
     render json: serialized_data[:room]
   end
 
+  def update
+    room = Room.find(params[:id])
+    if room.update(room_params)
+      room.save
+      serialized_data = ActiveModelSerializers::Adapter::Json.new(
+        Api::RoomSerializer.new(room)
+      ).serializable_hash
+      render json: serialized_data[:room]
+    end
+  end
+
   def destroy
-    room = current_user.rooms.find(params[:id])
+    room = Room.find(params[:id])
     room.destroy
   end
 

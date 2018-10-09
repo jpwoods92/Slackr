@@ -1,6 +1,6 @@
 import React from 'react'
-import RoomListItem from './rooms_list_item'
-import DMListItem from './dm_list_item'
+import RoomListItem from './rooms_list_item_container'
+import DMListItem from './dm_list_item_container'
 class RoomsList extends React.Component {
   constructor (props) {
     super(props)

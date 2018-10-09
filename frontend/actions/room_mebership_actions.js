@@ -1,11 +1,11 @@
 import * as RoomMembershipApiUtil from '../util/room_membership_api_util'
 
-export const DEFAULT_ACTION = 'DEFAULT_ACTION'
+export const NO_ACTION = 'NO_ACTION'
 export const REMOVE_ROOM = 'REMOVE_ROOM'
 
-const receiveAddedUsers = () => {
+const noAction = () => {
   return {
-    type: DEFAULT_ACTION
+    type: NO_ACTION
   }
 }
 
@@ -18,7 +18,7 @@ const removeRoom = (id) => {
 
 export const createMembership = (payload) => dispatch => {
   return RoomMembershipApiUtil.createMembership(payload.userIds, payload.roomId).then(
-    () => dispatch(receiveAddedUsers())
+    () => dispatch(noAction())
   )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import UserSearch from '../users/search'
+import UserSearch from '../ui/search'
 
 export default class NewRoomForm extends React.Component {
   constructor (props) {
