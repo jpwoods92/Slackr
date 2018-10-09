@@ -9,6 +9,13 @@ const receiveAllMessages = (messages) => {
   }
 }
 
+export const receiveMessage = (message) => {
+  return {
+    type: RECEIVE_MESSAGE,
+    message
+  }
+}
+
 export const fetchMessages = (roomId) => dispatch => {
   return MessageAPIUtil.fetchMessages(roomId).then(messages => dispatch(receiveAllMessages(messages)))
 }

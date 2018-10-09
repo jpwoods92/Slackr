@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchRooms, fetchRoom } from '../../actions/room_actions'
+import { fetchRooms, fetchRoom, receiveRoom } from '../../actions/room_actions'
 import { fetchMessages } from '../../actions/message_actions'
 import RoomsList from './rooms_list'
 import { openModal } from '../../actions/modal_actions'
@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
   }
 }
 const mapDispatchToProps = dispatch => ({
+  receiveRoom: (room) => dispatch(receiveRoom(room)),
   fetchRooms: () => dispatch(fetchRooms()),
   fetchRoom: (id) => dispatch(fetchRoom(id)),
   fetchMessages: (roomId) => dispatch(fetchMessages(roomId)),

@@ -8,14 +8,6 @@ class  Api::RoomsController < ApplicationController
       @rooms = @rooms.select { |room| room.is_private == false || room.member_ids.include?(current_user.id)}
   end
 
-  def create
-    room = Room.new(room_params)
-    room.owner_id = current_user.id
-    if room.save
-      render json: room
-    end 
-  end
-
   def show
     room= Room.find(params[:id])
     serialized_data = ActiveModelSerializers::Adapter::Json.new(

@@ -44,9 +44,11 @@ class MessagesArea extends React.Component {
     }
   }
 
-  handleReceivedMessage () {
-    let roomId = parseInt(this.props.history.location.pathname.split('/').pop())
-    this.props.fetchMessages(roomId)
+  handleReceivedMessage (message) {
+    if (!message.username) {
+      return null
+    }
+    this.props.receiveMessage(message)
     this.myRef.current.scrollIntoView()
   }
 
@@ -63,7 +65,7 @@ class MessagesArea extends React.Component {
     })
     return (
       <div className="messagesArea">
-        <MessageNav users={this.props.users} room={this.props.room} />
+        <MessageNav room={this.props.room} />
         <div className='messages-container'>
           <ul className='message-list'>
             {messages}

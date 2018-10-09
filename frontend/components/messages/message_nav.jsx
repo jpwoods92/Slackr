@@ -1,13 +1,8 @@
 import React from 'react'
 
-export default function ({ room, users }) {
+export default function ({ room }) {
   if (room.is_private === undefined) return null
-  let members
-  if (room.is_private) {
-    members = room.member_ids
-  } else {
-    members = Object.values(users)
-  }
+  let members = room.member_ids
   return (
     <header className='message-nav'>
       <p id='header-title'>#{room.title}</p>

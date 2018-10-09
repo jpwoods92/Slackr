@@ -5,14 +5,6 @@ export const fetchRooms = () => {
   })
 }
 
-export const createRoom = (room) => {
-  return $.ajax({
-    method: 'POST',
-    url: 'api/rooms',
-    data: {room}
-  })
-}
-
 export const updateRoom = (room) => {
   return $.ajax({
     method: 'PATCH',

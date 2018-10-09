@@ -8,9 +8,10 @@ export default ({room, handleClick, currentRoom, deleteMembership}) => {
   } else {
     classText = 'room-list-link'
   }
+
   if (!room.is_dm) {
     let button
-    if (room.is_private) {
+    if (room.id !== 1) {
       button = <button className='room-list-button' onClick={(e) => { e.preventDefault(); deleteMembership(room.id) }}>X</button>
     }
     return (

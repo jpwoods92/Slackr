@@ -33,6 +33,7 @@ SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChan
     faker_user = User.create(username: Faker::HarryPotter.character, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
     RoomMembership.create(user_id: faker_user.id, room_id: GeneralChannel.id)
     RoomMembership.create(user_id: faker_user.id, room_id: WorkChannel.id)
+    RoomMembership.create(user_id: faker_user.id, room_id: HumorChannel.id)
     RoomMembership.create(user_id: faker_user.id, room_id: DesignChannel.id)
     RoomMembership.create(user_id: faker_user.id, room_id: SalesChannel.id)
 end

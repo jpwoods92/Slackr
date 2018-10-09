@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import { createMembership } from '../../actions/room_mebership_actions'
 import { closeModal } from '../../actions/modal_actions'
-import NewRoomForm from './new_room_form'
+import NewDMForm from './new_dm_form'
 
 const mapStateToProps = state => ({
-  currentUserId: state.session.currentUserId
+  currentUserId: state.session.currentUserId,
+  users: state.entities.users
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -12,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
   closeModal: () => dispatch(closeModal())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewRoomForm)
+export default connect(mapStateToProps, mapDispatchToProps)(NewDMForm)

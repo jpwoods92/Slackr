@@ -1,5 +1,6 @@
 import React from 'react'
 import UserSearch from '../ui/search'
+import { ActionCable } from 'react-actioncable-provider'
 
 export default class NewRoomForm extends React.Component {
   constructor (props) {
@@ -31,14 +32,20 @@ export default class NewRoomForm extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
     if (!this.state.is_private) {
-      this.props.createRoom(this.state)
+      this.refs.RoomsChannel.perform('speakRoom', {
+        title: this.state.title,
+        is_private: this.state.is_private,
+        owner_id: this.props.currentUserId
+      })
       this.setState({title: ''})
     } else {
       let userIds = this.state.selectedUsers.map(user => user.id)
       userIds = [...userIds, this.props.currentUserId]
-      this.props.createRoom({title: this.state.title, is_private: this.state.is_private}).then((data) => {
-        let roomId = data.room.id
-        return this.props.createMembership({userIds: userIds, roomId: roomId})
+      this.refs.RoomsChannel.perform('speakRoom', {
+        title: this.state.title,
+        is_private: this.state.is_private,
+        user_ids: userIds,
+        owner_id: this.props.currentUserId
       })
     }
     this.props.closeModal()
@@ -88,6 +95,10 @@ export default class NewRoomForm extends React.Component {
         <h1 className='newroom-title'>Create a channel</h1>
         <p className='newroom-body'>Channels are where your members communicate. They’re best when organized around a topic — #leads, for example.</p>
         <form className='newroom-form' onKeyDown={(e) => this.handleKey(e)} onSubmit={this.handleSubmit}>
+          <ActionCable
+            ref='RoomsChannel'
+            channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
+          />
           <div className='switch-text-container' onClick={this.handleClick}>
             <div className='switch'>
               <input type="checkbox" readOnly checked={this.state.is_private}/>

@@ -20,7 +20,7 @@ const receiveAllRooms = (rooms) => {
   }
 }
 
-const receiveRoom = (room) => {
+export const receiveRoom = (room) => {
   return {
     type: RECEIVE_ROOM,
     room
@@ -56,12 +56,6 @@ export const fetchRooms = () => dispatch => {
 export const fetchRoom = (id) => dispatch => {
   return RoomAPIUtil.fetchRoom(id).then((room) => {
     return dispatch(switchRoom(room))
-  })
-}
-
-export const createRoom = (room) => dispatch => {
-  return RoomAPIUtil.createRoom(room).then((room) => {
-    return dispatch(receiveRoom(room))
   })
 }
 

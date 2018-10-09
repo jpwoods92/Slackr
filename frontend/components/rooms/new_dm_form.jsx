@@ -1,11 +1,8 @@
-import { connect } from 'react-redux'
-import { createRoom } from '../../actions/room_actions'
-import { createMembership } from '../../actions/room_mebership_actions'
-import { closeModal } from '../../actions/modal_actions'
 import React from 'react'
 import UserSearch from '../ui/search'
+import { ActionCable } from 'react-actioncable-provider'
 
-class NewDMForm extends React.Component {
+export default class NewDMForm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -22,20 +19,18 @@ class NewDMForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    if (!this.state.is_private) {
-      this.props.createRoom(this.state)
-      this.setState({title: ''})
-    } else {
-      let userIds = this.state.selectedUsers.map(user => user.id)
-      userIds = [...userIds, this.props.currentUserId]
-      let currentUser = this.props.users[this.props.currentUserId]
-      let addCurrentUser = [...this.state.selectedUsers, currentUser]
-      let users = addCurrentUser.map((el) => el.username).join(', ')
-      this.props.createRoom({title: users, is_private: this.state.is_private, is_dm: true}).then((data) => {
-        let roomId = data.room.id
-        return this.props.createMembership({userIds: userIds, roomId: roomId})
-      })
-    }
+    let userIds = this.state.selectedUsers.map(user => user.id)
+    userIds = [...userIds, this.props.currentUserId]
+    let currentUser = this.props.users[this.props.currentUserId]
+    let addCurrentUser = [...this.state.selectedUsers, currentUser]
+    let users = addCurrentUser.map((el) => el.username).join(', ')
+    this.refs.RoomsChannel.perform('speakRoom', {
+      title: users,
+      is_private: this.state.is_private,
+      user_ids: userIds,
+      is_dm: true,
+      owner_id: this.props.currentUserId
+    })
     this.props.closeModal()
   }
 
@@ -76,6 +71,10 @@ class NewDMForm extends React.Component {
       <div className="newroom-form-div">
         <h1 className='newroom-title'>Direct Messages</h1>
         <form className='newroom-form' onKeyDown={(e) => this.handleKey(e)} onSubmit={this.handleSubmit}>
+          <ActionCable
+            ref='RoomsChannel'
+            channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
+          />
           <div className='button-search-container'>
             {this.state.is_private ? <UserSearch
               selectedUsers={this.state.selectedUsers}
@@ -94,16 +93,3 @@ class NewDMForm extends React.Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  currentUserId: state.session.currentUserId,
-  users: state.entities.users
-})
-
-const mapDispatchToProps = dispatch => ({
-  createRoom: (room) => dispatch(createRoom(room)),
-  createMembership: (userIds) => dispatch(createMembership(userIds)),
-  closeModal: () => dispatch(closeModal())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewDMForm)
