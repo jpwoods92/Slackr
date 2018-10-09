@@ -8,7 +8,7 @@ import { fetchUsers } from '../../actions/user_actions'
 const mapStateToProps = (state) => {
   return {
     room: state.ui.room,
-    messages: state.entities.messages,
+    messages: Object.values(state.entities.messages),
     users: state.entities.users
   }
 }

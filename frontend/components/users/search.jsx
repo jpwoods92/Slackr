@@ -12,7 +12,7 @@ class UsersSearch extends Component {
 
   componentDidUpdate (prevProps) {
     if (this.props.selectedUsers.length !== prevProps.selectedUsers.length) {
-      this.setState({users: []})
+      this.setState({users: [], input: ''})
     }
   }
 
@@ -23,14 +23,15 @@ class UsersSearch extends Component {
     if (users.length) {
       this.setState({users: users, input: e.target.value})
     } else {
-      this.setState({users: [], input: ''})
+      this.setState({users: []})
     }
   }
 
   render () {
+    let limitedList = this.state.users.slice(0, 5)
     let results =
     <ul>
-      {this.state.users.map((user) =>
+      {limitedList.map((user) =>
         <li
           onClick={e => this.props.handleUsernameClick(user.username, user.id)}
           key={user.id} >{user.username}
@@ -39,7 +40,8 @@ class UsersSearch extends Component {
     </ul>
     return (
       <div>
-        <input className='newroom-input'
+        <input
+          className='newroom-input'
           type="search"
           onChange={(e) => this.handleChange(e)}
           placeholder="search users..."/>

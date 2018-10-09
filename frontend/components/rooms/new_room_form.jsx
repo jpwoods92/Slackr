@@ -36,12 +36,9 @@ export default class NewRoomForm extends React.Component {
     } else {
       let userIds = this.state.selectedUsers.map(user => user.id)
       userIds = [...userIds, this.props.currentUserId]
-      this.props.createRoom({title: this.state.title, is_private: this.state.is_private}).then(() => {
-        return this.props.createMembership(userIds)
-      })
-      this.setState({
-        title: '',
-        selectedUsers: []
+      this.props.createRoom({title: this.state.title, is_private: this.state.is_private}).then((data) => {
+        let roomId = data.room.id
+        return this.props.createMembership({userIds: userIds, roomId: roomId})
       })
     }
     this.props.closeModal()
@@ -113,9 +110,7 @@ export default class NewRoomForm extends React.Component {
           {this.state.is_private ? <UserSearch
             selectedUsers={this.state.selectedUsers}
             handleUsernameClick={this.handleUsernameClick}/> : null}
-          {this.state.selectedUsers.length
-            ? <ul>{this.state.selectedUsers.map((user, idx) =>
-              <li onClick={(e) => this.removeUser(e)} key={idx}>{user.username}</li>)}</ul> : null}
+          {this.state.selectedUsers.length ? <ul>{this.state.selectedUsers.map((user, idx) => <li onClick={(e) => this.removeUser(e)} key={idx}>{user.username}</li>)}</ul> : null}
           <div className='button-container'>
             <button className='cancel-button'
               onClick={(e) => { e.preventDefault(); this.props.closeModal() }}>Cancel</button>

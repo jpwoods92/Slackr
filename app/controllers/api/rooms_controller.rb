@@ -6,7 +6,6 @@ class  Api::RoomsController < ApplicationController
   def index
       @rooms = Room.all
       @rooms = @rooms.select { |room| room.is_private == false || room.member_ids.include?(current_user.id)}
-      render json: @rooms
   end
 
   def create

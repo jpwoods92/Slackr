@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => {
   return {
-    rooms: state.entities.rooms,
+    rooms: Object.values(state.entities.rooms),
     room: state.ui.room
   }
 }

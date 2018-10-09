@@ -128,8 +128,28 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.room-list-item:hover {
+.room-list-item {
+  display: flex;
+  max-width: 220px;
+  overflow: hidden;
+}
+
+.room-list-item a:hover {
   background-color: rgb(76, 150, 137);
+}
+
+.room-list-button {
+  font-family: 'Noto Sans', sans-serif;
+  border: none;
+  background: transparent;
+  color: white;
+  opacity: .5;
+  cursor: pointer;
+  transition: opacity .1s ease-out;
+}
+
+.room-list-button:hover {
+  opacity: .9;
 }
 
 

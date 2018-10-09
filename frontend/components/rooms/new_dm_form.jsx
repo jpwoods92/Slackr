@@ -1,36 +1,24 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import { createRoom } from '../../actions/room_actions'
 import { createMembership } from '../../actions/room_mebership_actions'
 import { closeModal } from '../../actions/modal_actions'
+import React from 'react'
 import UserSearch from '../users/search'
 
-class NewRoomForm extends React.Component {
+class NewDMForm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      title: '',
-      is_private: false,
+      is_private: true,
       falseText: false,
       empty: true,
       justOpened: true,
       selectedUsers: []
     }
-    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleUsernameClick = this.handleUsernameClick.bind(this)
   }
-
-  handleChange (e) {
-    if (e.target.value === '' && !this.state.justOpened) {
-      this.setState({ justOpened: false, empty: true, falseText: false, title: e.target.value.replace(/[#.]/g, '') })
-    } else if (!e.target.value.match(/[a-zA-Z0-9]/g)) {
-      this.setState({ justOpened: false, empty: false, falseText: true, title: e.target.value.replace(/[#.]/g, '') })
-    } else {
-      this.setState({ justOpened: false, empty: false, falseText: false, title: e.target.value.replace(/[#.]/g, '') })
-    }
-  };
 
   handleSubmit (e) {
     e.preventDefault()
@@ -38,14 +26,15 @@ class NewRoomForm extends React.Component {
       this.props.createRoom(this.state)
       this.setState({title: ''})
     } else {
-      let usernames = this.state.selectedUsers.map(user => user.username)
-      let userIds = Object.keys(this.state.selectedUsers)
-      this.props.createRoom({title: this.state.title, is_private: this.state.is_private}).then(() => {
-        this.props.createMembership(userIds)
-        this.setState({
-          title: '',
-          selectedUsers: []
-        })
+      let userIds = this.state.selectedUsers.map(user => user.id)
+      userIds = [...userIds, this.props.currentUserId]
+      let currentUser = this.props.users[this.props.currentUserId]
+      debugger
+      let addCurrentUser = [...this.state.selectedUsers, currentUser]
+      let users = addCurrentUser.map((el) => el.username).join(', ')
+      this.props.createRoom({title: users, is_private: this.state.is_private, is_dm: true}).then((data) => {
+        let roomId = data.room.id
+        return this.props.createMembership({userIds: userIds, roomId: roomId})
       })
     }
     this.props.closeModal()
@@ -53,18 +42,15 @@ class NewRoomForm extends React.Component {
 
   handleUsernameClick (username, id) {
     this.setState({
-      selectedUsers: [...this.state.selectedUsers, {id: username}]
+      selectedUsers: [...this.state.selectedUsers, {id: id, username: username}]
     })
   }
 
   removeUser (e) {
-    let usernames = this.state.selectedUsers.slice()
-    let userIds = this.state.userIds.slice()
-    usernames = usernames.filter((name) => name !== e.target.innerText)
-    userIds = userIds.filter((id) => id !== e.target)
+    let users = this.state.selectedUsers.slice()
+    users = users.filter((user) => user.username !== e.target.innerText)
     this.setState({
-      selectedUsers: usernames,
-      selectedUserIds: userIds
+      selectedUsers: users
     })
   }
 
@@ -81,52 +67,18 @@ class NewRoomForm extends React.Component {
   }
 
   render () {
-    let error, button
-    if (this.state.falseText && !this.state.empty) {
-      error = <p className='error-text'>please input more than just symbols/spaces</p>
-      button = <button disabled className='modal-button-disabled' >Create Channel</button>
-    } else if (!this.state.falseText && this.state.empty && !this.state.justOpened) {
-      error = <p className='error-text'>don't forget your title!</p>
-      button = <button disabled className='modal-button-disabled' >Create Channel</button>
-    } else if (this.state.justOpened) {
-      button = <button disabled className='modal-button-disabled' >Create Channel</button>
-    } else {
-      button = <button className='modal-button' >Create Channel</button>
-    }
     return (
       <div className="newroom-form-div">
-        <h1 className='newroom-title'>Create a channel</h1>
-        <p className='newroom-body'>Channels are where your members communicate. They’re best when organized around a topic — #leads, for example.</p>
+        <h1 className='newroom-title'>Start a Direct Message</h1>
         <form className='newroom-form' onKeyDown={(e) => this.handleKey(e)} onSubmit={this.handleSubmit}>
-          <div className='switch-text-container' onClick={this.handleClick}>
-            <div className='switch'>
-              <input type="checkbox" readOnly checked={this.state.is_private}/>
-              <span className="slider round"></span>
-            </div>
-            <div className='text-label' >Anyone in your workspace can view and join this channel.</div>
-          </div>
-          <span className='title-label'>Name</span>
-          {error}
-          <input
-            maxLength= '22'
-            className='newroom-input'
-            type="text"
-            autoComplete = 'off'
-            value={this.state.title}
-            onChange={(e) => this.handleChange(e)}
-            placeholder='# e.g. leads'
-          />
-          <span className='input-subtext'>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</span>
           {this.state.is_private ? <UserSearch
             selectedUsers={this.state.selectedUsers}
             handleUsernameClick={this.handleUsernameClick}/> : null}
-          {this.state.selectedUsers.length
-            ? <ul>{this.state.selectedUsers.map((username, idx) =>
-              <li onClick={(e) => this.removeUser(e)} key={idx}>{username}</li>)}</ul> : null}
+          {this.state.selectedUsers.length ? <ul>{this.state.selectedUsers.map((user, idx) => <li onClick={(e) => this.removeUser(e)} key={idx}>{user.username}</li>)}</ul> : null}
           <div className='button-container'>
             <button className='cancel-button'
               onClick={(e) => { e.preventDefault(); this.props.closeModal() }}>Cancel</button>
-            {button}
+            <button className='modal-button' >Create Chat</button>
           </div>
         </form>
       </div>
@@ -134,10 +86,15 @@ class NewRoomForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  currentUserId: state.session.currentUserId,
+  users: state.entities.users
+})
+
 const mapDispatchToProps = dispatch => ({
   createRoom: (room) => dispatch(createRoom(room)),
-  createMembership: (userId, roomId) => dispatch(createMembership(userId, roomId)),
+  createMembership: (userIds) => dispatch(createMembership(userIds)),
   closeModal: () => dispatch(closeModal())
 })
 
-export default connect(null, mapDispatchToProps)(NewRoomForm)
+export default connect(mapStateToProps, mapDispatchToProps)(NewDMForm)

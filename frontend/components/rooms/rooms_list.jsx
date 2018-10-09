@@ -27,10 +27,7 @@ class RoomsList extends React.Component {
 
   render () {
     if (!this.props.rooms.length) return null
-    let rooms = this.props.rooms.slice()
-    const sortedRooms = rooms.sort(
-      (a, b) => new Date(a.created_at) - new Date(b.created_at)
-    )
+    let rooms = this.props.rooms
     return (
       <div className='rooms'>
         <div className='list-header'>
@@ -38,7 +35,7 @@ class RoomsList extends React.Component {
           <button className='room-form-button' onClick={() => this.props.openModal('newRoom')}><img src={window.addChannel} alt="add-channel-icon"/></button>
         </div>
         <ul className='roomsList'>
-          {sortedRooms.map(room =>
+          {rooms.map(room =>
             <RoomListItem
               key={room.id}
               room={room}
@@ -49,7 +46,7 @@ class RoomsList extends React.Component {
         <h2 className='channels'>Direct Messages</h2>
         <button className='room-form-button' onClick={() => this.props.openModal('newDMForm')}><img src={window.addChannel} alt="add-channel-icon"/></button>
         <ul className='roomsList'>
-          {sortedRooms.map(room =>
+          {rooms.map(room =>
             <DMListItem
               key={room.id}
               room={room}

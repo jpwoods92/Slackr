@@ -13,13 +13,15 @@ const RoomsListItem = ({room, handleClick, currentRoom, deleteMembership}) => {
   if (!room.is_dm) {
     let button
     if (room.is_private) {
-      button = <button className='room-form-button' onClick={() => deleteMembership(room.id)}>X</button>
+      button = <button className='room-list-button' onClick={(e) => { e.preventDefault(); deleteMembership(room.id) }}>X</button>
     }
     return (
       <li key={room.id} className="room-list-item" onClick={handleClick(room.id)}>
         <Link className={classText} to={`/channels/${room.id}`}># {room.title}</Link>
         {button}
       </li>)
+  } else {
+    return null
   }
 }
 
@@ -27,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
   deleteMembership: (id) => dispatch(deleteMembership(id))
 })
 
-export default connect(mapDispatchToProps)(RoomsListItem)
+export default connect(null, mapDispatchToProps)(RoomsListItem)

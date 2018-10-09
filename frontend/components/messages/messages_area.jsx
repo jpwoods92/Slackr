@@ -3,6 +3,7 @@ import NewMessageForm from './new_message_form_container'
 import MessageNav from './message_nav'
 import { ActionCable } from 'react-actioncable-provider'
 import MessageListItem from './message_list_item'
+
 class MessagesArea extends React.Component {
   constructor (props) {
     super(props)
@@ -32,9 +33,13 @@ class MessagesArea extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (this.state.messages !== nextProps.messages) {
+    if (this.props.room.id !== nextProps.room.id) {
       this.setState({messages: nextProps.messages})
       this.props.fetchUsers()
+    } else if (this.props.room.member_ids) {
+      if (this.props.room.member_ids.length !== nextProps.room.member_ids.length) {
+        this.props.fetchRoom(1).then(() => this.props.history.push('/channels/1'))
+      }
     }
   }
 
@@ -51,15 +56,13 @@ class MessagesArea extends React.Component {
 
   render () {
     if (this.props.messages === undefined) return null
-    let roomTitle = this.props.room.title
-    let numUsers = Object.keys(this.props.users).length
 
     let messages = this.sortedMessages(this.props.messages).map(message => {
       return <MessageListItem key={message.id} message={message}/>
     })
     return (
       <div className="messagesArea">
-        <MessageNav roomTitle={roomTitle} numUsers={numUsers} />
+        <MessageNav users={this.props.users} room={this.props.room} />
         <div className='messages-container'>
           <ul className='message-list'>
             {messages}
