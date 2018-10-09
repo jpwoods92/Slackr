@@ -1,6 +1,5 @@
 class  Api::RoomMembershipsController < ApplicationController
   def destroy
-    debugger
     membership = current_user.room_memberships.find_by(room_id: params[:id])
     room_id = params[:id]
     membership.destroy

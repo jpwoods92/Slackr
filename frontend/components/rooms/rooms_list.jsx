@@ -29,7 +29,6 @@ class RoomsList extends React.Component {
   }
 
   handleReceivedRoom (room) {
-    debugger
     if (!room.owner_id) {
       return null
     }
