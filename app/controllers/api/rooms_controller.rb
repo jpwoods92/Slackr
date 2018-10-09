@@ -5,7 +5,7 @@ class  Api::RoomsController < ApplicationController
 
   def index
       @rooms = Room.all
-      @rooms = @rooms.select { |room| room.is_private == false || room.member_ids.include?(current_user.id)}
+      @rooms = @rooms.select { |room| room.member_ids.include?(current_user.id)}
   end
 
   def show
