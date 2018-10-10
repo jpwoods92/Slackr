@@ -40,7 +40,6 @@ class RoomsList extends React.Component {
   }
 
   render () {
-    debugger
     if (!this.props.rooms.length) return null
     let rooms = this.props.rooms
     return (
