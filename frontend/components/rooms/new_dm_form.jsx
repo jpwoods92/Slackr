@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import UserSearch from '../ui/search'
 import { ActionCable } from 'react-actioncable-provider'
 
@@ -61,14 +61,14 @@ export default class NewDMForm extends React.Component {
       button = <button className='modal-button' >Go</button>
     }
     return (
-      <div className="newroom-form-div">
+      <Fragment>
         <h1 className='newroom-title'>Direct Messages</h1>
-        <form className='newroom-form' onSubmit={this.handleSubmit}>
+        <form className='newroom-form dm' onSubmit={this.handleSubmit}>
           <ActionCable
             ref='RoomsChannel'
             channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
           />
-          <div className='button-search-container'>
+          <div className='search-and-button'>
             {this.state.is_private ? <UserSearch
               selectedUsers={this.state.selectedUsers}
               handleUsernameClick={this.handleUsernameClick}
@@ -77,7 +77,7 @@ export default class NewDMForm extends React.Component {
             {button}
           </div>
         </form>
-      </div>
+      </Fragment>
     )
   }
 }

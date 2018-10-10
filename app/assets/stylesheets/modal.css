@@ -59,6 +59,22 @@
   flex-direction: column;
 }
 
+.newroom-form-div.dm {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.newroom-form.dm {
+  display: flex;
+  height: 450px;
+}
+
+.search-and-button {
+  display: flex;
+  margin-top: 10px;  
+}
+
 .newroom-title {
   font-family: 'Noto Sans', sans-serif;
   font-size: 35px;
@@ -110,10 +126,36 @@
 .newroom-input.search {
   border: none;
   border-radius: none;
+  margin: 0;
+  width: 100%;
 }
 
 .newroom-input.search:focus {
   border: none;
+}
+
+.search-list {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+  /* overf  low-y: scroll; */
+  height: 60%;
+}
+
+.search-list li {
+  font-family: 'Noto Sans', sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 1px solid lightgray;
+}
+
+.search-list li:hover {
+  border-bottom: none;
+  border-radius: 3px;
+  border: 1px solid rgb(205, 205, 255);
+  background-color: rgb(225, 225, 255);
 }
 
 .users-search-container {
@@ -121,6 +163,24 @@
   align-items: center;
   border: 1px solid gray;
   border-radius: 3px;
+  width: 90%;
+  margin-right: 16px;
+}
+
+.users-search-container ul {
+  display: flex;
+}
+
+.users-search-container ul > li {
+  background-color: rgb(154, 154, 253);
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 14px;
+  padding: 5px;
+  color: white;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .input-subtext {
@@ -163,6 +223,7 @@
   transition: background-color .15s,color .15s ease-in-out;
   border: none;
   outline: none;
+  max-height: 47.5px;
 }
 
 .cancel-button {
@@ -279,10 +340,4 @@
   
   .slider.round:before {
     border-radius: 50%;
-  }
-
-  /* DM CSS */
-
-  .button-search-container {
-    display: flex;
   }

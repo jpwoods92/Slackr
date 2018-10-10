@@ -57,7 +57,7 @@ export default class RoomListItem extends React.Component {
       }
       return (
         <li key={this.props.room.id} className="room-list-item" onClick={this.props.handleClick(this.props.room.id)}>
-          <Link className={classText} to={`/channels/${this.props.room.id}`}># {title}</Link>
+          <Link className={classText} to={`/channels/${this.props.room.id}`}>o {title}</Link>
           <button to='/channels/1' className='room-list-button' onClick={(e) => { this.processClick(e) }}>X</button>
           <ActionCable
             ref='RoomsChannel'

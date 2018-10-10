@@ -1,7 +1,7 @@
 class  Api::RoomsController < ApplicationController
 
   def index
-      @rooms = Room.all
+      @rooms = Room.includes(:messages)
       @rooms = @rooms.select { |room| room.member_ids.include?(current_user.id)}
   end
 

@@ -23,6 +23,7 @@ class mainApp extends React.Component {
   }
 
   render () {
+    
     let button, user
     if (this.props.loggedIn) {
       button = <button id='nav-logout' onClick={this.props.logout} >Log Out</button>

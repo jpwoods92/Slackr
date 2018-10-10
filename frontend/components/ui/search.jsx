@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 class UsersSearch extends Component {
@@ -13,6 +13,7 @@ class UsersSearch extends Component {
   componentDidUpdate (prevProps) {
     if (this.props.selectedUsers.length !== prevProps.selectedUsers.length) {
       this.setState({users: [], input: ''})
+      this.refs.searchInput.focus()
     }
   }
 
@@ -23,14 +24,14 @@ class UsersSearch extends Component {
     if (users.length) {
       this.setState({users: users, input: e.target.value})
     } else {
-      this.setState({users: []})
+      this.setState({users: [], input: e.target.value})
     }
   }
 
   render () {
     let limitedList = this.state.users.slice(0, 5)
     let results =
-    <ul>
+    <ul className='search-list'>
       {limitedList.map((user) =>
         <li
           onClick={e => this.props.handleUsernameClick(user.username, user.id)}
@@ -39,8 +40,8 @@ class UsersSearch extends Component {
       )}
     </ul>
     return (
-      <div className='users-search-container'>
-        <div>
+      <Fragment>
+        <div className='users-search-container'>
           {this.props.selectedUsers.length
             ? <ul>
               {this.props.selectedUsers.map((user, idx) =>
@@ -48,14 +49,17 @@ class UsersSearch extends Component {
               )}
             </ul> : null
           }
+          <input
+            ref='searchInput'
+            className='newroom-input search'
+            type="text"
+            onChange={(e) => this.handleChange(e)}
+            placeholder="search users..."
+            value={this.state.input}
+          />
         </div>
-        <input
-          className='newroom-input search'
-          type="text"
-          onChange={(e) => this.handleChange(e)}
-          placeholder="search users..."/>
         {this.state.users && this.state.input ? results : null}
-      </div>
+      </Fragment>
     )
   }
 }

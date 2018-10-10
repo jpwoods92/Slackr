@@ -35,10 +35,9 @@ class RoomsChannel < ApplicationCable::Channel
   end
   
   def speak_update(data)
-    save_data = data
-    save_data.delete('action')
+    new_data = {id: data['id'], title: data['title']}
     updated_room = Room.find(data['id'])
-    if updated_room.update(saveData)
+    if updated_room.update(new_data)
       updated_room.save
       RoomsChannel.broadcast_to('rooms_channel', updated_room)      
     end
