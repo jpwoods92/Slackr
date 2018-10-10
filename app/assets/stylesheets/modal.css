@@ -107,6 +107,22 @@
   font-family: 'Muli', sans-serif;
 }
 
+.newroom-input.search {
+  border: none;
+  border-radius: none;
+}
+
+.newroom-input.search:focus {
+  border: none;
+}
+
+.users-search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
 .input-subtext {
   font-family: 'Muli', sans-serif;
   font-size: .8rem;

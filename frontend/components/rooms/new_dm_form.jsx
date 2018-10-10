@@ -15,6 +15,7 @@ export default class NewDMForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleUsernameClick = this.handleUsernameClick.bind(this)
+    this.removeUser = this.removeUser.bind(this)
   }
 
   handleSubmit (e) {
@@ -70,7 +71,9 @@ export default class NewDMForm extends React.Component {
           <div className='button-search-container'>
             {this.state.is_private ? <UserSearch
               selectedUsers={this.state.selectedUsers}
-              handleUsernameClick={this.handleUsernameClick}/> : null}
+              handleUsernameClick={this.handleUsernameClick}
+              removeUser={this.removeUser}
+            /> : null}
             {button}
           </div>
         </form>

@@ -39,18 +39,18 @@ class UsersSearch extends Component {
       )}
     </ul>
     return (
-      <div>
-        <div className='users-search-container'>
+      <div className='users-search-container'>
+        <div>
           {this.props.selectedUsers.length
             ? <ul>
               {this.props.selectedUsers.map((user, idx) =>
-                <li onClick={(e) => this.removeUser(e)} key={idx}>{user.username}</li>
+                <li onClick={(e) => this.props.removeUser(e)} key={idx}>{user.username}</li>
               )}
             </ul> : null
           }
         </div>
         <input
-          className='newroom-input'
+          className='newroom-input search'
           type="text"
           onChange={(e) => this.handleChange(e)}
           placeholder="search users..."/>
