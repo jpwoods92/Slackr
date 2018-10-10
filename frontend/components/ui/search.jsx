@@ -42,7 +42,7 @@ class UsersSearch extends Component {
       <div>
         <input
           className='newroom-input'
-          type="search"
+          type="text"
           onChange={(e) => this.handleChange(e)}
           placeholder="search users..."/>
         {this.state.users && this.state.input ? results : null}

@@ -52,14 +52,6 @@ export default class NewDMForm extends React.Component {
     this.setState({is_private: !this.state.is_private})
   }
 
-  handleKey (e) {
-    if (e.keyCode === 13 && this.state.title !== '') {
-      e.preventDefault()
-      e.stopPropagation()
-      this.handleSubmit(e)
-    }
-  }
-
   render () {
     let button
     if (this.state.selectedUsers.length < 1) {
@@ -70,7 +62,7 @@ export default class NewDMForm extends React.Component {
     return (
       <div className="newroom-form-div">
         <h1 className='newroom-title'>Direct Messages</h1>
-        <form className='newroom-form' onKeyDown={(e) => this.handleKey(e)} onSubmit={this.handleSubmit}>
+        <form className='newroom-form' onSubmit={this.handleSubmit}>
           <ActionCable
             ref='RoomsChannel'
             channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
