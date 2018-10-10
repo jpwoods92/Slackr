@@ -8,7 +8,7 @@ class RoomsChannel < ApplicationCable::Channel
     RoomsChannel.broadcast_to('rooms_channel', new_message)
   end
 
-  def speakRoom(data) 
+  def speak_room(data) 
     new_room = Room.create(
       title: data['title'], 
       is_private: data['is_private'], 
@@ -27,15 +27,16 @@ class RoomsChannel < ApplicationCable::Channel
     RoomsChannel.broadcast_to('rooms_channel', new_room)
   end
 
-  def speakDelete(data)
+  def speak_delete(data)
     current_user = User.find(data['current_user'])
     membership = current_user.room_memberships.find_by(room_id: data['id'])
     membership.destroy
-    RoomsChannel.broadcast_to('rooms_channel', data['id'])
+    RoomsChannel.broadcast_to('rooms_channel', {id: data['id']})
   end
   
-  def speakUpdate(data)
-    saveData = {id: data['id'], title: data['title']}
+  def speak_update(data)
+    save_data = data
+    save_data.delete('action')
     updated_room = Room.find(data['id'])
     if updated_room.update(saveData)
       updated_room.save

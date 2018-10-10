@@ -20,13 +20,13 @@ export default class RoomListItem extends React.Component {
 
   processClick (e) {
     e.preventDefault()
-    this.refs.RoomsChannel.perform('speakDelete', {
+    this.refs.RoomsChannel.perform('speak_delete', {
       id: this.props.room.id,
       current_user: this.props.currentUserId
     })
     if (this.props.room.is_dm) {
       let newTitle = this.parseTitle(this.props.room.title)
-      this.refs.RoomsChannel.perform('speakUpdate', {
+      this.refs.RoomsChannel.perform('speak_update', {
         id: this.props.room.id,
         title: newTitle
       })
