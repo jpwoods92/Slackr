@@ -1,5 +1,4 @@
-import { RECEIVE_ALL_ROOMS, RECEIVE_ROOM } from '../actions/room_actions'
-import { REMOVE_ROOM } from '../actions/room_mebership_actions'
+import { REMOVE_ROOM, RECEIVE_ALL_ROOMS, RECEIVE_ROOM } from '../actions/room_actions'
 
 export default function roomsReducer (state = {}, action) {
   Object.freeze(state)

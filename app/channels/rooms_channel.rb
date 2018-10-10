@@ -22,6 +22,21 @@ class RoomsChannel < ApplicationCable::Channel
     RoomsChannel.broadcast_to('rooms_channel', new_room)
   end
 
+  def speakDelete(data)
+    current_user = User.find(data['current_user'])
+    membership = current_user.room_memberships.find_by(room_id: data['id'])
+    membership.destroy
+    RoomsChannel.broadcast_to('rooms_channel', data['id'])
+  end
+  
+  def speakUpdate(data)
+    updated_room = Room.find(data['id'])
+    if updated_room.update(data)
+      updated_room.save
+      RoomsChannel.broadcast_to('rooms_channel', updated_room)      
+    end
+  end
+  
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end

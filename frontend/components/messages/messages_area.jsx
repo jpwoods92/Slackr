@@ -45,7 +45,7 @@ class MessagesArea extends React.Component {
   }
 
   handleReceivedMessage (message) {
-    if (!message.username) {
+    if (!message.user_id) {
       return null
     }
     this.props.receiveMessage(message)

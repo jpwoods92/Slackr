@@ -19,10 +19,3 @@ export const fetchRoom = (id) => {
     url: `api/rooms/${id}`
   })
 }
-
-export const deleteRoom = (id) => {
-  return $.ajax({
-    method: 'DELETE',
-    url: `api/rooms/${id}`
-  })
-}

@@ -2,6 +2,7 @@ import React from 'react'
 import RoomListItem from './rooms_list_item_container'
 import DMListItem from './dm_list_item_container'
 import { ActionCable } from 'react-actioncable-provider'
+import message_list_item from '../messages/message_list_item'
 
 class RoomsList extends React.Component {
   constructor (props) {
@@ -10,7 +11,7 @@ class RoomsList extends React.Component {
       rooms: this.props.rooms
     }
     this.handleClick = this.handleClick.bind(this)
-    this.handleReceivedRoom = this.handleReceivedRoom.bind(this)
+    this.handleReceivedChange = this.handleReceivedChange.bind(this)
   }
 
   componentDidMount () {
@@ -28,14 +29,18 @@ class RoomsList extends React.Component {
     return () => this.props.fetchRoom(id).then(this.props.fetchMessages(id))
   }
 
-  handleReceivedRoom (room) {
-    if (!room.owner_id) {
+  handleReceivedChange (data) {
+    if (data.owner_id) {
+      this.props.receiveRoom(data)
+    } else if (!data.user_id) {
+      this.props.removeRoom(data)
+    } else {
       return null
     }
-    this.props.receiveRoom(room)
   }
 
   render () {
+    debugger
     if (!this.props.rooms.length) return null
     let rooms = this.props.rooms
     return (
@@ -56,7 +61,7 @@ class RoomsList extends React.Component {
         <ActionCable
           ref='RoomsChannel'
           channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
-          onReceived={this.handleReceivedRoom}
+          onReceived={this.handleReceivedChange}
         />
         <h2 className='channels'>Direct Messages</h2>
         <button className='room-form-button' onClick={() => this.props.openModal('newDMForm')}><img src={window.addChannel} alt="add-channel-icon"/></button>

@@ -41,7 +41,7 @@ const receiveErrors = errors => {
   }
 }
 
-const removeRoom = (id) => {
+export const removeRoom = (id) => {
   return {
     type: REMOVE_ROOM,
     id
@@ -66,11 +66,5 @@ export const updateDMRoom = (room) => dispatch => {
 export const updateRoom = (room) => dispatch => {
   return RoomAPIUtil.updateRoom(room).then((room) => {
     return dispatch(receiveRoom(room))
-  })
-}
-
-export const deleteRoom = (id) => dispatch => {
-  return RoomAPIUtil.deleteRoom(id).then(() => {
-    return dispatch(removeRoom(id))
   })
 }
