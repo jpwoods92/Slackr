@@ -40,6 +40,15 @@ class UsersSearch extends Component {
     </ul>
     return (
       <div>
+        <div className='users-search-container'>
+          {this.props.selectedUsers.length
+            ? <ul>
+              {this.props.selectedUsers.map((user, idx) =>
+                <li onClick={(e) => this.removeUser(e)} key={idx}>{user.username}</li>
+              )}
+            </ul> : null
+          }
+        </div>
         <input
           className='newroom-input'
           type="text"

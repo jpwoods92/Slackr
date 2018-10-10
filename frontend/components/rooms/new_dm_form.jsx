@@ -73,13 +73,6 @@ export default class NewDMForm extends React.Component {
               handleUsernameClick={this.handleUsernameClick}/> : null}
             {button}
           </div>
-          {this.state.selectedUsers.length
-            ? <ul>
-              {this.state.selectedUsers.map((user, idx) =>
-                <li onClick={(e) => this.removeUser(e)} key={idx}>{user.username}</li>
-              )}
-            </ul> : null
-          }
         </form>
       </div>
     )

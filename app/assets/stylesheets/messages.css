@@ -74,7 +74,7 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
-#message-input:focus {
+.message-input:focus {
     border: 2px solid rgb(58, 114, 104);
 }
 
