@@ -1,10 +1,8 @@
 import React from 'react'
-import RoomListItem from './rooms_list_item_container'
-import DMListItem from './dm_list_item_container'
+import RoomListItem from './room_list_item_container'
 import { ActionCable } from 'react-actioncable-provider'
-import message_list_item from '../messages/message_list_item'
 
-class RoomsList extends React.Component {
+export default class RoomsList extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -33,7 +31,7 @@ class RoomsList extends React.Component {
     if (data.owner_id) {
       this.props.receiveRoom(data)
     } else if (!data.user_id) {
-      this.props.removeRoom(data)
+      this.props.fetchRooms()
     } else {
       return null
     }
@@ -50,12 +48,14 @@ class RoomsList extends React.Component {
         </div>
         <ul className='roomsList'>
           {rooms.map(room =>
-            <RoomListItem
-              key={room.id}
-              room={room}
-              handleClick={this.handleClick}
-              currentRoom={this.props.room}
-            />)}
+            !room.is_dm
+              ? <RoomListItem
+                key={room.id}
+                room={room}
+                handleClick={this.handleClick}
+                currentRoom={this.props.room}
+              /> : null
+          )}
         </ul>
         <ActionCable
           ref='RoomsChannel'
@@ -66,16 +66,16 @@ class RoomsList extends React.Component {
         <button className='room-form-button' onClick={() => this.props.openModal('newDMForm')}><img src={window.addChannel} alt="add-channel-icon"/></button>
         <ul className='roomsList'>
           {rooms.map(room =>
-            <DMListItem
-              key={room.id}
-              room={room}
-              handleClick={this.handleClick}
-              currentRoom={this.props.room}
-            />)}
+            room.is_dm
+              ? <RoomListItem
+                key={room.id}
+                room={room}
+                handleClick={this.handleClick}
+                currentRoom={this.props.room}
+              /> : null
+          )}
         </ul>
       </div>
     )
   }
 }
-
-export default RoomsList

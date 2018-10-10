@@ -3,6 +3,7 @@ import NewMessageForm from './new_message_form_container'
 import MessageNav from './message_nav'
 import { ActionCable } from 'react-actioncable-provider'
 import MessageListItem from './message_list_item'
+import { Redirect } from 'react-router-dom'
 
 class MessagesArea extends React.Component {
   constructor (props) {
@@ -16,8 +17,8 @@ class MessagesArea extends React.Component {
   }
 
   componentDidMount () {
-    this.props.fetchUsers()
     let roomId = parseInt(this.props.history.location.pathname.split('/').pop()) || 1
+    this.props.fetchUsers()
     this.props.fetchMessages(roomId).then(this.props.fetchRoom(roomId))
       .then((this.setState({messages: this.props.messages})))
     this.props.history.push(`/channels/${roomId}`)
@@ -59,6 +60,9 @@ class MessagesArea extends React.Component {
 
   render () {
     if (this.props.messages === undefined) return null
+    // if (!this.props.currentUser.room_ids.includes(this.props.room.id)) {
+    //   return <Redirect to='/channels/1' />
+    // }
 
     let messages = this.sortedMessages(this.props.messages).map(message => {
       return <MessageListItem key={message.id} message={message}/>

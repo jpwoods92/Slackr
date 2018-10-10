@@ -4,7 +4,7 @@ import Timestamp from 'react-timestamp'
 import { connect } from 'react-redux'
 
 const Message = ({users, message}) => {
-  if (!message) return null
+  if (!message || !users[message.user_id]) return null
   let messageUsername = users[message.user_id].username
   return (
     <li className='message-list-item'>

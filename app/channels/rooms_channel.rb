@@ -9,7 +9,12 @@ class RoomsChannel < ApplicationCable::Channel
   end
 
   def speakRoom(data) 
-    new_room = Room.create(title: data['title'], is_private: data['is_private'], owner_id: data['owner_id'], is_dm: data['is_dm'])
+    new_room = Room.create(
+      title: data['title'], 
+      is_private: data['is_private'], 
+      owner_id: data['owner_id'], 
+      is_dm: data['is_dm']
+      )
     if new_room.is_private || new_room.is_dm
       data['user_ids'].each do |user_id|
         RoomMembership.create(user_id: user_id, room_id: new_room.id)
@@ -30,8 +35,9 @@ class RoomsChannel < ApplicationCable::Channel
   end
   
   def speakUpdate(data)
+    saveData = {id: data['id'], title: data['title']}
     updated_room = Room.find(data['id'])
-    if updated_room.update(data)
+    if updated_room.update(saveData)
       updated_room.save
       RoomsChannel.broadcast_to('rooms_channel', updated_room)      
     end

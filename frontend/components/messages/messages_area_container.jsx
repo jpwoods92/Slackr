@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
   return {
     room: state.ui.room,
     messages: Object.values(state.entities.messages),
-    users: state.entities.users
+    users: state.entities.users,
+    currentUser: state.entities.users[state.session.currentUserId]
   }
 }
 
