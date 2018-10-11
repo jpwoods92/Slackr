@@ -13,10 +13,8 @@ Room.destroy_all
 Message.destroy_all
 RoomMembership.destroy_all
 
-USERS_FAKER_ARRAY = [Faker::Hobbit.unique.character, Faker::HarryPotter.unique.character, Faker::LordOfTheRings.unique.character, Faker::GameOfThrones.unique.character, Faker::GreekPhilosophers.name]
-MESSAGES_FAKER_ARRAY = [Faker::Hobbit.quote, Faker::HarryPotter.quote, Faker::GameOfThrones.quote, Faker::GreekPhilosophers.quote]
 
-USER_HASH = Hash.new
+USER_HASH = Hash.new { |h,k| h[k] = {} }
 
 DemoUser = User.create(username: 'Guest', email: 'GuestEmail@guestemail.com', password: 'guestpassword')
 
@@ -34,7 +32,7 @@ DesignMembership = RoomMembership.create(user_id: DemoUser.id, room_id: DesignCh
 SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChannel.id)
 
 (1..30).to_a.each do |num|
-    USER_HASH[num] = User.create(username: Faker::HarryPotter.unique.character, email: Faker::Lorem.unique, password: 'guestpassword')
+    USER_HASH[num] = User.create!(username: Faker::HarryPotter.unique.character, email: Faker::HarryPotter.unique.character, password: 'guestpassword')
 end
 
 USER_HASH.each do |k,v|
@@ -43,27 +41,26 @@ USER_HASH.each do |k,v|
     RoomMembership.create(user_id: v.id, room_id: HumorChannel.id)
     RoomMembership.create(user_id: v.id, room_id: DesignChannel.id)
     RoomMembership.create(user_id: v.id, room_id: SalesChannel.id)
-    message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: v.id, 
-        body: Faker::GameOfThrones.quote,
+        body: Faker::HarryPotter.quote,
         room_id: GeneralChannel.id)
     Message.create(user_id: v.id, 
-        body: Faker::GameOfThrones.quote,
+        body: Faker::HarryPotter.quote,
         room_id: SalesChannel.id) 
     Message.create(user_id: v.id, 
-        body: Faker::GameOfThrones.quote,
+        body: Faker::HarryPotter.quote,
         room_id: DesignChannel.id)
     Message.create(user_id: v.id, 
-        body: Faker::GameOfThrones.quote,
+        body: Faker::HarryPotter.quote,
         room_id: DesignChannel.id)
     Message.create(user_id: v.id, 
-        body: Faker::GameOfThrones.quote,
+        body: Faker::HarryPotter.quote,
         room_id: HumorChannel.id)
     Message.create(user_id: v.id, 
-        body: Faker::GameOfThrones.quote,
+        body: Faker::HarryPotter.quote,
         room_id: WorkChannel.id)
     Message.create(user_id: v.id, 
-        body: Faker::GameOfThrones.quote,
+        body: Faker::HarryPotter.quote,
         room_id: WorkChannel.id)
 end
     
