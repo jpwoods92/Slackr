@@ -31,7 +31,7 @@ export default class RoomsList extends React.Component {
     if (data.owner_id) {
       this.props.receiveRoom(data)
     } else if (!data.user_id) {
-      this.props.removeRoom(data.id)
+      this.props.fetchRooms()
     } else {
       return null
     }

@@ -3,7 +3,6 @@ import NewMessageForm from './new_message_form_container'
 import MessageNav from './message_nav'
 import { ActionCable } from 'react-actioncable-provider'
 import MessageListItem from './message_list_item'
-import { Redirect } from 'react-router-dom'
 
 class MessagesArea extends React.Component {
   constructor (props) {
@@ -36,11 +35,6 @@ class MessagesArea extends React.Component {
   componentWillReceiveProps (nextProps) {
     if (this.props.room.id !== nextProps.room.id) {
       this.setState({messages: nextProps.messages})
-    } else if (this.props.room.member_ids) {
-      if (this.props.room.member_ids.length !== nextProps.room.member_ids.length) {
-        this.props.fetchRoom(1).then(() => this.props.history.push('/channels/1'))
-        this.props.fetchMessages(1)
-      }
     }
   }
 
