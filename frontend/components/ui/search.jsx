@@ -29,9 +29,15 @@ class UsersSearch extends Component {
   }
 
   render () {
+    let dm
+    if (this.props.isDm) {
+      dm = 'dm'
+    } else {
+      dm = ''
+    }
     let limitedList = this.state.users.slice(0, 5)
     let results =
-    <ul className='search-list'>
+    <ul className={`search-list ${dm}`}>
       {limitedList.map((user) =>
         <li
           onClick={e => this.props.handleUsernameClick(user.username, user.id)}
@@ -41,7 +47,7 @@ class UsersSearch extends Component {
     </ul>
     return (
       <Fragment>
-        <div className='users-search-container'>
+        <div className={`users-search-container ${dm}`}>
           {this.props.selectedUsers.length
             ? <ul>
               {this.props.selectedUsers.map((user, idx) =>
@@ -51,7 +57,7 @@ class UsersSearch extends Component {
           }
           <input
             ref='searchInput'
-            className='newroom-input search'
+            className={`newroom-input search ${dm}`}
             type="text"
             onChange={(e) => this.handleChange(e)}
             placeholder="search users..."

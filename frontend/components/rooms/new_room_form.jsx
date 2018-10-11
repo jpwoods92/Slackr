@@ -17,6 +17,7 @@ export default class NewRoomForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleUsernameClick = this.handleUsernameClick.bind(this)
+    this.removeUser = this.removeUser.bind(this)
   }
 
   handleChange (e) {
@@ -81,12 +82,12 @@ export default class NewRoomForm extends React.Component {
     let error, button
     if (this.state.falseText && !this.state.empty) {
       error = <p className='error-text'>please input more than just symbols/spaces</p>
-      button = <button disabled className='modal-button-disabled' >Create Channel</button>
+      button = <button disabled className='modal-button disabled' >Create Channel</button>
     } else if (!this.state.falseText && this.state.empty && !this.state.justOpened) {
       error = <p className='error-text'>don't forget your title!</p>
-      button = <button disabled className='modal-button-disabled' >Create Channel</button>
+      button = <button disabled className='modal-button disabled' >Create Channel</button>
     } else if (this.state.justOpened) {
-      button = <button disabled className='modal-button-disabled' >Create Channel</button>
+      button = <button disabled className='modal-button disabled' >Create Channel</button>
     } else {
       button = <button className='modal-button' >Create Channel</button>
     }
@@ -120,8 +121,9 @@ export default class NewRoomForm extends React.Component {
           <span className='input-subtext'>Names must be lowercase, without spaces or periods, and shorter than 22 characters.</span>
           {this.state.is_private ? <UserSearch
             selectedUsers={this.state.selectedUsers}
-            handleUsernameClick={this.handleUsernameClick}/> : null}
-          {this.state.selectedUsers.length ? <ul>{this.state.selectedUsers.map((user, idx) => <li onClick={(e) => this.removeUser(e)} key={idx}>{user.username}</li>)}</ul> : null}
+            handleUsernameClick={this.handleUsernameClick}
+            removeUser={this.removeUser}
+          /> : null}
           <div className='button-container'>
             <button className='cancel-button'
               onClick={(e) => { e.preventDefault(); this.props.closeModal() }}>Cancel</button>

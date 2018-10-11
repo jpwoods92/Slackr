@@ -56,9 +56,9 @@ export default class NewDMForm extends React.Component {
   render () {
     let button
     if (this.state.selectedUsers.length < 1) {
-      button = <button disabled className='modal-button-disabled' >Go</button>
+      button = <button disabled className='dm-button disabled' >Go</button>
     } else {
-      button = <button className='modal-button' >Go</button>
+      button = <button className='dm-button' >Go</button>
     }
     return (
       <Fragment>
@@ -69,12 +69,13 @@ export default class NewDMForm extends React.Component {
             channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
           />
           <div className='search-and-button'>
+            {button}
             {this.state.is_private ? <UserSearch
+              isDm='true'
               selectedUsers={this.state.selectedUsers}
               handleUsernameClick={this.handleUsernameClick}
               removeUser={this.removeUser}
             /> : null}
-            {button}
           </div>
         </form>
       </Fragment>
