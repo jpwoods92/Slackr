@@ -39,10 +39,22 @@ SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChan
 end
 
 20.times do
-    Message.create(user_id: User.first.id, 
+    Message.create(user_id: DemoUser.id, 
         body: Faker::HarryPotter.quote,
         room_id: GeneralChannel.id)
-    end
+    Message.create(user_id: DemoUser.id, 
+        body: Faker::HarryPotter.quote,
+        room_id: WorkChannel.id)
+    Message.create(user_id: DemoUser.id, 
+        body: Faker::HarryPotter.quote,
+        room_id: HumorChannel.id)  
+    Message.create(user_id: DemoUser.id, 
+        body: Faker::HarryPotter.quote,
+        room_id: DesignChannel.id) 
+    Message.create(user_id: DemoUser.id, 
+        body: Faker::HarryPotter.quote,
+        room_id: SalesChannel.id)     
+end
     
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('rooms')
