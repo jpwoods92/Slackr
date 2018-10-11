@@ -60,9 +60,6 @@ class MessagesArea extends React.Component {
 
   render () {
     if (this.props.messages === undefined) return null
-    // if (!this.props.currentUser.room_ids.includes(this.props.room.id)) {
-    //   return <Redirect to='/channels/1' />
-    // }
 
     let messages = this.sortedMessages(this.props.messages).map(message => {
       return <MessageListItem key={message.id} message={message}/>
