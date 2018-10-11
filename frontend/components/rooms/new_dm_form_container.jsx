@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { createMembership } from '../../actions/room_mebership_actions'
 import { closeModal } from '../../actions/modal_actions'
 import NewDMForm from './new_dm_form'
 
@@ -9,7 +8,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  createMembership: (userIds) => dispatch(createMembership(userIds)),
   closeModal: () => dispatch(closeModal())
 })
 

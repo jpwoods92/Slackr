@@ -16,6 +16,8 @@ RoomMembership.destroy_all
 USERS_FAKER_ARRAY = [Faker::Hobbit.unique.character, Faker::HarryPotter.unique.character, Faker::LordOfTheRings.unique.character, Faker::GameOfThrones.unique.character, Faker::GreekPhilosophers.name]
 MESSAGES_FAKER_ARRAY = [Faker::Hobbit.quote, Faker::HarryPotter.quote, Faker::GameOfThrones.quote, Faker::GreekPhilosophers.quote]
 
+USER_HASH = Hash.new
+
 DemoUser = User.create(username: 'Guest', email: 'GuestEmail@guestemail.com', password: 'guestpassword')
 
 
@@ -31,14 +33,17 @@ HumorMembership = RoomMembership.create(user_id: DemoUser.id, room_id: HumorChan
 DesignMembership = RoomMembership.create(user_id: DemoUser.id, room_id: DesignChannel.id)
 SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChannel.id)
 
-30.times do
+(1..30).to_a.each do |num|
     username = USERS_FAKER_ARRAY.sample
-    faker_user = User.create(username: username, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
-    RoomMembership.create(user_id: faker_user.id, room_id: GeneralChannel.id)
-    RoomMembership.create(user_id: faker_user.id, room_id: WorkChannel.id)
-    RoomMembership.create(user_id: faker_user.id, room_id: HumorChannel.id)
-    RoomMembership.create(user_id: faker_user.id, room_id: DesignChannel.id)
-    RoomMembership.create(user_id: faker_user.id, room_id: SalesChannel.id)
+    USER_HASH[num] = User.create(username: username, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
+end
+
+USER_HASH.each do |k,v|
+    RoomMembership.create(user_id: v.id, room_id: GeneralChannel.id)
+    RoomMembership.create(user_id: v.id, room_id: WorkChannel.id)
+    RoomMembership.create(user_id: v.id, room_id: HumorChannel.id)
+    RoomMembership.create(user_id: v.id, room_id: DesignChannel.id)
+    RoomMembership.create(user_id: v.id, room_id: SalesChannel.id)
 end
 
 20.times do
