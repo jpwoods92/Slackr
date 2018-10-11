@@ -13,6 +13,8 @@ Room.destroy_all
 Message.destroy_all
 RoomMembership.destroy_all
 
+USERS_FAKER_ARRAY = [Faker::Hobbit.unique.character, Faker::HarryPotter.unique.character, Faker::LordOfTheRings.unique.character, Faker::GameOfThrones.unique.character, Faker::GreekPhilosophers.name]
+MESSAGES_FAKER_ARRAY = [Faker::Hobbit.quote, Faker::HarryPotter.quote, Faker::GameOfThrones.quote, Faker::GreekPhilosophers.quote]
 
 DemoUser = User.create(username: 'Guest', email: 'GuestEmail@guestemail.com', password: 'guestpassword')
 
@@ -30,7 +32,8 @@ DesignMembership = RoomMembership.create(user_id: DemoUser.id, room_id: DesignCh
 SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChannel.id)
 
 5.times do
-    faker_user = User.create(username: Faker::HarryPotter.character, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
+    username = USERS_FAKER_ARRAY.sample
+    faker_user = User.create(username: username, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
     RoomMembership.create(user_id: faker_user.id, room_id: GeneralChannel.id)
     RoomMembership.create(user_id: faker_user.id, room_id: WorkChannel.id)
     RoomMembership.create(user_id: faker_user.id, room_id: HumorChannel.id)
@@ -39,20 +42,21 @@ SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChan
 end
 
 20.times do
+    message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
-        body: Faker::HarryPotter.quote,
+        body: message,
         room_id: GeneralChannel.id)
     Message.create(user_id: DemoUser.id, 
-        body: Faker::HarryPotter.quote,
+        body: message,
         room_id: WorkChannel.id)
     Message.create(user_id: DemoUser.id, 
-        body: Faker::HarryPotter.quote,
+        body: message,
         room_id: HumorChannel.id)  
     Message.create(user_id: DemoUser.id, 
-        body: Faker::HarryPotter.quote,
+        body: message,
         room_id: DesignChannel.id) 
     Message.create(user_id: DemoUser.id, 
-        body: Faker::HarryPotter.quote,
+        body: message,
         room_id: SalesChannel.id)     
 end
     
