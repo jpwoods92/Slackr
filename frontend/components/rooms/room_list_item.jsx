@@ -31,7 +31,6 @@ export default class RoomListItem extends React.Component {
         title: newTitle
       })
     }
-    this.props.history.push('/channels/1')
   }
 
   render () {
