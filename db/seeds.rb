@@ -35,7 +35,7 @@ SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChan
 
 (1..30).to_a.each do |num|
     username = USERS_FAKER_ARRAY.sample
-    USER_HASH[num] = User.create(username: username, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
+    USER_HASH[num] = User.create(username: username, email: Faker::Lorem.unique, password: 'guestpassword')
 end
 
 USER_HASH.each do |k,v|
