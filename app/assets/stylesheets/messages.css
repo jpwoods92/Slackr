@@ -76,6 +76,15 @@
 
 .message-input:focus {
     border: 2px solid rgb(58, 114, 104);
+    padding: 12px;
+    border-radius: 6px;
+    width: 90%;
+    outline: none;
+    line-height: 1.2em;
+    overflow-y: scroll;
+    max-height: 300px;
+    min-height: 19px;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .message-item-contents {
