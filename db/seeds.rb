@@ -31,7 +31,7 @@ HumorMembership = RoomMembership.create(user_id: DemoUser.id, room_id: HumorChan
 DesignMembership = RoomMembership.create(user_id: DemoUser.id, room_id: DesignChannel.id)
 SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChannel.id)
 
-5.times do
+30.times do
     username = USERS_FAKER_ARRAY.sample
     faker_user = User.create(username: username, email: Faker::HarryPotter.unique.spell, password: 'guestpassword')
     RoomMembership.create(user_id: faker_user.id, room_id: GeneralChannel.id)
@@ -45,23 +45,35 @@ end
     message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
         body: message,
-        room_id: GeneralChannel.id)
+        room_id: GeneralChannel.id)       
+end
+
+20.times do
     message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
         body: message,
-        room_id: WorkChannel.id)
-    message = MESSAGES_FAKER_ARRAY.sample
-    Message.create(user_id: DemoUser.id, 
-        body: message,
-        room_id: HumorChannel.id)
+        room_id: SalesChannel.id) 
+end
+
+20.times do
     message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
         body: message,
         room_id: DesignChannel.id)
+end
+
+20.times do
     message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
         body: message,
-        room_id: SalesChannel.id)     
+        room_id: HumorChannel.id)
+end
+
+20.times do
+    message = MESSAGES_FAKER_ARRAY.sample
+    Message.create(user_id: DemoUser.id, 
+        body: message,
+        room_id: WorkChannel.id)
 end
     
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
