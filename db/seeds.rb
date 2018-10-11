@@ -46,15 +46,19 @@ end
     Message.create(user_id: DemoUser.id, 
         body: message,
         room_id: GeneralChannel.id)
+    message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
         body: message,
         room_id: WorkChannel.id)
+    message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
         body: message,
-        room_id: HumorChannel.id)  
+        room_id: HumorChannel.id)
+    message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
         body: message,
-        room_id: DesignChannel.id) 
+        room_id: DesignChannel.id)
+    message = MESSAGES_FAKER_ARRAY.sample
     Message.create(user_id: DemoUser.id, 
         body: message,
         room_id: SalesChannel.id)     
