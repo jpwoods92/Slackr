@@ -36,7 +36,6 @@ class MessagesArea extends React.Component {
   componentWillReceiveProps (nextProps) {
     if (this.props.room.id !== nextProps.room.id) {
       this.setState({messages: nextProps.messages})
-      this.props.fetchUsers()
     } else if (this.props.room.member_ids) {
       if (this.props.room.member_ids.length !== nextProps.room.member_ids.length) {
         this.props.fetchRoom(1).then(() => this.props.history.push('/channels/1'))

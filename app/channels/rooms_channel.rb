@@ -15,16 +15,16 @@ class RoomsChannel < ApplicationCable::Channel
       owner_id: data['owner_id'], 
       is_dm: data['is_dm']
       )
-    if new_room.is_private || new_room.is_dm
-      data['user_ids'].each do |user_id|
-        RoomMembership.create(user_id: user_id, room_id: new_room.id)
+      RoomsChannel.broadcast_to('rooms_channel', new_room)
+      if new_room.is_private || new_room.is_dm
+        data['user_ids'].each do |user_id|
+          RoomMembership.create(user_id: user_id, room_id: new_room.id)
+        end
+      else
+        User.all.each do |user|
+          RoomMembership.create(user_id: user.id, room_id: new_room.id)
+        end
       end
-    else
-      User.all.each do |user|
-        RoomMembership.create(user_id: user.id, room_id: new_room.id)
-      end
-    end
-    RoomsChannel.broadcast_to('rooms_channel', new_room)
   end
 
   def speak_delete(data)
