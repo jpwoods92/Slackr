@@ -34,7 +34,7 @@ DesignMembership = RoomMembership.create(user_id: DemoUser.id, room_id: DesignCh
 SalesMembership = RoomMembership.create(user_id: DemoUser.id, room_id: SalesChannel.id)
 
 (1..30).to_a.each do |num|
-    USER_HASH[num] = User.create(username: Faker::LordOfTheRings.unique.character, email: Faker::Lorem.unique, password: 'guestpassword')
+    USER_HASH[num] = User.create(username: Faker::HarryPotter.unique.character, email: Faker::Lorem.unique, password: 'guestpassword')
 end
 
 USER_HASH.each do |k,v|
