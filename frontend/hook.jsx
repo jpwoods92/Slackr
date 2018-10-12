@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
+    delete window.currentUser
   } else {
     preloadedState = {}
   }
   const store = ConfigureStore(preloadedState)
-  delete window.currentUser
   ReactDOM.render(<Root store={ store }/>, root)
 })

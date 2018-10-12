@@ -31,6 +31,11 @@
     margin-top: 25px;
 }
 
+.adduser-form {
+    position: absolute;
+    right: 220px;
+}
+
 .message-nav {
     background: #fff;
     box-shadow: 0 1px 0 rgba(0,0,0,.1);
@@ -42,8 +47,7 @@
     position: -webkit-sticky;
     position: sticky;
     right: 0;
-    z-index: 200;
-    overflow-x: hidden;
+    z-index: 2;
 }
 
 #header-title {

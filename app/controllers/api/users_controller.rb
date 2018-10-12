@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
 
   def index
-    @users = User.includes(:rooms, :room_memberships)
+    @users = User.includes(:rooms)
     render 'api/users/index'
   end
 

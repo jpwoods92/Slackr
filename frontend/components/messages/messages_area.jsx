@@ -41,9 +41,10 @@ class MessagesArea extends React.Component {
   handleReceivedMessage (message) {
     if (!message.user_id) {
       return null
-    }
-    this.props.receiveMessage(message)
-    this.myRef.current.scrollIntoView()
+    } else if (message.room_id === this.props.room.id) {
+      this.props.receiveMessage(message)
+      this.myRef.current.scrollIntoView()
+    } else return null
   }
 
   sortedMessages (messages) {
