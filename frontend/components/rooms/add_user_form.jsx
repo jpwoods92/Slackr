@@ -37,9 +37,8 @@ export default class AddUserForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    let userIds = this.state.selectedUsers.map(user => user.id)
     this.refs.RoomsChannel.perform('speak_add_user', {
-      user_ids: userIds,
+      user_id: this.state.selectedUser.id,
       room_id: this.props.room.id
     })
     if (this.props.room.is_dm) {

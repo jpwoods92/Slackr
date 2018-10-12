@@ -25,7 +25,7 @@ export default class Room extends React.Component {
         <header className='message-nav'>
           <p id='header-title'>#{this.props.room.title}</p>
           <p id='num-users'><img id='user-count-icon' src={window.userCount} alt="user-count-icon"/>{members.length}</p>
-          <AddUserForm />
+          {/* <AddUserForm /> */}
         </header>
       </Fragment>
     )
