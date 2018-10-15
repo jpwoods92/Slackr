@@ -39,6 +39,7 @@ export class SignupForm extends Component {
   }
 
   render () {
+    if (!this.props.errors) return null
     let errors = this.props.errors.map((error, idx) => <li key={idx} >{error}</li>)
     let errorBox = null
     if (errors.length) {
