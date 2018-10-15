@@ -57,6 +57,5 @@ Slackr utilizes a PostgreSQL database and Rails 5 back end. The front end is bui
 
 ## Future Implementations
 WIP features inlude:
-+ Profile & banner picture uploads
-+ Live notifications
-+ Direct messaging
++ User Profiles
++ Updating rooms with new users
