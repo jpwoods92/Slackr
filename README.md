@@ -52,7 +52,8 @@ Then:
 
 
 ## Technologies Used
-Slackr utilizes a PostgreSQL database and Rails 5 back end. The front end is built on React with Redux. Live updating of features is handled by Action-cables web-socketing. ![Action Cables](https://heroku-blog-files.s3.amazonaws.com/posts/1473343848-1462551406-rails-rack.png)
+Slackr utilizes a PostgreSQL database and Rails 5 back end. The front end is built on React with Redux. Live updating of features is handled by Action-cables web-socketing. 
+![Action Cables](https://heroku-blog-files.s3.amazonaws.com/posts/1473343848-1462551406-rails-rack.png)
 
 ## Future Implementations
 WIP features inlude:
