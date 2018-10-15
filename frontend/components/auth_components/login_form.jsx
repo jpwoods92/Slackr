@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import NavLinks from '../splash/nav_component'
+import { ActionCable } from 'react-actioncable-provider'
 
 export class LoginForm extends Component {
   constructor (props) {
@@ -35,12 +36,14 @@ export class LoginForm extends Component {
     e.preventDefault()
     const user = Object.assign({}, this.state)
     this.props.processForm(user)
+    this.refs.RoomsChannel.perform('speak_login_user', user)
   }
 
   guestLogin () {
     let user = {
       email: 'GuestEmail@guestemail.com',
       password: 'guestpassword'}
+    this.refs.RoomsChannel.perform('speak_login_user', user)
     this.props.processForm(user)
   }
 
@@ -82,6 +85,10 @@ export class LoginForm extends Component {
                 <input id= 'guest-submit' onClick={() => this.guestLogin()} type="button" value='Login as Guest'/>
               </li>
             </ul>
+            <ActionCable
+              ref='RoomsChannel'
+              channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
+            />
           </div>
         </form>
         {errorBox}

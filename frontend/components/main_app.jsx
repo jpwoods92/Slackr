@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import RoomsList from './rooms/rooms_list_container'
 import MessagesAreaContainer from './messages/messages_area_container'
 import { fetchRoom } from '../actions/room_actions'
+import { ActionCable } from 'react-actioncable-provider'
 class mainApp extends React.Component {
   constructor (props) {
     super(props)
@@ -14,6 +15,7 @@ class mainApp extends React.Component {
         user: ''
       }
     }
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -22,11 +24,16 @@ class mainApp extends React.Component {
     }
   }
 
+  handleClick (e) {
+    e.preventDefault()
+    this.props.logout()
+    this.refs.RoomsChannel.perform('speak_logout_user', this.props.user)
+  }
+
   render () {
-    
     let button, user
     if (this.props.loggedIn) {
-      button = <button id='nav-logout' onClick={this.props.logout} >Log Out</button>
+      button = <button id='nav-logout' onClick={this.handleClick} >Log Out</button>
       user = <p id='username'><img id='presence' src={window.loggedInIcon} alt="logged-in"/> {this.props.user.username}</p>
     }
 
@@ -36,6 +43,10 @@ class mainApp extends React.Component {
           <header className='side-nav-header'>
             {user}
             {button}
+            <ActionCable
+              ref='RoomsChannel'
+              channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
+            />
           </header>
           <RoomsList />
         </div>

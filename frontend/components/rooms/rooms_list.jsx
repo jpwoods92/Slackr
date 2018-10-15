@@ -19,7 +19,6 @@ export default class RoomsList extends React.Component {
   componentWillReceiveProps (nextProps) {
     if (this.props.rooms.length !== nextProps.rooms.length) {
       this.setState({rooms: nextProps.rooms})
-      this.props.fetchRoom(parseInt(nextProps.history.location.pathname.split('/').pop()))
     }
   }
 
@@ -31,7 +30,7 @@ export default class RoomsList extends React.Component {
     if (data.owner_id) {
       this.props.receiveRoom(data)
     } else if (!data.user_id) {
-      this.props.fetchRooms()
+      this.props.removeRoom(data.id)
     } else {
       return null
     }

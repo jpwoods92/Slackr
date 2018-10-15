@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import AddUserForm from '../rooms/add_user_form_container'
 
 export default class Room extends React.Component {
   constructor (props) {
@@ -25,7 +24,6 @@ export default class Room extends React.Component {
         <header className='message-nav'>
           <p id='header-title'>#{this.props.room.title}</p>
           <p id='num-users'><img id='user-count-icon' src={window.userCount} alt="user-count-icon"/>{members.length}</p>
-          {/* <AddUserForm /> */}
         </header>
       </Fragment>
     )

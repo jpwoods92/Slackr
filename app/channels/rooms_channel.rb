@@ -49,6 +49,23 @@ class RoomsChannel < ApplicationCable::Channel
     user_id = data['user_id']
     room_membership.update({user_id: user_id, room_id: room_id})
   end
+
+  def speak_login_user(data)
+    user = User.find_by_credentials(
+      data['email'],
+      data['password']
+      )
+    user = user.as_json
+    user = { id: user['id'], username: user['username'], logged_in: user['logged_in'] }
+    RoomsChannel.broadcast_to('rooms_channel', user)    
+  end
+
+  def speak_logout_user(data)
+    user = data
+    user.delete('action')
+    user['logged_in'] = false
+    RoomsChannel.broadcast_to('rooms_channel', user)
+  end
   
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed

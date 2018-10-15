@@ -6,6 +6,8 @@ export default class RoomListItem extends React.Component {
   constructor (props) {
     super(props)
     this.processClick = this.processClick.bind(this)
+    this.matchParams = this.matchParams.bind(this)
+    this.handleReceivedUser = this.handleReceivedUser.bind(this)
   }
 
   parseTitle (title) {
@@ -33,30 +35,53 @@ export default class RoomListItem extends React.Component {
     }
   }
 
-  render () {
+  handleReceivedUser (user) {
+    this.props.updateUser(user)
+  }
+
+  matchParams () {
     const match = matchPath(this.props.history.location.pathname, {
       path: '/channels/:param',
       exact: true,
       strict: false
     })
-    if (!match) return null
-    let parameter = parseInt(match.params.param)
+    return match
+  }
+
+  loggedInUsers () {
+    let users = this.props.users.filter((user) => {
+      if (!user.room_ids) return null
+      return user.room_ids.includes(this.props.room.id) && user.id !== this.props.currentUserId
+    })
+    return users.some((user) => {
+      return user.logged_in === false
+    })
+  }
+
+  render () {
+    if (!this.matchParams()) return null
+    let parameter = parseInt(this.matchParams().params.param)
     let classText
     if (this.props.room.id === parameter) {
       classText = 'room-list-link active'
     } else {
       classText = 'room-list-link'
     }
-    let title
+    let title, status
     if (this.props.room.is_dm) {
       if (this.props.room.title.length > 18) {
         title = this.props.room.title.slice(0, 15) + '...'
       } else {
         title = this.props.room.title
       }
+      if (!this.loggedInUsers()) {
+        status = <img id='presence' src={window.loggedInIcon} alt="logged-in"/>
+      } else {
+        status = 'o'
+      }
       return (
         <li key={this.props.room.id} className="room-list-item" onClick={this.props.handleClick(this.props.room.id)}>
-          <Link className={classText} to={`/channels/${this.props.room.id}`}>o {title}</Link>
+          <Link className={classText} to={`/channels/${this.props.room.id}`}>{status} {title}</Link>
           <button to='/channels/1' className='room-list-button' onClick={(e) => { this.processClick(e) }}>X</button>
           <ActionCable
             ref='RoomsChannel'
@@ -75,6 +100,7 @@ export default class RoomListItem extends React.Component {
           <ActionCable
             ref='RoomsChannel'
             channel={{ channel: 'RoomsChannel', room: 'RoomRoom' }}
+            onReceived={this.handleReceivedUser}
           />
         </li>)
     }
