@@ -3,19 +3,19 @@
 
  Slackr is a single-page web app inspired by Slack and built in 10 days. Sign up to chat with friends and other users across multiple channels, private or public, or in direct messages. Users can create new channels or direct messages, and unsubscribe from the ones they don't want to see.
 
-![home-page]()
+![home-page](https://raw.githubusercontent.com/jpwoods92/Slackr/master/app/assets/images/home-page.png)
 
 ## Feature Highlights
 
 ### Live Chat
 Slackr's core feature is the ability to chat with coworkers or friends live in direct messages or public/private channels. 
 
-![chat]()
+![chat](https://raw.githubusercontent.com/jpwoods92/Slackr/master/app/assets/images/chat.png)
 
 ### Create/Leave Channels
 If you want to create a new channel or direct message, you can easily do so by filling out the new channel/direct message form and adding users. Search results are updated live and clicking one adds it to the list of users to be added to the room. Once created, feel free to hop in and chat with your coworkers or friends. Action-cables receives the room on the backend and handles the rest:
 
-![create-room-form]()
+![create-room-form](https://raw.githubusercontent.com/jpwoods92/Slackr/master/app/assets/images/create-room-form.png)
 
 
 ```ruby
@@ -44,11 +44,11 @@ Slackr features a flexible, intuitive UI that allows for seamless updating on el
 
 When users log out that you are chatting with the status oth the chat changes to show they are logged out. If they create a room, you will imediately see it unless it's private and you are not invited:
 
-![logged-in]()
+![logged-in](https://raw.githubusercontent.com/jpwoods92/Slackr/master/app/assets/images/before.png)
 
 Then:
 
-![logged-out]()
+![logged-out](https://raw.githubusercontent.com/jpwoods92/Slackr/master/app/assets/images/after.png)
 
 
 ## Technologies Used
