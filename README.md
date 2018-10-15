@@ -44,30 +44,15 @@ Slackr features a flexible, intuitive UI that allows for seamless updating on el
 
 When users log out that you are chatting with the status oth the chat changes to show they are logged out. If they create a room, you will imediately see it unless it's private and you are not invited:
 
-![comment-dropdown]()
+![logged-in]()
 
 Then:
 
-![editing-comment]()
+![logged-out]()
 
-Pressing 'enter' closes the form, and displays the comment again - with edits incorporated:
-
-![editing-complete]()
-
-A dedicated slice of Redux state tracks which comment (if any) is being edited by the current user, ensuring that only one comment can be edited at a time. This solution also simplifies the conditional rendering of comments in their static or editable forms:
-
-```javascript
-if (this.props.editing) {
-  return (
-    <EditCommentForm comment={this.state.comment} />
-  );
-}
-```
-
-Here, 'editing' refers to a Boolean representing the presence (or lack thereof) of a given comment's id in the 'editing comment' slice of state. If true, the comment renders as an edit form; if false, the comment renders as fixed text.
 
 ## Technologies Used
-Favebook utilizes a PostgreSQL database and Rails 5 back end. The front end is built on React with Redux. User photo storage is handled by Amazon Web Services S3. Trending news articles are provided by [Action Cables](https://heroku-blog-files.s3.amazonaws.com/posts/1473343848-1462551406-rails-rack.png).
+Slackr utilizes a PostgreSQL database and Rails 5 back end. The front end is built on React with Redux. Live updating of features is handled by Action-cables web-socketing. [Action Cables](https://heroku-blog-files.s3.amazonaws.com/posts/1473343848-1462551406-rails-rack.png).
 
 ## Future Implementations
 WIP features inlude:
