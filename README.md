@@ -50,6 +50,17 @@ Then:
 
 ![logged-out](https://raw.githubusercontent.com/jpwoods92/Slackr/master/app/assets/images/after.png)
 
+Also everyday at the end of the day a task runs to remove any empty rooms that have been created and make sure that they aren't clogging up the database:
+
+```ruby
+task :garbage_collection => :environment do
+    Room.all.each do |room|
+        if room.member_ids.empty?
+            room.destroy
+        end
+    end
+end
+```
 
 ## Technologies Used
 Slackr utilizes a PostgreSQL database and Rails 5 back end. The front end is built on React with Redux. Live updating of features is handled by Action-cables web-socketing. 
