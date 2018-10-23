@@ -8,7 +8,7 @@ class RoomsChannel < ApplicationCable::Channel
     RoomsChannel.broadcast_to('rooms_channel', new_message)
   end
 
-  def speak_room(data) 
+  def create_room(data) 
     new_room = Room.create(
       title: data['title'], 
       is_private: data['is_private'], 
@@ -27,14 +27,14 @@ class RoomsChannel < ApplicationCable::Channel
       end
   end
 
-  def speak_delete(data)
+  def delete_room(data)
     current_user = User.find(data['current_user'])
     membership = current_user.room_memberships.find_by(room_id: data['id'])
     membership.destroy
     RoomsChannel.broadcast_to('rooms_channel', {id: data['id']})
   end
   
-  def speak_update(data)
+  def update_room(data)
     new_data = {id: data['id'], title: data['title']}
     updated_room = Room.find(data['id'])
     if updated_room.update(new_data)
@@ -43,14 +43,14 @@ class RoomsChannel < ApplicationCable::Channel
     end
   end
 
-  def speak_add_user(data)
+  def add_user(data)
     room_id = data['room_id']
     room_membership = RoomMembership.find_by(data['room_id'])
     user_id = data['user_id']
     room_membership.update({user_id: user_id, room_id: room_id})
   end
 
-  def speak_login_user(data)
+  def login_user(data)
     user = User.find_by_credentials(
       data['email'],
       data['password']
@@ -60,7 +60,7 @@ class RoomsChannel < ApplicationCable::Channel
     RoomsChannel.broadcast_to('rooms_channel', user)    
   end
 
-  def speak_logout_user(data)
+  def logout_user(data)
     user = data
     user.delete('action')
     user['logged_in'] = false

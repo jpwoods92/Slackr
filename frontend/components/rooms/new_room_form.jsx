@@ -33,7 +33,7 @@ export default class NewRoomForm extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
     if (!this.state.is_private) {
-      this.refs.RoomsChannel.perform('speak_room', {
+      this.refs.RoomsChannel.perform('room', {
         title: this.state.title,
         is_private: this.state.is_private,
         owner_id: this.props.currentUserId
@@ -42,7 +42,7 @@ export default class NewRoomForm extends React.Component {
     } else {
       let userIds = this.state.selectedUsers.map(user => user.id)
       userIds = [...userIds, this.props.currentUserId]
-      this.refs.RoomsChannel.perform('speak_room', {
+      this.refs.RoomsChannel.perform('room', {
         title: this.state.title,
         is_private: this.state.is_private,
         user_ids: userIds,

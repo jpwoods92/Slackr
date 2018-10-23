@@ -36,14 +36,14 @@ export class LoginForm extends Component {
     e.preventDefault()
     const user = Object.assign({}, this.state)
     this.props.processForm(user)
-    this.refs.RoomsChannel.perform('speak_login_user', user)
+    this.refs.RoomsChannel.perform('login_user', user)
   }
 
   guestLogin () {
     let user = {
       email: 'GuestEmail@guestemail.com',
       password: 'guestpassword'}
-    this.refs.RoomsChannel.perform('speak_login_user', user)
+    this.refs.RoomsChannel.perform('login_user', user)
     this.props.processForm(user)
   }
 

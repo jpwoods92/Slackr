@@ -19,7 +19,7 @@ If you want to create a new channel or direct message, you can easily do so by f
 
 
 ```ruby
-def speak_room(data) 
+def room(data) 
     new_room = Room.create(
       title: data['title'], 
       is_private: data['is_private'], 
@@ -50,7 +50,7 @@ Then:
 
 ![logged-out](https://raw.githubusercontent.com/jpwoods92/Slackr/master/app/assets/images/after.png)
 
-Also everyday at the end of the day a task runs to remove any empty rooms that have been created and make sure that they aren't clogging up the database:
+Also everyday at the end of the day a task is scheduled to remove any empty rooms that have been created and make sure that they aren't clogging up the database:
 
 ```ruby
 task :garbage_collection => :environment do

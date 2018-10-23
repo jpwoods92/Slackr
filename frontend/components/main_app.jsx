@@ -27,7 +27,7 @@ class mainApp extends React.Component {
   handleClick (e) {
     e.preventDefault()
     this.props.logout()
-    this.refs.RoomsChannel.perform('speak_logout_user', this.props.user)
+    this.refs.RoomsChannel.perform('logout_user', this.props.user)
   }
 
   render () {
