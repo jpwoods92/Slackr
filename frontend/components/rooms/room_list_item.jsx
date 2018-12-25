@@ -22,13 +22,14 @@ export default class RoomListItem extends React.Component {
 
   processClick (e) {
     e.preventDefault()
-    this.refs.RoomsChannel.perform('delete', {
+    this.refs.RoomsChannel.perform('delete_room', {
       id: this.props.room.id,
       current_user: this.props.currentUserId
     })
+    this.props.switchRoom(this.props.mainRoom)
     if (this.props.room.is_dm) {
       let newTitle = this.parseTitle(this.props.room.title)
-      this.refs.RoomsChannel.perform('update', {
+      this.refs.RoomsChannel.perform('update_room', {
         id: this.props.room.id,
         title: newTitle
       })
@@ -36,7 +37,11 @@ export default class RoomListItem extends React.Component {
   }
 
   handleReceivedUser (user) {
-    this.props.updateUser(user)
+    if (user.action === 'login_user' || user.action === 'logout_user') {
+      this.props.updateUser(user)
+    } else {
+      return null
+    }
   }
 
   matchParams () {

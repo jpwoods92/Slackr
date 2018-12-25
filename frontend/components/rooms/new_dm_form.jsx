@@ -25,7 +25,7 @@ export default class NewDMForm extends React.Component {
     let currentUser = this.props.users[this.props.currentUserId]
     let addCurrentUser = [...this.state.selectedUsers, currentUser]
     let users = addCurrentUser.map((el) => el.username).join(', ')
-    this.refs.RoomsChannel.perform('room', {
+    this.refs.RoomsChannel.perform('create_room', {
       title: users,
       is_private: this.state.is_private,
       user_ids: userIds,

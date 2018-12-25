@@ -39,9 +39,7 @@ class MessagesArea extends React.Component {
   }
 
   handleReceivedMessage (message) {
-    if (!message.user_id) {
-      return null
-    } else if (message.room_id === this.props.room.id) {
+    if (message.action === 'new_message') {
       this.props.receiveMessage(message)
       this.myRef.current.scrollIntoView()
     } else return null

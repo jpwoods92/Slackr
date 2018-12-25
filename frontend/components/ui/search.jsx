@@ -18,8 +18,10 @@ class UsersSearch extends Component {
   }
 
   handleChange (e) {
-    let users = this.props.users.filter(user =>
-      user.username.toLowerCase().includes(e.target.value.toLowerCase()))
+    let users = this.props.users.filter(user => {
+      return user.username.toLowerCase().includes(e.target.value.toLowerCase())
+    }
+    )
     users = users.filter(user => !this.props.selectedUsers.map(user => user.username).includes(user.username))
     if (users.length) {
       this.setState({users: users, input: e.target.value})

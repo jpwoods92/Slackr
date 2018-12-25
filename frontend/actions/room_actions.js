@@ -27,7 +27,7 @@ export const receiveRoom = (room) => {
   }
 }
 
-const switchRoom = (room) => {
+export const switchRoom = (room) => {
   return {
     type: SWITCH_ROOM,
     room
