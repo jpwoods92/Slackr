@@ -22,11 +22,13 @@ export default class RoomListItem extends React.Component {
 
   processClick (e) {
     e.preventDefault()
+    e.stopPropagation()
     this.refs.RoomsChannel.perform('delete_room', {
       id: this.props.room.id,
       current_user: this.props.currentUserId
     })
     this.props.switchRoom(this.props.mainRoom)
+    this.props.history.push(`/channels/1`)
     if (this.props.room.is_dm) {
       let newTitle = this.parseTitle(this.props.room.title)
       this.refs.RoomsChannel.perform('update_room', {

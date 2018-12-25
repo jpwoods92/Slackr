@@ -8,7 +8,8 @@ import { withRouter } from 'react-router-dom'
 const mapStateToProps = (state) => {
   return {
     rooms: Object.values(state.entities.rooms),
-    room: state.ui.room
+    room: state.ui.room,
+    currentUser: state.entities.users[state.session.currentUserId]
   }
 }
 const mapDispatchToProps = dispatch => ({

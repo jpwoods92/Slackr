@@ -18,7 +18,7 @@ class MessagesArea extends React.Component {
   componentDidMount () {
     let roomId = parseInt(this.props.history.location.pathname.split('/').pop()) || 1
     this.props.fetchUsers()
-    this.props.fetchMessages(roomId).then(this.props.fetchRoom(roomId))
+    this.props.fetchMessages(roomId)
       .then((this.setState({messages: this.props.messages})))
     this.props.history.push(`/channels/${roomId}`)
     if (this.props.room.title !== undefined) {
@@ -34,7 +34,11 @@ class MessagesArea extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.room.id !== nextProps.room.id) {
-      this.setState({messages: nextProps.messages})
+      if (nextProps.messages.length !== nextProps.room.message_ids.length) {
+        this.props.fetchMessages(nextProps.room.id)
+      } else {
+        this.setState({messages: nextProps.messages})
+      }
     }
   }
 

@@ -41,7 +41,7 @@ class RoomsChannel < ApplicationCable::Channel
     updated_room = Room.find(data['id'])
     if updated_room.update(new_data)
       updated_room.save
-      room = new_room.as_json.merge({action: 'new_room'})
+      room = updated_room.as_json.merge({action: 'new_room'})
       RoomsChannel.broadcast_to('rooms_channel', room)      
     end
   end
