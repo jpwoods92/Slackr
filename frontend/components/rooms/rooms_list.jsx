@@ -28,9 +28,7 @@ export default class RoomsList extends React.Component {
 
   handleReceivedChange (data) {
     if (data.action === 'new_room' || data.action === 'update_room') {
-      if (data.title.includes(this.props.currentUser.username)) {
         this.props.receiveRoom(data)
-      } else return null
     } else if (data.action === 'delete_room') {
       this.props.removeRoom(data.id)
     } else {
