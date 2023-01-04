@@ -2,7 +2,7 @@
   "name": "slackr",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.20.7",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "actioncable": "^5.2.1",
